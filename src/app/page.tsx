@@ -8,7 +8,6 @@ import SignUpForm from '@/components/signUpForm';
 import supabase from '@/utils/supabaseClient';
 
 
-
 export default function Landing() {
 
   useEffect(()=>{

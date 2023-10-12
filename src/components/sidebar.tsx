@@ -26,14 +26,12 @@ export default function Sidebar() {
 
   return (
     <div
-      className={`flex flex-col bg-slate-100 h-screen p-3 pt-7 space-y-7 text-2xl ${
-        toggle ? 'w-96' : 'max-w-min'
-      }`}
+      className={`flex flex-col bg-slate-100 h-screen p-3 pt-7 space-y-7 text-2xl ${toggle ? 'w-96' : 'max-w-min'
+        }`}
     >
       <div
-        className={`flex items-center ${
-          toggle ? 'justify-around' : 'justify-center'
-        }`}
+        className={`flex items-center ${toggle ? 'justify-around' : 'justify-center'
+          }`}
       >
         <FontAwesomeIcon
           icon={faBookOpen}
