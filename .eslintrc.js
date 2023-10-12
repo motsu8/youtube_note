@@ -16,6 +16,23 @@ const config = {
         message: 'DO NOT DECLARE ENUM',
       },
     ],
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: true, // devDependenciesのimportを許可
+        optionalDependencies: false,
+      },
+    ],
     'import/order': [
       'error',
       {

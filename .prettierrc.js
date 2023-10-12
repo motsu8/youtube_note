@@ -1,6 +1,6 @@
 /** @type {import('prettier').Options} */
 const config = {
-  useWidth: 2,
+  tabWidth: 2,
   useTabs: false,
   semi: true,
   singleQuote: true,

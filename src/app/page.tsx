@@ -1,3 +1,31 @@
-export default function Home() {
-  return <div>Hello World</div>;
+import Image from 'next/image';
+
+import Sidebar from '@/components/sidebar';
+import SignUpForm from '@/components/signUpForm';
+
+export default function LandingPage() {
+  return (
+    <div className="flex">
+      <Sidebar />
+      <div className="w-full">
+        <header id="lp-header" className="mx-2 my-10 p-3">
+          <h1 className="text-7xl">YouTube Note</h1>
+          <p className="text-3xl">
+            YouTube動画を複合的なノートで学習することができます。
+          </p>
+        </header>
+        <div className="flex justify-around">
+          <div>
+            <Image
+              src="/book-solid.svg"
+              alt="Landing image"
+              width="64"
+              height="64"
+            />
+          </div>
+          <SignUpForm />
+        </div>
+      </div>
+    </div>
+  );
 }
