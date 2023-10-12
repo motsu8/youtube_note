@@ -1,7 +1,6 @@
 'use client';
 
 import {
-  faMagnifyingGlass,
   faChevronRight,
   faTags,
   faFilm,
@@ -46,22 +45,13 @@ export default function Sidebar() {
           <p>Note</p>
         </div>
         <IconButton
-          icon={toggle ? faChevronRight : faChevronLeft}
+          icon={toggle ? faChevronLeft : faChevronRight}
           iconClass={iconSize}
           bgClass={BG_CENTER}
           color={iconColor}
           setClickHandler={toggleBar}
         />
       </div>
-
-      <SideContent
-        toggle={toggle}
-        icon={faMagnifyingGlass}
-        iconClass={iconSize}
-        iconColor={iconColor}
-        setClickHandler={toggleBar}
-        title="検索"
-      />
 
       <SideContent
         toggle={toggle}
