@@ -1,6 +1,7 @@
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Image from 'next/image';
+
+import GoogleOauth from './auth';
 
 export default function SignUpForm() {
   return (
@@ -20,9 +21,9 @@ export default function SignUpForm() {
           placeholder="パスワード"
         />
       </div>
-      <div className="shadow-lg px-3 py-1 max-w-fit rounded-lg">
-        <Image src="/search.png" alt="Google icon" height={25} width={25} />
-      </div>
+
+      <GoogleOauth />
+
       <div className="shadow-lg max-w-fit p-3 rounded-xl">
         <FontAwesomeIcon
           icon={faArrowRight}

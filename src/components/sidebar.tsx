@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import {
   faMagnifyingGlass,
@@ -11,28 +11,36 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 
+import { BG_CENTER } from '@/constants/iconBackGround';
+
 import IconButton from './parts/iconButton';
 import SideContent from './sideContent';
 
 export default function Sidebar() {
   const iconSize = 'h-[50px]';
   const iconColor = '#bbbbbb';
-  const [toggle, setToggle] = useState(false)
+  const [toggle, setToggle] = useState(false);
 
   const toggleBar = () => {
     setToggle(!toggle);
-  }
-
-  const iconCenter = [
-    'flex',
-    'justify-center',
-    'align-center'
-  ]
+  };
 
   return (
-    <div className={`flex flex-col bg-slate-100 h-screen p-3 pt-7 space-y-7 text-2xl ${toggle ? 'w-96' : 'max-w-min'}`}>
-      <div className={`flex items-center ${toggle ? 'justify-around' : 'justify-center'}`}>
-        <FontAwesomeIcon icon={faBookOpen} className={`${iconSize} ${toggle ? 'block' : 'hidden'}`} color={iconColor} />
+    <div
+      className={`flex flex-col bg-slate-100 h-screen p-3 pt-7 space-y-7 text-2xl ${
+        toggle ? 'w-96' : 'max-w-min'
+      }`}
+    >
+      <div
+        className={`flex items-center ${
+          toggle ? 'justify-around' : 'justify-center'
+        }`}
+      >
+        <FontAwesomeIcon
+          icon={faBookOpen}
+          className={`${iconSize} ${toggle ? 'block' : 'hidden'}`}
+          color={iconColor}
+        />
         <div className={`${toggle ? 'block' : 'hidden'}`}>
           <p>YouTube</p>
           <p>Note</p>
@@ -40,7 +48,7 @@ export default function Sidebar() {
         <IconButton
           icon={toggle ? faChevronRight : faChevronLeft}
           iconClass={iconSize}
-          bgClass={iconCenter}
+          bgClass={BG_CENTER}
           color={iconColor}
           setClickHandler={toggleBar}
         />
@@ -52,7 +60,7 @@ export default function Sidebar() {
         iconClass={iconSize}
         iconColor={iconColor}
         setClickHandler={toggleBar}
-        title='検索'
+        title="検索"
       />
 
       <SideContent
@@ -61,7 +69,7 @@ export default function Sidebar() {
         iconClass={iconSize}
         iconColor={iconColor}
         setClickHandler={toggleBar}
-        title='プレイリスト'
+        title="プレイリスト"
       />
       <SideContent
         toggle={toggle}
@@ -69,7 +77,7 @@ export default function Sidebar() {
         iconClass={iconSize}
         iconColor={iconColor}
         setClickHandler={toggleBar}
-        title='ノート'
+        title="ノート"
       />
       <SideContent
         toggle={toggle}
@@ -77,7 +85,7 @@ export default function Sidebar() {
         iconClass={iconSize}
         iconColor={iconColor}
         setClickHandler={toggleBar}
-        title='単語帳'
+        title="単語帳"
       />
     </div>
   );

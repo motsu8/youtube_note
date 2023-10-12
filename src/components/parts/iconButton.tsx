@@ -30,6 +30,5 @@ export default function IconButton({
     <div className={bgClass.join(' ')}>
       <FontAwesomeIcon icon={icon} className={iconClass} color={color} />
     </div>
-  )
+  );
 }
-
