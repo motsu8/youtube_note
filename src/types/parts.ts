@@ -2,7 +2,8 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 export type IconButton = {
   icon: IconProp;
-  size: string;
+  iconClass: string;
+  bgClass: string[]
   color: string;
-  setClickHandler: () => void;
+  setClickHandler?: () => void;
 };
