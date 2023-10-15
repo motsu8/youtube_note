@@ -1,7 +1,6 @@
 'use client';
 
 import {
-  faMagnifyingGlass,
   faChevronRight,
   faTags,
   faFilm,
@@ -27,14 +26,12 @@ export default function Sidebar() {
 
   return (
     <div
-      className={`flex flex-col bg-slate-100 h-screen p-3 pt-7 space-y-7 text-2xl ${
-        toggle ? 'w-96' : 'max-w-min'
-      }`}
+      className={`flex flex-col bg-slate-100 h-screen p-3 pt-7 space-y-7 text-2xl ${toggle ? 'w-96' : 'max-w-min'
+        }`}
     >
       <div
-        className={`flex items-center ${
-          toggle ? 'justify-around' : 'justify-center'
-        }`}
+        className={`flex items-center ${toggle ? 'justify-around' : 'justify-center'
+          }`}
       >
         <FontAwesomeIcon
           icon={faBookOpen}
@@ -46,22 +43,13 @@ export default function Sidebar() {
           <p>Note</p>
         </div>
         <IconButton
-          icon={toggle ? faChevronRight : faChevronLeft}
+          icon={toggle ? faChevronLeft : faChevronRight}
           iconClass={iconSize}
           bgClass={BG_CENTER}
           color={iconColor}
           setClickHandler={toggleBar}
         />
       </div>
-
-      <SideContent
-        toggle={toggle}
-        icon={faMagnifyingGlass}
-        iconClass={iconSize}
-        iconColor={iconColor}
-        setClickHandler={toggleBar}
-        title="検索"
-      />
 
       <SideContent
         toggle={toggle}

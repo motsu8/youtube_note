@@ -1,9 +1,27 @@
+'use client'
+
 import Image from 'next/image';
+import { useEffect } from 'react';
 
 import Sidebar from '@/components/sidebar';
 import SignUpForm from '@/components/signUpForm';
+import supabase from '@/utils/supabaseClient';
 
-export default function LandingPage() {
+
+export default function Landing() {
+
+  useEffect(()=>{
+    const getSession = async() =>{
+      const { data } = await supabase.auth.getSession()
+      if (data.session) {
+        window.location.href = '/home'
+        console.log(data)
+      }
+    }
+    getSession()
+  },[])
+
+
   return (
     <div className="flex">
       <Sidebar />
