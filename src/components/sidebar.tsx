@@ -18,6 +18,7 @@ async function toggleBar() {
 export default async function Sidebar() {
   const iconClass = 'h-[50px]';
   const iconColor = '#bbbbbb';
+  const iconColor2 = '#999999';
 
   return (
     <div className="flex flex-col bg-slate-100 h-screen p-3 pt-7 space-y-7">
@@ -30,7 +31,7 @@ export default async function Sidebar() {
       <IconButton
         icon={faMagnifyingGlass}
         size={iconClass}
-        color={iconColor}
+        color={iconColor2}
         setClickHandler={toggleBar}
       />
       <IconButton
