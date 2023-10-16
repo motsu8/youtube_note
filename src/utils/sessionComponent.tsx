@@ -1,11 +1,6 @@
 import React from 'react';
 
-import supabase from './supabaseClient';
-
-const getSession = async () => {
-  const { data } = await supabase.auth.getSession();
-  console.log(data.session);
-};
+import getSession from './getSession';
 
 function GetSession() {
   return (

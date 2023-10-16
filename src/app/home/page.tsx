@@ -6,7 +6,7 @@ import GetDocument from '@/components/getDocument';
 import PostDocument from '@/components/postDocument';
 import Search from '@/components/search';
 import Sidebar from '@/components/sidebar';
-import GetSession from '@/utils/getSession';
+import GetSession from '@/utils/sessionComponent';
 import SignOut from '@/utils/signOut';
 
 export default function Home() {
