@@ -317,3 +317,13 @@ export interface Database {
     };
   };
 }
+
+export type Doc = {
+  content: string | null;
+  created_at: string;
+  id: number;
+  lib_id: string | null;
+  title: string | null;
+  user_id: string;
+  visible: boolean | null;
+};
