@@ -1,18 +1,15 @@
 import React from 'react';
 
-import supabase from '@/utils/supabaseClient';
+import Document from '@/app/api/document';
+import { SupabaseSession } from '@/types/components';
 
-async function GetDocument() {
-  const { data } = await supabase.auth.getSession();
-  const document = await supabase
-    .from('Document')
-    .select('*')
-    .eq('user_id', data.session?.user.id);
+async function GetDocument({ session }: SupabaseSession) {
+  const document = new Document(session!);
 
   return (
-    <div className="bg-slate-200 w-1/2 p-2 space-x-3 space-y-2">
+    <div className="bg-slate-200 w-11/12 p-2 space-x-3 space-y-2">
       <p>Get Document</p>
-      {document!.data!.map((doc) => {
+      {document.getData!.map((doc) => {
         return (
           <div key={doc.id} className="bg-stone-100 max-w-max">
             <p>title: {doc.title}</p>

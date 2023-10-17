@@ -19,7 +19,7 @@ export default function Landing() {
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full h-screen overflow-auto">
       <header id="lp-header" className="mx-2 my-10 p-3">
         <h1 className="text-7xl">YouTube Note</h1>
         <p className="text-3xl">

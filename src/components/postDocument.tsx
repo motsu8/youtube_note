@@ -11,7 +11,7 @@ function PostDocument() {
   const document = new Document();
 
   return (
-    <div className="bg-slate-200 w-1/2 p-2 space-x-3 space-y-2">
+    <div className="bg-slate-200 w-11/12 p-2 space-x-3 space-y-2">
       <p>Post Document</p>
       <input
         type="text"

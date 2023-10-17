@@ -1,5 +1,6 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
+import Script from 'next/script';
 
 import Sidebar from '@/components/sidebar';
 
@@ -25,6 +26,7 @@ export default function RootLayout({
           {children}
         </div>
       </body>
+      <Script src="https://apis.google.com/js/api.js" />
     </html>
   );
 }

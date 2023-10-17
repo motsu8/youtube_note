@@ -9,6 +9,7 @@ const config = {
   ],
   rules: {
     'arrow-body-style': 'off',
+    '@typescript-eslint/no-explicit-any': 'warn',
     'no-restricted-syntax': [
       'error',
       {
