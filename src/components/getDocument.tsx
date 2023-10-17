@@ -9,8 +9,6 @@ async function GetDocument() {
     .select('*')
     .eq('user_id', data.session?.user.id);
 
-  console.log(document.data);
-
   return (
     <div className="bg-slate-200 w-1/2 p-2 space-x-3 space-y-2">
       <p>Get Document</p>

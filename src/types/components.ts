@@ -8,3 +8,7 @@ export type SideContent = {
   setClickHandler?: () => void;
   title: string;
 };
+
+export type DrawList = {
+  title: string;
+};
