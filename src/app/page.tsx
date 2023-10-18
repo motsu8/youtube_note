@@ -4,18 +4,18 @@ import Image from 'next/image';
 import { useEffect } from 'react';
 
 import SignUpForm from '@/components/signUpForm';
-import supabase from '@/utils/supabaseClient';
+import getSession from '@/utils/getSession';
 
 export default function Landing() {
   useEffect(() => {
-    const getSession = async () => {
-      const { data } = await supabase.auth.getSession();
+    const session = async () => {
+      const data = await getSession();
       if (data.session) {
         window.location.href = '/home';
-        console.log(data);
+        console.log(data.session);
       }
     };
-    getSession();
+    session();
   }, []);
 
   return (

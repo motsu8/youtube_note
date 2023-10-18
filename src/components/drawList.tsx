@@ -6,7 +6,7 @@ import Content from './parts/content';
 
 function DrawList({ title }: DrawList) {
   return (
-    <div className="bg-slate-200 w-11/12 p-2 space-x-3 space-y-2">
+    <div className="bg-slate-200 w-11/12 max-h-max p-2 space-x-3 space-y-2">
       <p>{title}</p>
       <Content />
     </div>

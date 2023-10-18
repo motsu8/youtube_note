@@ -13,7 +13,6 @@ export default class Document {
   constructor(session: Session) {
     this.data = null;
     this.session = session;
-    this.fetchAllData();
   }
 
   private async fetchAllData() {

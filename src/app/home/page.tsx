@@ -1,4 +1,7 @@
-import React from 'react';
+'use client'
+
+import { Session } from '@supabase/supabase-js';
+import React, { useEffect, useState } from 'react';
 
 import DrawList from '@/components/drawList';
 // import GetDocument from '@/components/getDocument';
@@ -9,8 +12,14 @@ import GetSession from '@/utils/sessionComponent';
 import SignOut from '@/utils/signOut';
 import YoutubeApi from '@/utils/youtubeApi';
 
-export default async function Home() {
-  const session = await getSession();
+export default function Home() {
+  const [session, setSession] = useState<Session | null>(null)
+  useEffect(() => {
+    (async () => {
+      const data = await getSession();
+      setSession(data.session)
+    })();
+  }, [])
 
   return (
     <div
@@ -24,7 +33,7 @@ export default async function Home() {
         <YoutubeApi session={session} />
       </div>
       <DrawList title="DrawList" />
-      <PostDocument />
+      <PostDocument session={session} />
       {/* <GetDocument session={session} /> */}
     </div>
   );

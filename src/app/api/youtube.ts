@@ -1,47 +1,30 @@
 export default class Youtube {
-  public apiKey: string | undefined;
+  public static apiKey: string | undefined = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 
-  public clientId: string | undefined;
+  public static clientId: string | undefined = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 
-  public GoogleAuth: any | undefined;
+  public static videoUrl: string = 'https://www.googleapis.com/youtube/v3/videos'
 
-  public gapi: any;
+  public static discoveryUrl: string = 'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'
 
-  constructor() {
-    this.apiKey = process.env.GOOGLE_API_KEY;
-    this.clientId = process.env.GOOGLE_CLIENT_ID;
-    this.gapi = (window as any).gapi;
+  public static clientConfig: { apiKey: string | undefined } = {
+    apiKey: Youtube.apiKey
   }
 
-  public signIn() {
-    console.log('start signIn');
-    this.gapi.load('client:auth2', () => {
-      this.gapi.client
-        .init({
-          clientId: this.clientId,
-          scope: 'https://www.googleapis.com/auth/youtube.readonly',
-        })
-        .then(() => {
-          this.GoogleAuth = this.gapi.auth2.getAuthInstance();
-          if (this.GoogleAuth.isSignedIn.get()) {
-            console.log('ログイン済み');
-          } else {
-            console.log('未ログイン');
-            this.GoogleAuth.signIn();
-          }
+  public static getVideoSnippet(videoId: string) {
+    const videoRequest = {
+      path: this.videoUrl,
+      params: {
+        part: ['snippet'],
+        id: [videoId]
+      }
+    }
 
-          const googleUser = this.GoogleAuth.currentUser.get();
-          console.log(googleUser);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    });
-  }
+    window.gapi.load('client', () => {
+      window.gapi.client.load(Youtube.discoveryUrl);
+      window.gapi.client.init(Youtube.clientConfig)
+      window.gapi.client.request(videoRequest).execute(res => console.log(res))
+    })
 
-  public getThumbnail() {
-    this.gapi.load('client', () => {
-      this.gapi.client.init({ apiKey: this.apiKey });
-    });
   }
 }

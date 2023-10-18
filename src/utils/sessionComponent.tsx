@@ -2,14 +2,10 @@
 
 import React from 'react';
 
-import Document from '@/app/api/document';
 import { SupabaseSession } from '@/types/components';
 
 function GetSession({ session }: SupabaseSession) {
-  const doc = new Document();
-
   const getData = () => {
-    console.log(doc);
     console.log(session);
   };
 

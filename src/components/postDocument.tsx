@@ -3,12 +3,13 @@
 import React, { useState } from 'react';
 
 import Document from '@/app/api/document';
+import { SupabaseSession } from '@/types/components';
 
-function PostDocument() {
+function PostDocument({session}:SupabaseSession) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
-  const document = new Document();
+  const document = new Document(session!);
 
   return (
     <div className="bg-slate-200 w-11/12 p-2 space-x-3 space-y-2">
