@@ -41,7 +41,7 @@ export default class Youtube {
     window.gapi.load('client', () => {
       window.gapi.client.load(Youtube.discoveryUrl);
       window.gapi.client.init(Youtube.clientConfig);
-      window.gapi.client.request(videoRequest).execute((res) => {
+      window.gapi.client.request(videoRequest).execute((res: any) => {
         console.log(res.items[0]);
         const resData = res.items[0].snippet;
         const data = {
