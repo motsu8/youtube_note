@@ -20,7 +20,7 @@ function Search({ placeholder, setInputValue, setSubmitAction }: Search) {
           type="text"
           placeholder={placeholder}
           onChange={(e) => setInputValue(e.target.value)}
-          className="w-1/2 max-h-max w-full py-3 pl-7 bg-slate-100 shadow-lg rounded-lg px-4 text-center"
+          className="w-1/2 max-h-max py-3 pl-7 bg-slate-100 shadow-lg rounded-lg px-4 text-center"
         />
         <div className="flex absolute pl-3 inset-y-0 py-2 px-3 end-0">
           <button type="submit">
