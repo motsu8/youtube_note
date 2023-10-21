@@ -8,9 +8,11 @@ import {
   faChevronLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState } from 'react';
+import { Session } from '@supabase/supabase-js';
+import { useState, useEffect } from 'react';
 
 import { BG_CENTER } from '@/constants/iconBackGround';
+import getSession from '@/utils/getSession';
 
 import IconButton from './parts/iconButton';
 import SideContent from './parts/sideContent';
@@ -19,10 +21,18 @@ export default function Sidebar() {
   const iconSize = 'h-[50px]';
   const iconColor = '#bbbbbb';
   const [toggle, setToggle] = useState(false);
+  const [session, setSession] = useState<Session | null>(null);
 
   const toggleBar = () => {
     setToggle(!toggle);
   };
+
+  useEffect(() => {
+    (async () => {
+      const data = await getSession();
+      setSession(data);
+    })();
+  }, []);
 
   return (
     <div
@@ -58,24 +68,27 @@ export default function Sidebar() {
         icon={faFilm}
         iconClass={iconSize}
         iconColor={iconColor}
-        setClickHandler={toggleBar}
         title="プレイリスト"
+        url="/play"
+        session={session}
       />
       <SideContent
         toggle={toggle}
         icon={faBookOpen}
         iconClass={iconSize}
         iconColor={iconColor}
-        setClickHandler={toggleBar}
         title="ノート"
+        url="/note"
+        session={session}
       />
       <SideContent
         toggle={toggle}
         icon={faTags}
         iconClass={iconSize}
         iconColor={iconColor}
-        setClickHandler={toggleBar}
         title="単語帳"
+        url="/card"
+        session={session}
       />
     </div>
   );

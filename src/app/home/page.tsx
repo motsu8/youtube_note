@@ -12,6 +12,8 @@ import GetSession from '@/utils/sessionComponent';
 import SignOut from '@/utils/signOut';
 import supabase from '@/utils/supabaseClient';
 
+import Youtube from '../api/youtube';
+
 export default function Home() {
   const [videoUrl, setVideoUrl] = useState('');
   const [visible, setVisible] = useState(false);
@@ -24,6 +26,11 @@ export default function Home() {
       setSession(data.session);
     })();
   }, []);
+
+  const submitAction = () => {
+    Youtube.getVideoSnippet(videoUrl, setVideoData);
+    setVisible(true);
+  };
 
   return (
     <div
@@ -40,10 +47,11 @@ export default function Home() {
       <Search
         placeholder="動画URLで追加"
         session={session}
-        setVideoUrl={setVideoUrl}
+        setInputValue={setVideoUrl}
         setVideoData={setVideoData}
         setVisible={setVisible}
         videoUrl={videoUrl}
+        setSubmitAction={submitAction}
       />
       <div className="space-x-3">
         <SignOut />

@@ -6,8 +6,9 @@ export type SideContent = {
   icon: IconProp;
   iconClass: string;
   iconColor: string;
-  setClickHandler?: () => void;
   title: string;
+  url: string;
+  session: Session | null;
 };
 
 export type DrawList = {

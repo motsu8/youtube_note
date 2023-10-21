@@ -8,14 +8,10 @@ import getSession from '@/utils/getSession';
 
 export default function Landing() {
   useEffect(() => {
-    const session = async () => {
+    (async () => {
       const data = await getSession();
-      if (data.session) {
-        window.location.href = '/home';
-        console.log(data.session);
-      }
-    };
-    session();
+      if (data) window.location.href = '/home';
+    })();
   }, []);
 
   return (
@@ -27,14 +23,13 @@ export default function Landing() {
         </p>
       </header>
       <div className="flex justify-around">
-        <div>
-          <Image
-            src="/book-solid.svg"
-            alt="Landing image"
-            width="64"
-            height="64"
-          />
-        </div>
+        <div id="lp_content" />
+        <Image
+          src="/book-solid.svg"
+          alt="Landing image"
+          width="64"
+          height="64"
+        />
         <SignUpForm />
       </div>
     </div>
