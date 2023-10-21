@@ -26,12 +26,12 @@ function ConfirmVideo({
     return (
       <>
         <div
-          className={`w-full h-screen bg-black opacity-50 z-10 absolute ${
+          className={`w-full h-full bg-black opacity-50 z-10 absolute ${
             visible ? 'block' : 'hidden'
           }`}
         />
         <div
-          className={`bg-neutral-100 opacity-100 rounded-lg shadow-md w-1/2 p-5 items-center flex-col justify-center absolute top-1/4 inset-x-auto z-20 ${
+          className={`bg-neutral-100 opacity-100 !mt-0 rounded-lg shadow-md w-1/2 h-max p-5 items-center flex-col justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 ${
             visible ? 'flex' : 'hidden'
           }`}
         >
