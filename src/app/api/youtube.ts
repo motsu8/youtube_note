@@ -1,5 +1,10 @@
 import { VideoData } from '@/types/components';
 
+interface Window {
+  gapi: any;
+}
+declare const window: Window;
+
 export default class Youtube {
   public static apiKey: string | undefined =
     process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
