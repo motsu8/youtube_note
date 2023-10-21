@@ -13,6 +13,8 @@ export type SideContent = {
 
 export type DrawList = {
   title: string;
+  type: string;
+  drawList: { title: string }[] | null;
 };
 
 export type SupabaseSession = {

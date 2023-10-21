@@ -7,7 +7,7 @@ import Button from './parts/button';
 
 function NoteHead() {
   return (
-    <div className="w-full flex justify-around">
+    <div className="w-10/12 flex items-center justify-between">
       <Breadcrumb />
       <Button
         title="新規作成"

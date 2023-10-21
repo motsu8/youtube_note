@@ -4,7 +4,7 @@ import { Session } from '@supabase/supabase-js';
 import React, { useEffect, useState } from 'react';
 
 import ConfirmVideo from '@/components/confirmVideo';
-import DrawList from '@/components/drawList';
+// import DrawList from '@/components/drawList';
 import Search from '@/components/parts/search';
 import PostDocument from '@/components/postDocument';
 import { VideoData } from '@/types/components';
@@ -46,20 +46,15 @@ export default function Home() {
       />
       <Search
         placeholder="動画URLで追加"
-        session={session}
         setInputValue={setVideoUrl}
-        setVideoData={setVideoData}
-        setVisible={setVisible}
-        videoUrl={videoUrl}
         setSubmitAction={submitAction}
       />
       <div className="space-x-3">
         <SignOut />
         <GetSession session={session} />
       </div>
-      <DrawList title="DrawList" />
+      {/* <DrawList type='home' title="DrawList" /> */}
       <PostDocument session={session} />
-      {/* <GetDocument session={session} /> */}
     </div>
   );
 }
