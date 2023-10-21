@@ -1,5 +1,8 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
+import Script from 'next/script';
+
+import Sidebar from '@/components/sidebar';
 
 import type { Metadata } from 'next';
 
@@ -17,7 +20,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.className}`}>{children}</body>
+      <body className={`font-sans ${inter.className}`}>
+        <div className="flex">
+          <Sidebar />
+          {children}
+        </div>
+      </body>
+      <Script src="https://apis.google.com/js/api.js" />
     </html>
   );
 }

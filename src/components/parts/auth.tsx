@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import Image from 'next/image';
 
@@ -13,7 +13,7 @@ export default function GoogleOauth() {
 
   return (
     <div className="shadow-lg px-3 py-1 max-w-fit rounded-lg">
-      <button type="button" onClick={()=>auth()}>
+      <button type="button" onClick={() => auth()}>
         <Image src="/search.png" alt="Google icon" height={25} width={25} />
       </button>
     </div>

@@ -1,7 +1,7 @@
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import GoogleOauth from './auth';
+import GoogleOauth from './parts/auth';
 
 export default function SignUpForm() {
   return (

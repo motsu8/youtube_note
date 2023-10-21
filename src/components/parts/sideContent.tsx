@@ -1,7 +1,7 @@
 import { BG_CENTER } from '@/constants/iconBackGround';
 import { SideContent } from '@/types/components';
 
-import IconButton from './parts/iconButton';
+import IconButton from './iconButton';
 
 export default function SideContent({
   toggle,
