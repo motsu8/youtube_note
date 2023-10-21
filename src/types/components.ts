@@ -18,26 +18,43 @@ export type SupabaseSession = {
   session: Session | null;
 };
 
-type thumbnail = {
-  url: string;
-  height: number;
-  width: number;
-};
-
 export type VideoData = {
+  url: string;
   channel: string;
   title: string;
   thumbnails: {
-    default: thumbnail;
-    high: thumbnail;
-    maxres: thumbnail;
-    medium: thumbnail;
-    standard: thumbnail;
+    default: {
+      url: string;
+      height: number;
+      width: number;
+    };
+    high: {
+      url: string;
+      height: number;
+      width: number;
+    };
+    maxres: {
+      url: string;
+      height: number;
+      width: number;
+    };
+    medium: {
+      url: string;
+      height: number;
+      width: number;
+    };
+    standard: {
+      url: string;
+      height: number;
+      width: number;
+    };
   };
 };
 
 export type ConfirmVideo = {
-  visible: string;
+  visible: boolean;
   session: Session | null;
   videoData: VideoData | null;
+  setVisible: (variable: boolean) => void;
+  setVideoData: (variable: VideoData | null) => void;
 };

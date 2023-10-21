@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react';
 
 import ConfirmVideo from '@/components/confirmVideo';
 import DrawList from '@/components/drawList';
-import Mask from '@/components/parts/mask';
 import Search from '@/components/parts/search';
 import PostDocument from '@/components/postDocument';
 import { VideoData } from '@/types/components';
@@ -29,13 +28,14 @@ export default function Home() {
   return (
     <div
       id="dashBoard"
-      className="w-full flex flex-col justify-start items-center space-y-10 overflow-auto h-screen"
+      className="w-full relative flex flex-col justify-start items-center space-y-10 overflow-auto h-screen"
     >
-      <Mask visible={visible} />
       <ConfirmVideo
         videoData={videoData}
         session={session}
-        visible={videoData ? 'flex' : 'hidden'}
+        visible={visible}
+        setVideoData={setVideoData}
+        setVisible={setVisible}
       />
       <Search
         placeholder="動画URLで追加"

@@ -40,6 +40,7 @@ export default class Youtube {
         console.log(res.items[0]);
         const resData = res.items[0].snippet;
         const data = {
+          url: videoUrl,
           channel: resData.channelTitle,
           title: resData.title,
           thumbnails: resData.thumbnails,
