@@ -22,7 +22,6 @@ function Note() {
 
   // const [lib, setLib] = useState('');
 
-  // 初回
   useEffect(() => {
     (async () => {
       // session
@@ -34,28 +33,20 @@ function Note() {
 
       // Libraryインスタンス
       let libClient: Library;
-      // 過去に適用していない場合
+      // 過去に適用していない場合、インスタンス作成
       if (!libIdList.includes(currLibId)) {
         libClient = new Library(data);
         libClient.setParent(library);
-        setLibrary(libClient);
         setLibs([libClient, ...libs]);
+        setLibrary(libClient);
         setLibIdList([currLibId, ...libIdList]);
-        console.log('new');
-      } // 過去に適用した場合
+      } // 過去に適用した場合、インスタンス参照
       else {
-        libClient = libs.filter((ele) => ele.id === currLibId).pop();
-        console.log('past');
+        libClient = libs.find((ele) => ele.id === currLibId);
       }
 
       // 表示フォルダリスト
-      const libList = await libClient!.getData(currLibId);
-      // libList?.forEach(ele=>{
-      //   const client = new Library(data);
-      //   client.setParent(library);
-      //   setLibs([client, ...libs]);
-      //   setLibIdList([ele.id, libIdList]);
-      // })
+      const libList = await libClient.fetchData(currLibId);
       setDrawList(libList);
 
       // パンくずリスト
@@ -76,7 +67,8 @@ function Note() {
 
   const setCurrent = (id: string) => {
     setCurrLibId(id);
-    // console.log(`change id: ${id}`)
+    const parent = libs.find((ele) => ele.id === currLibId);
+    setLibrary(parent!);
   };
 
   return (

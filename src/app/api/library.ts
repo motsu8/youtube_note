@@ -15,7 +15,9 @@ export default class Library {
 
   public id: string | null | undefined;
 
-  public created_at: string | undefined;
+  public createdAt: string | undefined;
+
+  public parentId: string | undefined;
 
   private acquired: boolean;
 
@@ -33,7 +35,11 @@ export default class Library {
     console.log(data);
   }
 
-  public async getData(libId: string | null | undefined): Promise<
+  public async fetchData(libId: string);
+
+  public async fetchData(libId: string | null | undefined);
+
+  public async fetchData(libId: string | null | undefined): Promise<
     | {
         title: any;
         created_at: any;
@@ -42,14 +48,27 @@ export default class Library {
       }[]
     | null
   > {
+    if (libId === null) {
+      const { data } = await supabase
+        .from('Library')
+        .select('title,created_at,id,libs')
+        .eq('user_id', this.session?.user.id)
+        .is('libs', libId);
+      this.acquired = true;
+      this.id = libId;
+      console.log(libId);
+      console.log(data);
+      return data;
+    }
     const { data } = await supabase
       .from('Library')
       .select('title,created_at,id,libs')
       .eq('user_id', this.session?.user.id)
-      .is('libs', libId);
-
+      .eq('libs', libId);
     this.acquired = true;
     this.id = libId;
+    console.log(libId);
+    console.log(data);
     return data;
   }
 
