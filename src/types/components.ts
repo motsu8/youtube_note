@@ -15,6 +15,7 @@ export type DrawList = {
   title: string;
   type: string;
   drawList: { title: string }[] | null;
+  setCurrLibId: (id: string) => void;
 };
 
 export type SupabaseSession = {
