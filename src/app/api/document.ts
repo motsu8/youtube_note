@@ -11,6 +11,8 @@ export default class Document {
     | {
         title: any;
         created_at: any;
+        id: any;
+        content: any;
       }[]
     | null;
 
