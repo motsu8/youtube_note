@@ -2,6 +2,8 @@ import { Session } from '@supabase/supabase-js';
 
 import supabase from '@/utils/supabaseClient';
 
+import Document from './document';
+
 export default class Library {
   public session: Session | null;
 
@@ -13,7 +15,7 @@ export default class Library {
 
   public title: string | null;
 
-  public id: string | null | undefined;
+  public id: string | null;
 
   public createdAt: string | undefined;
 
@@ -30,12 +32,16 @@ export default class Library {
       }[]
     | null;
 
+  private document: Document;
+
   constructor(session: Session | null) {
     this.title = null;
     this.data = null;
+    this.id = null;
     this.parent = null;
     this.session = session;
     this.acquired = false;
+    this.document = new Document(this.session);
   }
 
   public async insertData(title: string) {
@@ -48,9 +54,9 @@ export default class Library {
 
   public async fetchData(libId: string): Promise<any>;
 
-  public async fetchData(libId: string | null | undefined): Promise<any>;
+  public async fetchData(libId: string | null): Promise<any>;
 
-  public async fetchData(libId: string | null | undefined): Promise<
+  public async fetchData(libId: string | null): Promise<
     | {
         title: any;
         created_at: any;
@@ -113,5 +119,10 @@ export default class Library {
       .eq('id', this.id);
 
     this.title = data?.pop()?.title;
+  }
+
+  public async getFiles() {
+    const data = await this.document.fetchData(this.id);
+    return data;
   }
 }

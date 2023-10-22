@@ -11,6 +11,7 @@ import getSession from '@/utils/getSession';
 import Library from '../api/library';
 
 function Note() {
+  // folder
   const [noteName, setNoteName] = useState('');
   const [session, setSession] = useState<Session | null>(null);
   const [library, setLibrary] = useState<Library | null>(null);
@@ -20,6 +21,9 @@ function Note() {
   const [currLibId, setCurrLibId] = useState<string | null>(null);
   const [bread, setBread] = useState<Library[] | null>([]);
 
+  // file
+  const [files, setFiles] = useState(null);
+  const [currFile, setCurrFile] = useState<string | null>(null);
   // const [lib, setLib] = useState('');
 
   useEffect(() => {
@@ -47,6 +51,8 @@ function Note() {
 
       // 表示フォルダリスト
       const libList = await libClient.fetchData(currLibId);
+      const filesList = await libClient.getFiles();
+      setFiles(filesList);
       setDrawList(libList);
 
       // パンくずリスト
@@ -66,6 +72,11 @@ function Note() {
     setCurrLibId(id);
   };
 
+  const setCurrentFile = (id: string | null) => {
+    setCurrFile(id);
+    console.log(currFile);
+  };
+
   return (
     <div className="w-10/12 flex flex-col items-center justify-start py-8 px-5">
       <Search
@@ -78,7 +89,9 @@ function Note() {
         type="note"
         title="note"
         drawList={drawList}
+        files={files}
         setCurrentLibrary={setCurrent}
+        setCurrFile={setCurrentFile}
       />
       {/* <Search
         placeholder="lib title"
