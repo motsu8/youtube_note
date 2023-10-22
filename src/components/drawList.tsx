@@ -12,7 +12,7 @@ export default function DrawList({
   type,
   title,
   drawList,
-  setCurrLibId,
+  setCurrentLibrary,
 }: DrawList) {
   const iconSize = '';
   const iconColor = '#bbbbbb';
@@ -46,7 +46,7 @@ export default function DrawList({
               <button
                 className="basis-6/12 flex space-x-2 items-center"
                 type="button"
-                onClick={() => setCurrLibId(ele.id)}
+                onClick={() => setCurrentLibrary(ele.id, ele.title)}
               >
                 <IconButton
                   icon={faFolder}

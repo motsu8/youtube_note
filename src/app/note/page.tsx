@@ -18,7 +18,7 @@ function Note() {
   const [libs, setLibs] = useState<Library[]>([]);
   const [drawList, setDrawList] = useState<{ title: string }[] | null>([]);
   const [currLibId, setCurrLibId] = useState<string | null>(null);
-  const [bread, setBread] = useState<string[] | null>([]);
+  const [bread, setBread] = useState<Library[] | null>([]);
 
   // const [lib, setLib] = useState('');
 
@@ -50,8 +50,9 @@ function Note() {
       setDrawList(libList);
 
       // パンくずリスト
-      const list: string[] = [];
+      const list: Library[] = [];
       const breadList = libClient.getBread(list, libClient);
+      console.log(breadList);
       setBread(breadList);
     })();
   }, [currLibId]);
@@ -61,14 +62,8 @@ function Note() {
     alert(`${noteName}を探します`);
   };
 
-  // const postLib = () => {
-  //   library?.insertData(lib);
-  // };
-
-  const setCurrent = (id: string) => {
+  const setCurrent = (id: string | null) => {
     setCurrLibId(id);
-    const parent = libs.find((ele) => ele.id === currLibId);
-    setLibrary(parent!);
   };
 
   return (
@@ -83,7 +78,7 @@ function Note() {
         type="note"
         title="note"
         drawList={drawList}
-        setCurrLibId={setCurrent}
+        setCurrentLibrary={setCurrent}
       />
       {/* <Search
         placeholder="lib title"

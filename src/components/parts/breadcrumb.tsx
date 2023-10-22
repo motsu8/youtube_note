@@ -1,14 +1,16 @@
 import { faFolder, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 
+import Library from '@/app/api/library';
+
 import IconButton from './iconButton';
 
 function Breadcrumb({
   bread,
   setCurrLibId,
 }: {
-  bread: string[] | null;
-  setCurrLibId: (id: string) => void;
+  bread: Library[] | null;
+  setCurrLibId: (id: string, title?: string) => void;
 }) {
   const iconSize = 'h-8';
   const iconColor = '#bbbbbb';
@@ -17,20 +19,20 @@ function Breadcrumb({
   return (
     <div className="flex space-x-4">
       {bread!.map((ele) => {
-        if (ele === null)
+        if (ele.id === null)
           return (
-            <div key={ele}>
+            <div key={ele.id}>
               <IconButton
                 icon={faFolder}
                 iconClass={iconSize}
                 bgClass={bgClass}
                 color={iconColor}
-                setClickHandler={() => setCurrLibId(ele)}
+                setClickHandler={() => setCurrLibId(ele.id as string)}
               />
             </div>
           );
         return (
-          <div key={ele} className="flex space-x-4">
+          <div key={ele.id} className="flex space-x-4">
             <IconButton
               icon={faChevronRight}
               iconClass={iconSize}
@@ -38,8 +40,11 @@ function Breadcrumb({
               color={iconColor}
             />
             <div>
-              <button type="button" onClick={() => setCurrLibId(ele)}>
-                {ele}
+              <button
+                type="button"
+                onClick={() => setCurrLibId(ele.id as string)}
+              >
+                {ele.title}
               </button>
             </div>
           </div>

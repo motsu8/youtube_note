@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+import Library from '@/app/api/library';
+
 import Breadcrumb from './parts/breadcrumb';
 import Button from './parts/button';
 
@@ -9,8 +11,8 @@ function NoteHead({
   bread,
   setCurrLibId,
 }: {
-  bread: string[] | null;
-  setCurrLibId: (id: string) => void;
+  bread: Library[] | null;
+  setCurrLibId: (id: string, title?: string) => void;
 }) {
   return (
     <div className="w-10/12 flex items-center justify-between">

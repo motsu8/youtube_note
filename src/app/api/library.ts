@@ -11,7 +11,7 @@ export default class Library {
 
   public parent: Library | null;
 
-  public title: string | undefined;
+  public title: string | null;
 
   public id: string | null | undefined;
 
@@ -21,7 +21,18 @@ export default class Library {
 
   private acquired: boolean;
 
+  private data:
+    | {
+        title: any;
+        created_at: any;
+        id: any;
+        libs: any;
+      }[]
+    | null;
+
   constructor(session: Session | null) {
+    this.title = null;
+    this.data = null;
     this.parent = null;
     this.session = session;
     this.acquired = false;
@@ -35,9 +46,9 @@ export default class Library {
     console.log(data);
   }
 
-  public async fetchData(libId: string);
+  public async fetchData(libId: string): Promise<any>;
 
-  public async fetchData(libId: string | null | undefined);
+  public async fetchData(libId: string | null | undefined): Promise<any>;
 
   public async fetchData(libId: string | null | undefined): Promise<
     | {
@@ -56,8 +67,8 @@ export default class Library {
         .is('libs', libId);
       this.acquired = true;
       this.id = libId;
-      console.log(libId);
-      console.log(data);
+      this.data = data;
+      this.title = null;
       return data;
     }
     const { data } = await supabase
@@ -67,8 +78,8 @@ export default class Library {
       .eq('libs', libId);
     this.acquired = true;
     this.id = libId;
-    console.log(libId);
-    console.log(data);
+    this.data = data;
+    this.setTitle();
     return data;
   }
 
@@ -80,9 +91,27 @@ export default class Library {
     return this.parent;
   }
 
-  public getBread(list: any[], curr: Library): string[] | null {
-    list.unshift(curr.id);
+  public getBread(list: Library[], curr: Library): Library[] | null {
+    list.unshift(curr);
     if (curr.parent === null) return list;
     return this.getBread(list, curr.parent);
+  }
+
+  public get getData() {
+    return this.data;
+  }
+
+  private async setTitle() {
+    if (this.id === null) {
+      this.title = null;
+      return;
+    }
+    const { data } = await supabase
+      .from('Library')
+      .select('title')
+      .eq('user_id', this.session?.user.id)
+      .eq('id', this.id);
+
+    this.title = data?.pop()?.title;
   }
 }
