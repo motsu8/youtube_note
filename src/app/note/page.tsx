@@ -20,7 +20,7 @@ function Note() {
   const [libIdList, setLibIdList] = useState<string[] | null[]>([]);
   const [libs, setLibs] = useState<Library[]>([]);
   const [drawList, setDrawList] = useState<{ title: string }[] | null>([]);
-  const [currLibId, setCurrLibId] = useState<string | null>(null);
+  const [currLibId, setCurrLibId] = useState<any>(null);
   const [bread, setBread] = useState<Library[] | null>([]);
 
   // file
@@ -40,7 +40,7 @@ function Note() {
       // Libraryインスタンス
       let libClient: Library;
       // 過去に適用していない場合、インスタンス作成
-      if (!libIdList.includes(currLibId)) {
+      if (!libIdList.includes(currLibId as never)) {
         libClient = new Library(data);
         libClient.setParent(library);
         setLibs([libClient, ...libs]);
@@ -48,7 +48,7 @@ function Note() {
         setLibIdList([currLibId, ...libIdList]);
       } // 過去に適用した場合、インスタンス参照
       else {
-        libClient = libs.find((ele) => ele.id === currLibId);
+        libClient = libs.find((ele) => ele.id === currLibId)!;
       }
 
       // 表示フォルダリスト
