@@ -6,12 +6,25 @@ export type SideContent = {
   icon: IconProp;
   iconClass: string;
   iconColor: string;
-  setClickHandler?: () => void;
   title: string;
+  url: string;
+  session: Session | null;
 };
 
 export type DrawList = {
   title: string;
+  type: string;
+  drawList: { title: string }[] | null;
+  files:
+    | {
+        title: any;
+        created_at: any;
+        content: any;
+        id: any;
+      }[]
+    | null;
+  setCurrentLibrary: (id: string, title: string) => void;
+  setCurrFile: (id: string | null) => void;
 };
 
 export type SupabaseSession = {

@@ -8,9 +8,18 @@ export default function SideContent({
   icon,
   iconClass,
   iconColor,
-  setClickHandler,
   title,
+  url,
+  session,
 }: SideContent) {
+  const setTransition = (link: string) => {
+    console.log(url);
+    console.log(session);
+    if (session) {
+      window.location.href = link;
+    }
+  };
+
   return (
     <div
       className={`flex px-3 items-center ${
@@ -22,9 +31,9 @@ export default function SideContent({
         iconClass={iconClass}
         bgClass={BG_CENTER}
         color={iconColor}
-        setClickHandler={toggle ? undefined : setClickHandler}
+        setClickHandler={() => setTransition(url)}
       />
-      <button type="button" onClick={setClickHandler}>
+      <button type="button" onClick={() => setTransition(url)}>
         <p className={toggle ? 'block' : 'hidden'}>{title}</p>
       </button>
     </div>

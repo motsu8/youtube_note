@@ -4,13 +4,15 @@ import { Session } from '@supabase/supabase-js';
 import React, { useEffect, useState } from 'react';
 
 import ConfirmVideo from '@/components/confirmVideo';
-import DrawList from '@/components/drawList';
+// import DrawList from '@/components/drawList';
 import Search from '@/components/parts/search';
 import PostDocument from '@/components/postDocument';
 import { VideoData } from '@/types/components';
 import GetSession from '@/utils/sessionComponent';
 import SignOut from '@/utils/signOut';
 import supabase from '@/utils/supabaseClient';
+
+import Youtube from '../api/youtube';
 
 export default function Home() {
   const [videoUrl, setVideoUrl] = useState('');
@@ -24,6 +26,11 @@ export default function Home() {
       setSession(data.session);
     })();
   }, []);
+
+  const submitAction = () => {
+    Youtube.getVideoSnippet(videoUrl, setVideoData);
+    setVisible(true);
+  };
 
   return (
     <div
@@ -39,19 +46,15 @@ export default function Home() {
       />
       <Search
         placeholder="動画URLで追加"
-        session={session}
-        setVideoUrl={setVideoUrl}
-        setVideoData={setVideoData}
-        setVisible={setVisible}
-        videoUrl={videoUrl}
+        setInputValue={setVideoUrl}
+        setSubmitAction={submitAction}
       />
       <div className="space-x-3">
         <SignOut />
         <GetSession session={session} />
       </div>
-      <DrawList title="DrawList" />
+      {/* <DrawList type='home' title="DrawList" /> */}
       <PostDocument session={session} />
-      {/* <GetDocument session={session} /> */}
     </div>
   );
 }

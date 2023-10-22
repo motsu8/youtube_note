@@ -7,5 +7,4 @@ const nextConfig = {
     domains: ['i.ytimg.com'],
   },
 };
-
 module.exports = nextConfig;

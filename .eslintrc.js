@@ -10,6 +10,7 @@ const config = {
   rules: {
     'arrow-body-style': 'off',
     '@typescript-eslint/no-explicit-any': 'warn',
+    'no-use-before-define': 'warn',
     'no-restricted-syntax': [
       'error',
       {
