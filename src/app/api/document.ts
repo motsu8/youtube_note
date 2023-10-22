@@ -19,10 +19,6 @@ export default class Document {
     this.session = session;
   }
 
-  public async fetchData(key: string): Promise<any>;
-
-  public async fetchData(key: null): Promise<any>;
-
   public async fetchData(key: string | null): Promise<any> {
     if (key === null) {
       const { data } = await supabase

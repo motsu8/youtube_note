@@ -10,6 +10,8 @@ import getSession from '@/utils/getSession';
 
 import Library from '../api/library';
 
+// TODO ファイルごとの動的ルーティングの設定
+
 function Note() {
   // folder
   const [noteName, setNoteName] = useState('');
