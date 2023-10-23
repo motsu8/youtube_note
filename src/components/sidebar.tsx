@@ -4,6 +4,7 @@ import {
   faChevronRight,
   faTags,
   faFilm,
+  faHouse,
   faBookOpen,
   faChevronLeft,
 } from '@fortawesome/free-solid-svg-icons';
@@ -63,6 +64,15 @@ export default function Sidebar() {
         />
       </div>
 
+      <SideContent
+        toggle={toggle}
+        icon={faHouse}
+        iconClass={iconSize}
+        iconColor={iconColor}
+        title="ホーム"
+        url="/home"
+        session={session}
+      />
       <SideContent
         toggle={toggle}
         icon={faFilm}
