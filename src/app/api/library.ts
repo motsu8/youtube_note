@@ -83,6 +83,21 @@ export default class Library {
     return this.getBreadHelper(parent!, [current!, ...list]);
   }
 
+  public async delete(list: string[]) {
+    const results = [];
+    for (const id of list) {
+      results.push(
+        supabase
+          .from('Library')
+          .delete()
+          .eq('user_id', this.session?.user.id)
+          .eq('id', id)
+      );
+    }
+    await Promise.all(results);
+    return this.fetchAllData();
+  }
+
   public async insertData(title: string) {
     const { data } = await supabase
       .from('Library')
@@ -164,7 +179,6 @@ export default class Library {
       .from('Library')
       .insert([{ title, libs, user_id: this.session!.user.id }])
       .select();
-
     console.log(data);
   }
 }

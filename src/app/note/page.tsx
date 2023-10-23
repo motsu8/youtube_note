@@ -18,6 +18,14 @@ interface LibData {
   libs: any;
 }
 
+interface DocData {
+  title: any;
+  created_at: any;
+  id: any;
+  content: any;
+  lib_id: any;
+}
+
 function Note() {
   // folder
   const [noteName, setNoteName] = useState('');
@@ -30,15 +38,30 @@ function Note() {
   const [bread, setBread] = useState<Library[] | null>(null);
 
   // file
-  const [drawFiles, setDrawFiles] = useState(null);
-  // const [currFile, setCurrFile] = useState<string | null>(null);
+  const [drawFiles, setDrawFiles] = useState<DocData[]>([]);
+  const [deleteFiles, setDeleteFiles] = useState<string[]>([]);
   // const [lib, setLib] = useState('');
 
   const [visible, setVisible] = useState(false);
-  const [deleteList, setDeleteList] = useState<string[]>([]);
+  const [deleteFolderList, setDeleteFolderList] = useState<string[]>([]);
   const [drawDelete, setDrawDelete] = useState(false);
 
   // TODO ファイルごとの動的ルーティングの設定
+
+  const updateDraw = (libClient: Library, id: string) => {
+    // フォルダ表示
+    const drawData = libClient.getDrawList(id);
+    setDrawList(drawData);
+
+    // ファイル表示
+    const filesList = libClient.getDrawFiles(id);
+    setDrawFiles(filesList);
+    console.log(filesList);
+
+    // パンくずリスト
+    const breadData = libClient.getBread(id);
+    setBread(breadData);
+  };
 
   useEffect(() => {
     (async () => {
@@ -57,20 +80,9 @@ function Note() {
       await libClient.fetchAllData();
       await libClient.document.fetchAllData();
 
-      // フォルダ表示
-      const drawData = libClient.getDrawList(currLibId);
-      setDrawList(drawData);
-
-      // ファイル表示
-      const filesList = libClient.getDrawFiles(currLibId);
-      setDrawFiles(filesList);
-      console.log(filesList);
-
-      // パンくずリスト
-      const breadData = libClient.getBread(currLibId);
-      setBread(breadData);
+      updateDraw(libClient, currLibId);
     })();
-  }, [currLibId, visible]);
+  }, []);
 
   const filter = () => {
     console.log(session);
@@ -79,6 +91,7 @@ function Note() {
 
   const setCurrent = (id: string | null) => {
     setCurrLibId(id);
+    updateDraw(library, id);
   };
 
   const setCurrentFile = (id: string | null) => {
@@ -99,18 +112,54 @@ function Note() {
     setDrawDelete(check);
   };
 
-  const setDeleteValue = (id: string) => {
-    const idList = [id, ...deleteList];
-    console.log(idList);
-    setDeleteList(idList);
+  const setDeleteFile = (id: string) => {
+    const idList = [id, ...deleteFiles];
+    setDeleteFiles(idList);
+    checkDrawDelete();
+  };
+
+  const changeDeleteFile = (id: string) => {
+    const idList = deleteFiles.filter((ele) => ele !== id);
+    setDeleteFiles(idList);
+    checkDrawDelete();
+  };
+
+  const setDeleteFolder = (id: string) => {
+    const idList = [id, ...deleteFolderList];
+    setDeleteFolderList(idList);
     checkDrawDelete();
   };
 
   const changeDeleteValue = (id: string) => {
-    const idList = deleteList.filter((ele) => ele !== id);
+    const idList = deleteFolderList.filter((ele) => ele !== id);
     console.log(idList);
-    setDeleteList(idList);
+    setDeleteFolderList(idList);
     checkDrawDelete();
+  };
+
+  const deleteFileAction = async () => {
+    if (deleteFiles.length === 0) return;
+    await library!.document.delete(deleteFiles);
+    const drawData = library?.getDrawFiles(currLibId);
+    setDrawFiles(drawData);
+    const list: string[] = [];
+    setDeleteFolderList(list);
+    setDrawDelete(false);
+  };
+
+  const deleteFolderAction = async () => {
+    if (deleteFolderList.length === 0) return;
+    await library!.delete(deleteFolderList);
+    const drawData = library?.getDrawList(currLibId);
+    setDrawList(drawData);
+    const list: string[] = [];
+    setDeleteFolderList(list);
+    setDrawDelete(false);
+  };
+
+  const setDraw = (data: LibData[] | DocData[], type: string) => {
+    if (type === 'folder') setDrawList(data as LibData[]);
+    else setDrawFiles(data as DocData[]);
   };
 
   return (
@@ -125,6 +174,8 @@ function Note() {
         bread={bread}
         drawDelete={drawDelete}
         setCurrLibId={setCurrent}
+        deleteFolderAction={deleteFolderAction}
+        deleteFileAction={deleteFileAction}
       />
       <DrawList
         type="note"
@@ -133,11 +184,15 @@ function Note() {
         files={drawFiles}
         setCurrentLibrary={setCurrent}
         setCurrFile={setCurrentFile}
-        setDeleteList={setDeleteValue}
+        setDeleteList={setDeleteFolder}
         changeDeleteList={changeDeleteValue}
+        setDeleteFile={setDeleteFile}
+        changeDeleteFile={changeDeleteFile}
       />
       <CreateContent
         setVisible={changeVisible}
+        setDrawList={setDraw}
+        currLibId={currLibId}
         library={library}
         visible={visible}
       />

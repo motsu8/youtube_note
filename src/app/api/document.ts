@@ -34,6 +34,21 @@ export default class Document {
     return this.data?.filter((ele) => ele.lib_id === libId);
   }
 
+  public async delete(list: string[]) {
+    const results = [];
+    for (const id of list) {
+      results.push(
+        supabase
+          .from('Document')
+          .delete()
+          .eq('user_id', this.session?.user.id)
+          .eq('id', id)
+      );
+    }
+    await Promise.all(results);
+    return this.fetchAllData();
+  }
+
   public async fetchData(key: string | null): Promise<any> {
     if (key === null) {
       const { data } = await supabase

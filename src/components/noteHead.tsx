@@ -12,11 +12,15 @@ function NoteHead({
   setCurrLibId,
   drawDelete,
   setVisible,
+  deleteFolderAction,
+  deleteFileAction,
 }: {
   bread: Library[] | null;
   drawDelete: boolean;
   setVisible: (bool: boolean) => void;
   setCurrLibId: (id: string, title?: string) => void;
+  deleteFolderAction: () => void;
+  deleteFileAction: () => void;
 }) {
   const pink = [
     'bg-rose-300',
@@ -36,7 +40,8 @@ function NoteHead({
           title="削除"
           className={deleteBtn}
           setClickHandler={() => {
-            setVisible(true);
+            deleteFolderAction();
+            deleteFileAction();
             console.log('click');
           }}
         />

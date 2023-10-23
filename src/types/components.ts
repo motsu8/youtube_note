@@ -32,8 +32,10 @@ export type DrawList = {
     | null;
   setCurrentLibrary: (id: string, title: string) => void;
   setCurrFile: (id: string | null) => void;
-  setDeleteList: (id: string) => void;
-  changeDeleteList: (id: string) => void;
+  setDeleteList: (id: string, type: string) => void;
+  changeDeleteList: (id: string, type: string) => void;
+  setDeleteFile: (id: string) => void;
+  changeDeleteFile: (id: string) => void;
 };
 
 export type SupabaseSession = {
