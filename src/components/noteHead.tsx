@@ -10,22 +10,47 @@ import Button from './parts/button';
 function NoteHead({
   bread,
   setCurrLibId,
+  drawDelete,
   setVisible,
 }: {
   bread: Library[] | null;
+  drawDelete: boolean;
   setVisible: (bool: boolean) => void;
   setCurrLibId: (id: string, title?: string) => void;
 }) {
+  const pink = [
+    'bg-rose-300',
+    'py-2',
+    'px-4',
+    'rounded-lg',
+    'shadow-md',
+    'hover:bg-rose-200',
+  ];
+  const deleteBtn = pink.concat(drawDelete ? 'block' : 'hidden');
+
+  console.log(drawDelete);
+
   return (
     <div className="w-10/12 flex items-center justify-between">
       <Breadcrumb bread={bread} setCurrLibId={setCurrLibId} />
-      <Button
-        title="新規作成"
-        setClickHandler={() => {
-          setVisible(true);
-          console.log('click');
-        }}
-      />
+      <div className="flex space-x-2">
+        <Button
+          title="削除"
+          className={deleteBtn}
+          setClickHandler={() => {
+            setVisible(true);
+            console.log('click');
+          }}
+        />
+        <Button
+          title="新規作成"
+          className={pink}
+          setClickHandler={() => {
+            setVisible(true);
+            console.log('click');
+          }}
+        />
+      </div>
     </div>
   );
 }

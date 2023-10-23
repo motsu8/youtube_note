@@ -28,6 +28,8 @@ function Note() {
   // const [lib, setLib] = useState('');
 
   const [visible, setVisible] = useState(false);
+  const [deleteList, setDeleteList] = useState<string[]>([]);
+  const [drawDelete, setDrawDelete] = useState(false);
 
   // TODO ファイルごとの動的ルーティングの設定
   console.log(currFile);
@@ -85,8 +87,32 @@ function Note() {
     setVisible(bool);
   };
 
+  const checkDrawDelete = () => {
+    const checkList: boolean[] = [];
+    document.querySelectorAll('.delete').forEach((e) => {
+      if (e.checked) checkList.push(true);
+      else checkList.push(false);
+    });
+    const check = checkList.some((e) => e);
+    setDrawDelete(check);
+  };
+
+  const setDeleteValue = (id: string) => {
+    const idList = [id, ...deleteList];
+    console.log(idList);
+    setDeleteList(idList);
+    checkDrawDelete();
+  };
+
+  const changeDeleteValue = (id: string) => {
+    const idList = deleteList.filter((ele) => ele !== id);
+    console.log(idList);
+    setDeleteList(idList);
+    checkDrawDelete();
+  };
+
   return (
-    <div className="w-full relative flex flex-col items-center justify-start py-8 px-5">
+    <div className="w-full h-screen relative flex flex-col items-center justify-start py-8 px-5">
       <Search
         placeholder="ノートを検索する"
         setInputValue={setNoteName}
@@ -95,6 +121,7 @@ function Note() {
       <NoteHead
         setVisible={changeVisible}
         bread={bread}
+        drawDelete={drawDelete}
         setCurrLibId={setCurrent}
       />
       <DrawList
@@ -104,6 +131,8 @@ function Note() {
         files={files}
         setCurrentLibrary={setCurrent}
         setCurrFile={setCurrentFile}
+        setDeleteList={setDeleteValue}
+        changeDeleteList={changeDeleteValue}
       />
       <CreateContent
         setVisible={changeVisible}

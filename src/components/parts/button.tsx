@@ -3,16 +3,16 @@ import React from 'react';
 function Button({
   title,
   setClickHandler,
+  className,
 }: {
   title: string;
+  className: string[];
   setClickHandler: () => void;
 }) {
+  const classStr = className.join(' ');
+
   return (
-    <button
-      type="button"
-      onClick={setClickHandler}
-      className="bg-rose-300 py-2 px-4 rounded-lg shadow-md"
-    >
+    <button type="button" onClick={setClickHandler} className={classStr}>
       {title}
     </button>
   );
