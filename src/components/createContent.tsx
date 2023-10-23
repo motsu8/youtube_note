@@ -17,13 +17,12 @@ function CreateContent({
   const [libs, setLibs] = useState<string | null>(null);
   const [type, setType] = useState<string>('');
 
-  console.log(type);
-
   if (library === null) return <p>loading...</p>;
 
   const postTitle = (str: string, lib: string | null) => {
     if (type === 'folder') library.postTitle(str, lib);
     if (type === 'file') library.document.postTitle(str, lib);
+    setVisible(false);
   };
 
   return (
@@ -69,7 +68,7 @@ function CreateContent({
                 onChange={(e) => setLibs(e.target.value)}
               >
                 <option value="">----</option>
-                {library!.getData?.map((ele) => {
+                {library!.getAllData?.map((ele) => {
                   return (
                     <option key={ele.id} value={ele.id}>
                       {ele.title}

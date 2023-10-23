@@ -28,8 +28,6 @@ function NoteHead({
   ];
   const deleteBtn = pink.concat(drawDelete ? 'block' : 'hidden');
 
-  console.log(drawDelete);
-
   return (
     <div className="w-10/12 flex items-center justify-between">
       <Breadcrumb bread={bread} setCurrLibId={setCurrLibId} />

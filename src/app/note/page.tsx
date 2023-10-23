@@ -11,20 +11,27 @@ import getSession from '@/utils/getSession';
 
 import Library from '../api/library';
 
+interface LibData {
+  title: any;
+  created_at: any;
+  id: any;
+  libs: any;
+}
+
 function Note() {
   // folder
   const [noteName, setNoteName] = useState('');
   const [session, setSession] = useState<Session | null>(null);
   const [library, setLibrary] = useState<Library | null>(null);
-  const [libIdList, setLibIdList] = useState<string[] | null[]>([]);
-  const [libs, setLibs] = useState<Library[]>([]);
-  const [drawList, setDrawList] = useState<{ title: string }[] | null>([]);
+  // const [libIdList, setLibIdList] = useState<string[] | null[]>([]);
+  // const [libs, setLibs] = useState<Library[]>([]);
+  const [drawList, setDrawList] = useState<LibData[] | null>([]);
   const [currLibId, setCurrLibId] = useState<any>(null);
-  const [bread, setBread] = useState<Library[] | null>([]);
+  const [bread, setBread] = useState<Library[] | null>(null);
 
   // file
-  const [files, setFiles] = useState(null);
-  const [currFile, setCurrFile] = useState<string | null>(null);
+  const [drawFiles, setDrawFiles] = useState(null);
+  // const [currFile, setCurrFile] = useState<string | null>(null);
   // const [lib, setLib] = useState('');
 
   const [visible, setVisible] = useState(false);
@@ -32,7 +39,6 @@ function Note() {
   const [drawDelete, setDrawDelete] = useState(false);
 
   // TODO ファイルごとの動的ルーティングの設定
-  console.log(currFile);
 
   useEffect(() => {
     (async () => {
@@ -43,32 +49,28 @@ function Note() {
         setSession(data);
       }
 
-      // Libraryインスタンス
-      let libClient: Library;
-      // 過去に適用していない場合、インスタンス作成
-      if (!libIdList.includes(currLibId as never)) {
-        libClient = new Library(data);
-        libClient.setParent(library);
-        setLibs([libClient, ...libs]);
-        setLibrary(libClient);
-        setLibIdList([currLibId, ...libIdList]);
-      } // 過去に適用した場合、インスタンス参照
-      else {
-        libClient = libs.find((ele) => ele.id === currLibId)!;
-      }
+      // folderクライアント
+      const libClient = new Library(data);
+      setLibrary(libClient);
 
-      // 表示フォルダリスト
-      const libList = await libClient.fetchData(currLibId);
-      const filesList = await libClient.getFiles();
-      setFiles(filesList);
-      setDrawList(libList);
+      // data fetch
+      await libClient.fetchAllData();
+      await libClient.document.fetchAllData();
+
+      // フォルダ表示
+      const drawData = libClient.getDrawList(currLibId);
+      setDrawList(drawData);
+
+      // ファイル表示
+      const filesList = libClient.getDrawFiles(currLibId);
+      setDrawFiles(filesList);
+      console.log(filesList);
 
       // パンくずリスト
-      const list: Library[] = [];
-      const breadList = libClient.getBread(list, libClient);
-      setBread(breadList);
+      const breadData = libClient.getBread(currLibId);
+      setBread(breadData);
     })();
-  }, [currLibId]);
+  }, [currLibId, visible]);
 
   const filter = () => {
     console.log(session);
@@ -128,7 +130,7 @@ function Note() {
         type="note"
         title="note"
         drawList={drawList}
-        files={files}
+        files={drawFiles}
         setCurrentLibrary={setCurrent}
         setCurrFile={setCurrentFile}
         setDeleteList={setDeleteValue}

@@ -2,23 +2,36 @@ import { Session } from '@supabase/supabase-js';
 
 import supabase from '@/utils/supabaseClient';
 
+interface Data {
+  title: any;
+  created_at: any;
+  id: any;
+  content: any;
+  lib_id: any;
+}
+
 export default class Document {
   private session: Session | null | undefined;
 
   private type: string | undefined;
 
-  private data:
-    | {
-        title: any;
-        created_at: any;
-        id: any;
-        content: any;
-      }[]
-    | null;
+  private data: Data[] | null;
 
   constructor(session: Session | null) {
     this.data = null;
     this.session = session;
+  }
+
+  public async fetchAllData() {
+    const { data } = await supabase
+      .from('Document')
+      .select('title,created_at,id,lib_id,content')
+      .eq('user_id', this.session?.user.id);
+    this.data = data;
+  }
+
+  public getFiles(libId: string | null) {
+    return this.data?.filter((ele) => ele.lib_id === libId);
   }
 
   public async fetchData(key: string | null): Promise<any> {

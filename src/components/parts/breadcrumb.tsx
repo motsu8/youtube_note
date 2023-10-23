@@ -16,18 +16,20 @@ function Breadcrumb({
   const iconColor = '#bbbbbb';
   const bgClass = ['flex', 'justify-center', 'items-center'];
 
+  if (bread === null) return <p>Loading...</p>;
+
   return (
     <div className="flex space-x-4">
       {bread!.map((ele) => {
-        if (ele.id === null)
+        if (ele === null)
           return (
-            <div key={ele.id}>
+            <div key={ele}>
               <IconButton
                 icon={faFolder}
                 iconClass={iconSize}
                 bgClass={bgClass}
                 color={iconColor}
-                setClickHandler={() => setCurrLibId(ele.id as string)}
+                setClickHandler={() => setCurrLibId(ele)}
               />
             </div>
           );

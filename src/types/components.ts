@@ -11,10 +11,17 @@ export type SideContent = {
   session: Session | null;
 };
 
+interface LibData {
+  title: any;
+  created_at: any;
+  id: any;
+  libs: any;
+}
+
 export type DrawList = {
   title: string;
   type: string;
-  drawList: { title: string }[] | null;
+  drawList: LibData[] | null;
   files:
     | {
         title: any;
