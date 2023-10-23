@@ -3,14 +3,13 @@
 import { Session } from '@supabase/supabase-js';
 import React, { useState, useEffect } from 'react';
 
+import CreateContent from '@/components/createContent';
 import DrawList from '@/components/drawList';
 import NoteHead from '@/components/noteHead';
 import Search from '@/components/parts/search';
 import getSession from '@/utils/getSession';
 
 import Library from '../api/library';
-
-// TODO ファイルごとの動的ルーティングの設定
 
 function Note() {
   // folder
@@ -27,6 +26,11 @@ function Note() {
   const [files, setFiles] = useState(null);
   const [currFile, setCurrFile] = useState<string | null>(null);
   // const [lib, setLib] = useState('');
+
+  const [visible, setVisible] = useState(false);
+
+  // TODO ファイルごとの動的ルーティングの設定
+  console.log(currFile);
 
   useEffect(() => {
     (async () => {
@@ -60,7 +64,6 @@ function Note() {
       // パンくずリスト
       const list: Library[] = [];
       const breadList = libClient.getBread(list, libClient);
-      console.log(breadList);
       setBread(breadList);
     })();
   }, [currLibId]);
@@ -76,17 +79,24 @@ function Note() {
 
   const setCurrentFile = (id: string | null) => {
     setCurrFile(id);
-    console.log(currFile);
+  };
+
+  const changeVisible = (bool: boolean) => {
+    setVisible(bool);
   };
 
   return (
-    <div className="w-10/12 flex flex-col items-center justify-start py-8 px-5">
+    <div className="w-full relative flex flex-col items-center justify-start py-8 px-5">
       <Search
         placeholder="ノートを検索する"
         setInputValue={setNoteName}
         setSubmitAction={filter}
       />
-      <NoteHead bread={bread} setCurrLibId={setCurrent} />
+      <NoteHead
+        setVisible={changeVisible}
+        bread={bread}
+        setCurrLibId={setCurrent}
+      />
       <DrawList
         type="note"
         title="note"
@@ -95,11 +105,11 @@ function Note() {
         setCurrentLibrary={setCurrent}
         setCurrFile={setCurrentFile}
       />
-      {/* <Search
-        placeholder="lib title"
-        setInputValue={setLib}
-        setSubmitAction={postLib}
-      /> */}
+      <CreateContent
+        setVisible={changeVisible}
+        library={library}
+        visible={visible}
+      />
     </div>
   );
 }

@@ -49,6 +49,14 @@ export default class Document {
     console.log(error);
   }
 
+  public async postTitle(title: string, lib: string | null) {
+    const { data } = await supabase
+      .from('Document')
+      .insert([{ title, lib_id: lib, user_id: this.session!.user.id }])
+      .select();
+    console.log(data);
+  }
+
   get getData() {
     return this.data;
   }

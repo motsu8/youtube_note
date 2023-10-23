@@ -32,7 +32,7 @@ export default class Library {
       }[]
     | null;
 
-  private document: Document;
+  public document: Document;
 
   constructor(session: Session | null) {
     this.title = null;
@@ -124,5 +124,14 @@ export default class Library {
   public async getFiles() {
     const data = await this.document.fetchData(this.id);
     return data;
+  }
+
+  public async postTitle(title: string, libs: string | null) {
+    const { data } = await supabase
+      .from('Library')
+      .insert([{ title, libs, user_id: this.session!.user.id }])
+      .select();
+
+    console.log(data);
   }
 }

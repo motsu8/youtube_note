@@ -10,8 +10,10 @@ import Button from './parts/button';
 function NoteHead({
   bread,
   setCurrLibId,
+  setVisible,
 }: {
   bread: Library[] | null;
+  setVisible: (bool: boolean) => void;
   setCurrLibId: (id: string, title?: string) => void;
 }) {
   return (
@@ -19,7 +21,10 @@ function NoteHead({
       <Breadcrumb bread={bread} setCurrLibId={setCurrLibId} />
       <Button
         title="新規作成"
-        setClickHandler={() => alert('create new Docs')}
+        setClickHandler={() => {
+          setVisible(true);
+          console.log('click');
+        }}
       />
     </div>
   );
