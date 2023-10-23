@@ -30,8 +30,12 @@ export default class Document {
     this.data = data;
   }
 
-  public getFiles(libId: string | null) {
-    return this.data?.filter((ele) => ele.lib_id === libId);
+  public getFiles(id: string | null) {
+    return this.data?.filter((ele) => ele.lib_id === id);
+  }
+
+  public getFile(id: string | null) {
+    return this.data?.find((ele) => ele.id === id);
   }
 
   public async delete(list: string[]) {

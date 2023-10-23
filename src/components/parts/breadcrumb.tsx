@@ -5,11 +5,21 @@ import Library from '@/app/api/library';
 
 import IconButton from './iconButton';
 
+interface Data {
+  title: any;
+  created_at: any;
+  id: any;
+  content: any;
+  lib_id: any;
+}
+
 function Breadcrumb({
   bread,
   setCurrLibId,
+  file,
 }: {
   bread: Library[] | null;
+  file: Data;
   setCurrLibId: (id: string, title?: string) => void;
 }) {
   const iconSize = 'h-8';
@@ -19,7 +29,7 @@ function Breadcrumb({
   if (bread === null) return <p>Loading...</p>;
 
   return (
-    <div className="flex space-x-4">
+    <div className="flex space-x-4 items-center">
       {bread!.map((ele) => {
         if (ele === null)
           return (
@@ -52,6 +62,21 @@ function Breadcrumb({
           </div>
         );
       })}
+      {file ? (
+        <div key={file.id} className="flex space-x-4">
+          <IconButton
+            icon={faChevronRight}
+            iconClass={iconSize}
+            bgClass={bgClass}
+            color={iconColor}
+          />
+          <div>
+            <button type="button">{file.title}</button>
+          </div>
+        </div>
+      ) : (
+        <div />
+      )}
     </div>
   );
 }

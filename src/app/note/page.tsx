@@ -31,8 +31,6 @@ function Note() {
   const [noteName, setNoteName] = useState('');
   const [session, setSession] = useState<Session | null>(null);
   const [library, setLibrary] = useState<Library | null>(null);
-  // const [libIdList, setLibIdList] = useState<string[] | null[]>([]);
-  // const [libs, setLibs] = useState<Library[]>([]);
   const [drawList, setDrawList] = useState<LibData[] | null>([]);
   const [currLibId, setCurrLibId] = useState<any>(null);
   const [bread, setBread] = useState<Library[] | null>(null);
@@ -40,15 +38,10 @@ function Note() {
   // file
   const [drawFiles, setDrawFiles] = useState<DocData[]>([]);
   const [deleteFiles, setDeleteFiles] = useState<string[]>([]);
-  // const [lib, setLib] = useState('');
-  const [currFile, setCurrFile] = useState('');
 
   const [visible, setVisible] = useState(false);
   const [deleteFolderList, setDeleteFolderList] = useState<string[]>([]);
   const [drawDelete, setDrawDelete] = useState(false);
-
-  // TODO ファイルごとの動的ルーティングの設定
-  console.log(currFile);
 
   const updateDraw = (libClient: Library, id: string) => {
     // フォルダ表示
@@ -57,8 +50,8 @@ function Note() {
 
     // ファイル表示
     const filesList = libClient.getDrawFiles(id);
-    setDrawFiles(filesList!);
     console.log(filesList);
+    setDrawFiles(filesList!);
 
     // パンくずリスト
     const breadData = libClient.getBread(id);
@@ -94,10 +87,6 @@ function Note() {
   const setCurrent = (id: string | null) => {
     setCurrLibId(id);
     updateDraw(library!, id!);
-  };
-
-  const setCurrentFile = (id: string | null) => {
-    setCurrFile(id!);
   };
 
   const changeVisible = (bool: boolean) => {
@@ -185,7 +174,6 @@ function Note() {
         drawList={drawList}
         files={drawFiles}
         setCurrentLibrary={setCurrent}
-        setCurrFile={setCurrentFile}
         setDeleteList={setDeleteFolder}
         changeDeleteList={changeDeleteValue}
         setDeleteFile={setDeleteFile}
