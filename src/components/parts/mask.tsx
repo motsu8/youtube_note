@@ -3,8 +3,8 @@ import React from 'react';
 function Mask({ visible }: { visible: boolean }) {
   return (
     <div
-      className={`h-full w-full bg-black opacity-50 absolute ${
-        visible ? 'flex' : 'hidden'
+      className={`w-full h-full bg-black opacity-50 z-10 absolute !inset-0 ${
+        visible ? 'block' : 'hidden'
       }`}
     />
   );

@@ -14,7 +14,9 @@ export default function DrawList({
   drawList,
   files,
   setCurrentLibrary,
+  setDeleteList,
   setCurrFile,
+  changeDeleteList,
 }: DrawList) {
   const iconSize = '';
   const iconColor = '#bbbbbb';
@@ -44,7 +46,17 @@ export default function DrawList({
               key={ele.id}
               className="w-full p-3 flex flex-row justify-center items-center cursor-pointer hover:bg-neutral-50 border-zinc-300 border-b-2"
             >
-              <input type="checkbox" name="" id="" className="basis-1/12" />
+              <input
+                type="checkbox"
+                name=""
+                id=""
+                onChange={(e) => {
+                  if (e.target.checked) setDeleteList(e.target.value);
+                  else changeDeleteList(e.target.value);
+                }}
+                value={ele.id}
+                className="basis-1/12 delete"
+              />
               <button
                 className="basis-6/12 flex space-x-2 items-center"
                 type="button"
@@ -72,7 +84,13 @@ export default function DrawList({
               key={ele.id}
               className="w-full p-3 flex flex-row justify-center items-center cursor-pointer hover:bg-neutral-50 border-zinc-300 border-b-2"
             >
-              <input type="checkbox" name="" id="" className="basis-1/12" />
+              <input
+                type="checkbox"
+                name=""
+                id=""
+                value={ele.id}
+                className="basis-1/12 delete"
+              />
               <button
                 className="basis-6/12 flex space-x-2 items-center"
                 type="button"

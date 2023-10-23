@@ -3,14 +3,13 @@
 import { Session } from '@supabase/supabase-js';
 import React, { useState, useEffect } from 'react';
 
+import CreateContent from '@/components/createContent';
 import DrawList from '@/components/drawList';
 import NoteHead from '@/components/noteHead';
 import Search from '@/components/parts/search';
 import getSession from '@/utils/getSession';
 
 import Library from '../api/library';
-
-// TODO ファイルごとの動的ルーティングの設定
 
 function Note() {
   // folder
@@ -27,6 +26,13 @@ function Note() {
   const [files, setFiles] = useState(null);
   const [currFile, setCurrFile] = useState<string | null>(null);
   // const [lib, setLib] = useState('');
+
+  const [visible, setVisible] = useState(false);
+  const [deleteList, setDeleteList] = useState<string[]>([]);
+  const [drawDelete, setDrawDelete] = useState(false);
+
+  // TODO ファイルごとの動的ルーティングの設定
+  console.log(currFile);
 
   useEffect(() => {
     (async () => {
@@ -60,7 +66,6 @@ function Note() {
       // パンくずリスト
       const list: Library[] = [];
       const breadList = libClient.getBread(list, libClient);
-      console.log(breadList);
       setBread(breadList);
     })();
   }, [currLibId]);
@@ -76,17 +81,49 @@ function Note() {
 
   const setCurrentFile = (id: string | null) => {
     setCurrFile(id);
-    console.log(currFile);
+  };
+
+  const changeVisible = (bool: boolean) => {
+    setVisible(bool);
+  };
+
+  const checkDrawDelete = () => {
+    const checkList: boolean[] = [];
+    document.querySelectorAll('.delete').forEach((e) => {
+      if ((e as HTMLInputElement).checked) checkList.push(true);
+      else checkList.push(false);
+    });
+    const check = checkList.some((e) => e);
+    setDrawDelete(check);
+  };
+
+  const setDeleteValue = (id: string) => {
+    const idList = [id, ...deleteList];
+    console.log(idList);
+    setDeleteList(idList);
+    checkDrawDelete();
+  };
+
+  const changeDeleteValue = (id: string) => {
+    const idList = deleteList.filter((ele) => ele !== id);
+    console.log(idList);
+    setDeleteList(idList);
+    checkDrawDelete();
   };
 
   return (
-    <div className="w-10/12 flex flex-col items-center justify-start py-8 px-5">
+    <div className="w-full h-screen relative flex flex-col items-center justify-start py-8 px-5">
       <Search
         placeholder="ノートを検索する"
         setInputValue={setNoteName}
         setSubmitAction={filter}
       />
-      <NoteHead bread={bread} setCurrLibId={setCurrent} />
+      <NoteHead
+        setVisible={changeVisible}
+        bread={bread}
+        drawDelete={drawDelete}
+        setCurrLibId={setCurrent}
+      />
       <DrawList
         type="note"
         title="note"
@@ -94,12 +131,14 @@ function Note() {
         files={files}
         setCurrentLibrary={setCurrent}
         setCurrFile={setCurrentFile}
+        setDeleteList={setDeleteValue}
+        changeDeleteList={changeDeleteValue}
       />
-      {/* <Search
-        placeholder="lib title"
-        setInputValue={setLib}
-        setSubmitAction={postLib}
-      /> */}
+      <CreateContent
+        setVisible={changeVisible}
+        library={library}
+        visible={visible}
+      />
     </div>
   );
 }
