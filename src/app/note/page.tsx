@@ -90,7 +90,7 @@ function Note() {
   const checkDrawDelete = () => {
     const checkList: boolean[] = [];
     document.querySelectorAll('.delete').forEach((e) => {
-      if (e.checked) checkList.push(true);
+      if ((e as HTMLInputElement).checked) checkList.push(true);
       else checkList.push(false);
     });
     const check = checkList.some((e) => e);
