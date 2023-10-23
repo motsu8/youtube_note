@@ -49,25 +49,6 @@ export default class Document {
     return this.fetchAllData();
   }
 
-  public async fetchData(key: string | null): Promise<any> {
-    if (key === null) {
-      const { data } = await supabase
-        .from('Document')
-        .select('title,created_at,content,id')
-        .eq('user_id', this.session?.user.id)
-        .is('lib_id', key);
-      this.data = data;
-      return data;
-    }
-    const { data } = await supabase
-      .from('Document')
-      .select('title,created_at,content,id')
-      .eq('user_id', this.session?.user.id)
-      .eq('lib_id', key);
-    this.data = data;
-    return data;
-  }
-
   public async postDocument(title: string, content: string) {
     const { data, error } = await supabase
       .from('Document')

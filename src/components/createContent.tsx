@@ -27,14 +27,14 @@ function CreateContent({
     if (type === 'folder') {
       await library.postTitle(str, lib);
       await library.fetchAllData();
-      const drawData = library.getDrawList(currLibId);
-      setDrawList(drawData, type);
+      const drawData = library.getDrawList(currLibId!);
+      setDrawList(drawData!, type);
     }
     if (type === 'file') {
       await library.document.postTitle(str, lib);
       await library.document.fetchAllData();
       const drawData = library.document.getFiles(currLibId);
-      setDrawList(drawData, type);
+      setDrawList(drawData!, type);
     }
     setVisible(false);
   };

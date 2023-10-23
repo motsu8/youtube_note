@@ -41,21 +41,23 @@ function Note() {
   const [drawFiles, setDrawFiles] = useState<DocData[]>([]);
   const [deleteFiles, setDeleteFiles] = useState<string[]>([]);
   // const [lib, setLib] = useState('');
+  const [currFile, setCurrFile] = useState('');
 
   const [visible, setVisible] = useState(false);
   const [deleteFolderList, setDeleteFolderList] = useState<string[]>([]);
   const [drawDelete, setDrawDelete] = useState(false);
 
   // TODO ファイルごとの動的ルーティングの設定
+  console.log(currFile);
 
   const updateDraw = (libClient: Library, id: string) => {
     // フォルダ表示
     const drawData = libClient.getDrawList(id);
-    setDrawList(drawData);
+    setDrawList(drawData!);
 
     // ファイル表示
     const filesList = libClient.getDrawFiles(id);
-    setDrawFiles(filesList);
+    setDrawFiles(filesList!);
     console.log(filesList);
 
     // パンくずリスト
@@ -91,11 +93,11 @@ function Note() {
 
   const setCurrent = (id: string | null) => {
     setCurrLibId(id);
-    updateDraw(library, id);
+    updateDraw(library!, id!);
   };
 
   const setCurrentFile = (id: string | null) => {
-    setCurrFile(id);
+    setCurrFile(id!);
   };
 
   const changeVisible = (bool: boolean) => {
@@ -141,7 +143,7 @@ function Note() {
     if (deleteFiles.length === 0) return;
     await library!.document.delete(deleteFiles);
     const drawData = library?.getDrawFiles(currLibId);
-    setDrawFiles(drawData);
+    setDrawFiles(drawData!);
     const list: string[] = [];
     setDeleteFolderList(list);
     setDrawDelete(false);
@@ -151,7 +153,7 @@ function Note() {
     if (deleteFolderList.length === 0) return;
     await library!.delete(deleteFolderList);
     const drawData = library?.getDrawList(currLibId);
-    setDrawList(drawData);
+    setDrawList(drawData!);
     const list: string[] = [];
     setDeleteFolderList(list);
     setDrawDelete(false);
