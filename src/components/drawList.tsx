@@ -17,6 +17,8 @@ export default function DrawList({
   setDeleteList,
   setCurrFile,
   changeDeleteList,
+  setDeleteFile,
+  changeDeleteFile,
 }: DrawList) {
   const iconSize = '';
   const iconColor = '#bbbbbb';
@@ -51,11 +53,12 @@ export default function DrawList({
                 name=""
                 id=""
                 onChange={(e) => {
-                  if (e.target.checked) setDeleteList(e.target.value);
-                  else changeDeleteList(e.target.value);
+                  if (e.target.checked) setDeleteList(e.target.value, 'folder');
+                  else changeDeleteList(e.target.value, 'folder');
                 }}
                 value={ele.id}
-                className="basis-1/12 delete"
+                required
+                className="basis-1/12 delete folder"
               />
               <button
                 className="basis-6/12 flex space-x-2 items-center"
@@ -88,8 +91,13 @@ export default function DrawList({
                 type="checkbox"
                 name=""
                 id=""
+                onChange={(e) => {
+                  if (e.target.checked) setDeleteFile(e.target.value);
+                  else changeDeleteFile(e.target.value);
+                }}
+                required
                 value={ele.id}
-                className="basis-1/12 delete"
+                className="basis-1/12 delete file"
               />
               <button
                 className="basis-6/12 flex space-x-2 items-center"

@@ -6,24 +6,37 @@ import Mask from './parts/mask';
 
 function CreateContent({
   library,
+  currLibId,
   visible,
   setVisible,
+  setDrawList,
 }: {
   library: Library | null;
+  currLibId: string | null;
   visible: boolean;
   setVisible: (bool: boolean) => void;
+  setDrawList: (data: any[], type: string) => void;
 }) {
   const [content, setContent] = useState('');
   const [libs, setLibs] = useState<string | null>(null);
   const [type, setType] = useState<string>('');
 
-  console.log(type);
-
   if (library === null) return <p>loading...</p>;
 
-  const postTitle = (str: string, lib: string | null) => {
-    if (type === 'folder') library.postTitle(str, lib);
-    if (type === 'file') library.document.postTitle(str, lib);
+  const postTitle = async (str: string, lib: string | null) => {
+    if (type === 'folder') {
+      await library.postTitle(str, lib);
+      await library.fetchAllData();
+      const drawData = library.getDrawList(currLibId!);
+      setDrawList(drawData!, type);
+    }
+    if (type === 'file') {
+      await library.document.postTitle(str, lib);
+      await library.document.fetchAllData();
+      const drawData = library.document.getFiles(currLibId);
+      setDrawList(drawData!, type);
+    }
+    setVisible(false);
   };
 
   return (
@@ -69,7 +82,7 @@ function CreateContent({
                 onChange={(e) => setLibs(e.target.value)}
               >
                 <option value="">----</option>
-                {library!.getData?.map((ele) => {
+                {library!.getAllData?.map((ele) => {
                   return (
                     <option key={ele.id} value={ele.id}>
                       {ele.title}
@@ -85,7 +98,9 @@ function CreateContent({
               <input
                 type="text"
                 id="title"
-                onChange={(e) => setContent(e.target.value)}
+                onChange={(e) => {
+                  setContent(e.target.value);
+                }}
                 className="w-full rounded-sm py-1 pl-2"
               />
             </label>

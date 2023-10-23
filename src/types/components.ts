@@ -11,10 +11,17 @@ export type SideContent = {
   session: Session | null;
 };
 
+interface LibData {
+  title: any;
+  created_at: any;
+  id: any;
+  libs: any;
+}
+
 export type DrawList = {
   title: string;
   type: string;
-  drawList: { title: string }[] | null;
+  drawList: LibData[] | null;
   files:
     | {
         title: any;
@@ -25,8 +32,10 @@ export type DrawList = {
     | null;
   setCurrentLibrary: (id: string, title: string) => void;
   setCurrFile: (id: string | null) => void;
-  setDeleteList: (id: string) => void;
-  changeDeleteList: (id: string) => void;
+  setDeleteList: (id: string, type: string) => void;
+  changeDeleteList: (id: string, type: string) => void;
+  setDeleteFile: (id: string) => void;
+  changeDeleteFile: (id: string) => void;
 };
 
 export type SupabaseSession = {

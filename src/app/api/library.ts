@@ -4,6 +4,13 @@ import supabase from '@/utils/supabaseClient';
 
 import Document from './document';
 
+interface Data {
+  title: any;
+  created_at: any;
+  id: any;
+  libs: any;
+}
+
 export default class Library {
   public session: Session | null;
 
@@ -23,25 +30,72 @@ export default class Library {
 
   private acquired: boolean;
 
-  private data:
-    | {
-        title: any;
-        created_at: any;
-        id: any;
-        libs: any;
-      }[]
-    | null;
+  private data: Data[] | null;
 
   public document: Document;
 
   constructor(session: Session | null) {
     this.title = null;
-    this.data = null;
     this.id = null;
     this.parent = null;
+    this.data = null;
     this.session = session;
     this.acquired = false;
     this.document = new Document(this.session);
+  }
+
+  public async fetchAllData() {
+    const { data } = await supabase
+      .from('Library')
+      .select('title,created_at,id,libs')
+      .eq('user_id', this.session?.user.id);
+    this.data = data;
+  }
+
+  public getDrawList(parentId: string) {
+    const res = this.data?.filter((ele) => ele.libs === parentId);
+    return res;
+  }
+
+  public getDrawFiles(currentId: string | null) {
+    const res = this.document.getFiles(currentId);
+    return res;
+  }
+
+  /**
+   * パンくずリスト取得
+   * @param currentId : string
+   * @returns (Data|null)[]
+   */
+  public getBread(currentId: string | null) {
+    const current = this.getData(currentId);
+    return this.getBreadHelper(current!, []);
+  }
+
+  private getBreadHelper(
+    current: Data | undefined,
+    list: (Data | null)[]
+  ): any {
+    console.log(list);
+    // 現在のidがnullの場合
+    if (current === null) return [null, ...list];
+    const parent = this.getData(current!.libs);
+    return this.getBreadHelper(parent!, [current!, ...list]);
+  }
+
+  public async delete(list: string[]) {
+    const results = [];
+    for (const id of list) {
+      results.push(
+        supabase
+          .from('Library')
+          .delete()
+          .eq('user_id', this.session?.user.id)
+          .eq('id', id)
+      );
+    }
+    await Promise.all(results);
+    return this.fetchAllData();
   }
 
   public async insertData(title: string) {
@@ -97,13 +151,12 @@ export default class Library {
     return this.parent;
   }
 
-  public getBread(list: Library[], curr: Library): Library[] | null {
-    list.unshift(curr);
-    if (curr.parent === null) return list;
-    return this.getBread(list, curr.parent);
+  public getData(id: string | null) {
+    if (id === null) return null;
+    return this.data?.find((ele) => ele.id === id);
   }
 
-  public get getData() {
+  public get getAllData() {
     return this.data;
   }
 
@@ -121,17 +174,11 @@ export default class Library {
     this.title = data?.pop()?.title;
   }
 
-  public async getFiles() {
-    const data = await this.document.fetchData(this.id);
-    return data;
-  }
-
   public async postTitle(title: string, libs: string | null) {
     const { data } = await supabase
       .from('Library')
       .insert([{ title, libs, user_id: this.session!.user.id }])
       .select();
-
     console.log(data);
   }
 }
