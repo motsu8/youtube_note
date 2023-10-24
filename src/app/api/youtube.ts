@@ -15,6 +15,9 @@ export default class Youtube {
   public static videoUrl: string =
     'https://www.googleapis.com/youtube/v3/videos';
 
+  public static channelUrl: string =
+    'https://www.googleapis.com/youtube/v3/channels';
+
   public static discoveryUrl: string =
     'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest';
 
@@ -46,15 +49,24 @@ export default class Youtube {
       window.gapi.client.load(Youtube.discoveryUrl);
       window.gapi.client.init(Youtube.clientConfig);
       window.gapi.client.request(videoRequest).execute((res: any) => {
-        console.log(res.items[0]);
         const resData = res.items[0].snippet;
-        const data = {
-          url: videoUrl,
-          channel: resData.channelTitle,
-          title: resData.title,
-          thumbnails: resData.thumbnails,
+        const channelRequest = {
+          path: this.channelUrl,
+          params: {
+            part: ['snippet'],
+            id: [resData.channelId],
+          },
         };
-        videoDataHooks(data);
+        window.gapi.client.request(channelRequest).execute((response: any) => {
+          const data = {
+            url: videoUrl,
+            channel: resData.channelTitle,
+            title: resData.title,
+            thumbnails: resData.thumbnails,
+            channel_thumbnails: response.items[0].snippet.thumbnails,
+          };
+          videoDataHooks(data);
+        });
       });
     });
   }

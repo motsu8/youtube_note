@@ -45,6 +45,23 @@ export type VideoData = {
   url: string;
   channel: string;
   title: string;
+  channel_thumbnails: {
+    default: {
+      url: string;
+      height: number;
+      width: number;
+    };
+    medium: {
+      url: string;
+      height: number;
+      width: number;
+    };
+    high: {
+      url: string;
+      height: number;
+      width: number;
+    };
+  };
   thumbnails: {
     default: {
       url: string;

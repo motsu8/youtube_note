@@ -20,11 +20,10 @@ export default class Video {
         {
           url: video.url,
           user_id: this.session?.user.id,
-          thumbnail_width: video.thumbnails.standard.width,
-          thumbnail_height: video.thumbnails.standard.height,
-          thumbnail_url: video.thumbnails.standard.url,
           channel: video.channel,
           title: video.title,
+          thumbnails: video.thumbnails,
+          channel_thumbnails: video.channel_thumbnails,
         },
       ])
       .select();
@@ -44,7 +43,7 @@ export default class Video {
     return this.data?.filter((ele) => ele.doc_id === relationDocId);
   }
 
-  public getData(videoId: string) {
-    return this.data?.find((ele) => ele.id === videoId);
+  public getData(videoId?: string) {
+    return videoId ? this.data?.find((ele) => ele.id === videoId) : this.data;
   }
 }
