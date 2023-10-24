@@ -14,8 +14,6 @@ function NoteTabs({
   const bg = 'bg-slate-50 text-black';
   const opacity = 'bg-transparent text-black';
 
-  console.log(tab);
-
   const defaultClass = [
     'hover:text-slate-700',
     'text-lg',

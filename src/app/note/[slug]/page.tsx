@@ -5,11 +5,15 @@ import { useEffect, useState } from 'react';
 import './markdown.css';
 
 import Library from '@/app/api/library';
+import Video from '@/app/api/video';
+import Youtube from '@/app/api/youtube';
 import NoteDetail from '@/components/noteDetail';
 import Breadcrumb from '@/components/parts/breadcrumb';
 import Button from '@/components/parts/button';
 import ConfirmJump from '@/components/parts/confirmJump';
 import PopupContent from '@/components/parts/popupContent';
+import RelationVideo from '@/components/parts/relationVideo';
+import YouTube from '@/components/parts/youtubeVideo';
 import getSession from '@/utils/getSession';
 
 interface LibData {
@@ -25,15 +29,21 @@ interface DocData {
   id: any;
   content: any;
   lib_id: any;
+  video_id: any;
 }
 
 export default function Page({ params }: { params: { slug: string } }) {
   const [library, setLibrary] = useState<Library | null>(null);
+  const [video, setVideo] = useState<Video | null>(null);
   const [currentFile, setCurrentFile] = useState<any>(null);
   const [bread, setBread] = useState<(LibData | DocData)[]>([]);
   const [content, setContent] = useState('');
   const [markdownString, setMarkdownString] = useState('');
   const [pageJump, setPageJump] = useState(false);
+  const [popRelation, setPopRelation] = useState(false);
+  const [play, setPlay] = useState(false);
+  const [relationDocList, setRelationDocList] = useState<any[]>([]);
+  const [videoParams, setVideoParams] = useState<string>('');
 
   useEffect(() => {
     (async () => {
@@ -43,14 +53,26 @@ export default function Page({ params }: { params: { slug: string } }) {
       const libClient = new Library(data);
       setLibrary(libClient);
 
+      // videoクライアント
+      const videoClient = new Video(data);
+      setVideo(videoClient);
+
       // data fetch
       await libClient.fetchAllData();
       await libClient.document.fetchAllData();
+      await videoClient.fetchAllData();
 
       // 現在の記事
       const file: DocData | undefined = libClient.document.getFile(params.slug);
       if (file?.content !== null) setContent(file?.content);
       setCurrentFile(file);
+
+      // 記事に参照されている動画
+      const videoData = videoClient.getData(file!.video_id);
+      if (videoData) {
+        const temp = Youtube.getVideoParams(videoData.url);
+        setVideoParams(temp!);
+      }
 
       // パンくずリスト
       const breadData = libClient.getBread(file?.lib_id);
@@ -61,10 +83,6 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   const jumpLink = () => {
     window.location.href = '/note';
-  };
-
-  const playVideo = () => {
-    alert('play video');
   };
 
   const saveContent = () => {
@@ -96,6 +114,36 @@ export default function Page({ params }: { params: { slug: string } }) {
     setMarkdownString(content);
   };
 
+  const playVideo = () => {
+    // videoの参照がない場合、
+    if (currentFile.video_id === null) {
+      const drawList = video!.getRelationDocument(null);
+      setRelationDocList(drawList!);
+      setPopRelation(true);
+      return;
+    }
+    // videoの参照がある場合、
+    setPlay(!play);
+  };
+
+  const updatePopRelation = (bool: boolean) => {
+    setPopRelation(bool);
+  };
+
+  const relationAction = async (videoId: string) => {
+    await library?.document.relateVideo(currentFile.id, videoId);
+    const updateCurrentFile = library?.document.getFile(currentFile.id);
+    setCurrentFile(updateCurrentFile);
+
+    const dbVideoId = updateCurrentFile?.video_id;
+    const newVideoData = video!.getData(dbVideoId);
+    const videoParamId = Youtube.getVideoParams(newVideoData.url);
+    setVideoParams(videoParamId!);
+
+    setPopRelation(false);
+    setPlay(!play);
+  };
+
   const videoBtnClass = [
     'bg-rose-300',
     'hove:bg-rose-100',
@@ -116,11 +164,19 @@ export default function Page({ params }: { params: { slug: string } }) {
       <div className="w-11/12 h-1/12 flex items-center justify-between py-5">
         <Breadcrumb bread={bread} setCurrLibId={popup} />
         <Button
-          title="動画再生"
+          title={play ? '動画を隠す' : '動画を表示'}
           setClickHandler={playVideo}
           className={videoBtnClass}
         />
       </div>
+      <YouTube videoId={videoParams} play={play} />
+      <PopupContent visible={popRelation}>
+        <RelationVideo
+          videos={relationDocList}
+          closeAction={updatePopRelation}
+          relationAction={relationAction}
+        />
+      </PopupContent>
       <NoteDetail
         content={content}
         updateContent={updateContent}

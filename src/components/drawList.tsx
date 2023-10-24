@@ -24,6 +24,8 @@ export default function DrawList({
   const iconColor = '#bbbbbb';
   const bgClass = ['flex', 'justify-center', 'items-center'];
 
+  console.log(drawList);
+
   if (type === 'home') {
     return (
       <div className="bg-slate-200 w-11/12 max-h-max p-2 space-x-3 space-y-2">

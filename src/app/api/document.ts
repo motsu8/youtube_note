@@ -8,6 +8,7 @@ interface Data {
   id: any;
   content: any;
   lib_id: any;
+  video_id: any;
 }
 
 export default class Document {
@@ -25,7 +26,7 @@ export default class Document {
   public async fetchAllData() {
     const { data } = await supabase
       .from('Document')
-      .select('title,created_at,id,lib_id,content')
+      .select('title,created_at,id,lib_id,content,video_id')
       .eq('user_id', this.session?.user.id);
     this.data = data;
   }
@@ -82,5 +83,17 @@ export default class Document {
 
   get getData() {
     return this.data;
+  }
+
+  public async relateVideo(fileId: string, videoId: string) {
+    const { data, error } = await supabase
+      .from('Document')
+      .update({ video_id: videoId })
+      .eq('id', fileId)
+      .eq('user_id', this.session?.user.id)
+      .select();
+    if (error) alert(error.message);
+    await this.fetchAllData();
+    console.log(data);
   }
 }

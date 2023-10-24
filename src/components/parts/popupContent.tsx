@@ -13,7 +13,7 @@ function PopupContent({
     <>
       <Mask visible={visible} />
       <div
-        className={`bg-neutral-200 absolute z-20 !top-1/4  rounded-md shadow-md p-4 w-1/3 ${
+        className={`bg-neutral-200 absolute z-20 !top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  rounded-md shadow-md p-4 w-1/3 ${
           visible ? 'block' : 'hidden'
         }`}
       >

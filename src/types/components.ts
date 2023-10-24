@@ -45,6 +45,23 @@ export type VideoData = {
   url: string;
   channel: string;
   title: string;
+  channel_thumbnails: {
+    default: {
+      url: string;
+      height: number;
+      width: number;
+    };
+    medium: {
+      url: string;
+      height: number;
+      width: number;
+    };
+    high: {
+      url: string;
+      height: number;
+      width: number;
+    };
+  };
   thumbnails: {
     default: {
       url: string;
@@ -75,7 +92,6 @@ export type VideoData = {
 };
 
 export type ConfirmVideo = {
-  visible: boolean;
   session: Session | null;
   videoData: VideoData | null;
   setVisible: (variable: boolean) => void;
