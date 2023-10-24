@@ -75,7 +75,6 @@ export type VideoData = {
 };
 
 export type ConfirmVideo = {
-  visible: boolean;
   session: Session | null;
   videoData: VideoData | null;
   setVisible: (variable: boolean) => void;
