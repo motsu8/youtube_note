@@ -22,14 +22,18 @@ export default class Youtube {
     apiKey: Youtube.apiKey,
   };
 
+  public static getVideoParams(videoUrl: string) {
+    const url = new URL(videoUrl);
+    const params = new URLSearchParams(url.search);
+    const videoId = params.getAll('v').pop();
+    return videoId;
+  }
+
   public static getVideoSnippet(
     videoUrl: string,
     videoDataHooks: (data: VideoData) => void
   ) {
-    const url = new URL(videoUrl);
-    const params = new URLSearchParams(url.search);
-    const videoId = params.getAll('v').pop();
-
+    const videoId = Youtube.getVideoParams(videoUrl);
     const videoRequest = {
       path: this.videoUrl,
       params: {

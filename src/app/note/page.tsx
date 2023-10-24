@@ -50,7 +50,6 @@ function Note() {
 
     // ファイル表示
     const filesList = libClient.getDrawFiles(id);
-    console.log(filesList);
     setDrawFiles(filesList!);
 
     // パンくずリスト

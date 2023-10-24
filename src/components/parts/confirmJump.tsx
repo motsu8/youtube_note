@@ -9,7 +9,7 @@ function ConfirmJump({
   close: () => void;
   jumpLink: () => void;
 }) {
-  const writeClass = [
+  const defaultClass = [
     'hover:text-slate-700',
     'text-lg',
     'p-2',
@@ -24,12 +24,12 @@ function ConfirmJump({
       <p>保存しましたか？</p>
       <Button
         title="保存せず移動する"
-        className={writeClass}
+        className={defaultClass}
         setClickHandler={close}
       />
       <Button
         title="保存して移動する"
-        className={writeClass}
+        className={defaultClass}
         setClickHandler={jumpLink}
       />
     </>
