@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 import NoteTabs from './noteTabs';
+import Pre from './parts/pre';
 
 function NoteDetail({
   saveContent,
@@ -30,6 +32,7 @@ function NoteDetail({
   const markdownClass = defaultClass.concat([
     tab === 1 ? 'block' : 'hidden',
     'markdown-preview',
+    'rounded-b',
   ]);
 
   return (
@@ -40,7 +43,11 @@ function NoteDetail({
         onChange={(e) => updateContent(e.target.value)}
         className={textareaClass.join(' ')}
       />
-      <ReactMarkdown className={markdownClass.join(' ')}>
+      <ReactMarkdown
+        components={{ pre: Pre }}
+        className={markdownClass.join(' ')}
+        remarkPlugins={[remarkGfm]}
+      >
         {content}
       </ReactMarkdown>
     </>
