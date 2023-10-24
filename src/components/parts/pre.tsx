@@ -26,14 +26,25 @@ export default function Pre({
   const language = classList[0].replace('language-', '');
   const fileName = classList[1];
 
+  const preStyle: React.CSSProperties = {
+    borderBottomLeftRadius: '0.5rem',
+    borderBottomRightRadius: '0.5rem',
+    borderTopLeftRadius: fileName ? '0' : '0.5rem',
+    borderTopRightRadius: fileName ? '0' : '0.5rem',
+  };
+
   return (
-    <div className="rounded-b-md">
+    <div className="w-1/2 shadow-xl">
       {fileName && (
         <div className="bg-neutral-300 rounded-t pl-2">
           <span>{fileName}</span>
         </div>
       )}
-      <Syntaxhighlighter language={language} style={darcula}>
+      <Syntaxhighlighter
+        customStyle={preStyle}
+        language={language}
+        style={darcula}
+      >
         {String(code).replace(/\n$/, '')}
       </Syntaxhighlighter>
     </div>

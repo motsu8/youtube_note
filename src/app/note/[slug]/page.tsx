@@ -32,6 +32,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   const [currentFile, setCurrentFile] = useState<any>(null);
   const [bread, setBread] = useState<(LibData | DocData)[]>([]);
   const [content, setContent] = useState('');
+  const [markdownString, setMarkdownString] = useState('');
   const [pageJump, setPageJump] = useState(false);
 
   useEffect(() => {
@@ -91,6 +92,10 @@ export default function Page({ params }: { params: { slug: string } }) {
     jumpLink();
   };
 
+  const updateMarkdownString = () => {
+    setMarkdownString(content);
+  };
+
   const videoBtnClass = [
     'bg-rose-300',
     'hove:bg-rose-100',
@@ -120,6 +125,8 @@ export default function Page({ params }: { params: { slug: string } }) {
         content={content}
         updateContent={updateContent}
         saveContent={saveContent}
+        markdownString={markdownString}
+        updateMarkdownString={updateMarkdownString}
       />
     </div>
   );

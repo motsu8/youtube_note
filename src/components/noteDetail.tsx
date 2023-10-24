@@ -9,13 +9,19 @@ function NoteDetail({
   saveContent,
   updateContent,
   content,
+  updateMarkdownString,
+  markdownString,
 }: {
   content: string;
+  markdownString: string;
   saveContent: () => void;
   updateContent: (str: string) => void;
+  updateMarkdownString: () => void;
 }) {
   const [tab, setTab] = useState(0);
+
   const updateTab = (num: number) => {
+    if (num === 1) updateMarkdownString();
     setTab(num);
   };
 
@@ -48,7 +54,7 @@ function NoteDetail({
         className={markdownClass.join(' ')}
         remarkPlugins={[remarkGfm]}
       >
-        {content}
+        {markdownString}
       </ReactMarkdown>
     </>
   );
