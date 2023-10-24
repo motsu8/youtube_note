@@ -69,8 +69,10 @@ export default function Page({ params }: { params: { slug: string } }) {
 
       // 記事に参照されている動画
       const videoData = videoClient.getData(file!.video_id);
-      const temp = Youtube.getVideoParams(videoData.url);
-      setVideoParams(temp!);
+      if (videoData) {
+        const temp = Youtube.getVideoParams(videoData.url);
+        setVideoParams(temp!);
+      }
 
       // パンくずリスト
       const breadData = libClient.getBread(file?.lib_id);
@@ -134,7 +136,8 @@ export default function Page({ params }: { params: { slug: string } }) {
     setCurrentFile(updateCurrentFile);
 
     const dbVideoId = updateCurrentFile?.video_id;
-    const videoParamId = Youtube.getVideoParams(dbVideoId);
+    const newVideoData = video!.getData(dbVideoId);
+    const videoParamId = Youtube.getVideoParams(newVideoData.url);
     setVideoParams(videoParamId!);
 
     setPopRelation(false);
