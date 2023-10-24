@@ -1,6 +1,7 @@
 'use client';
 
 import { faFolder, faFile } from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link';
 import React from 'react';
 
 import { DrawList } from '@/types/components';
@@ -15,7 +16,6 @@ export default function DrawList({
   files,
   setCurrentLibrary,
   setDeleteList,
-  setCurrFile,
   changeDeleteList,
   setDeleteFile,
   changeDeleteFile,
@@ -99,10 +99,9 @@ export default function DrawList({
                 value={ele.id}
                 className="basis-1/12 delete file"
               />
-              <button
+              <Link
+                href={`/note/${ele.id}`}
                 className="basis-6/12 flex space-x-2 items-center"
-                type="button"
-                onClick={() => setCurrFile(ele.id)}
               >
                 <IconButton
                   icon={faFile}
@@ -111,7 +110,7 @@ export default function DrawList({
                   color={iconColor}
                 />
                 <p>{ele.title}</p>
-              </button>
+              </Link>
               <p className="basis-5/12">{ele.created_at}</p>
             </div>
           );

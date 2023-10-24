@@ -1,15 +1,13 @@
 import { faFolder, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 
-import Library from '@/app/api/library';
-
 import IconButton from './iconButton';
 
 function Breadcrumb({
   bread,
   setCurrLibId,
 }: {
-  bread: Library[] | null;
+  bread: any[] | null;
   setCurrLibId: (id: string, title?: string) => void;
 }) {
   const iconSize = 'h-8';
@@ -19,7 +17,7 @@ function Breadcrumb({
   if (bread === null) return <p>Loading...</p>;
 
   return (
-    <div className="flex space-x-4">
+    <div className="flex space-x-4 items-center">
       {bread!.map((ele) => {
         if (ele === null)
           return (
