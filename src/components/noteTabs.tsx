@@ -1,29 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import Button from './parts/button';
 
-function NoteTabs({ saveContent }: { saveContent: () => void }) {
-  const [selected, setSelected] = useState(0);
-  const write = () => {
-    setSelected(0);
-    alert('write');
-  };
-  const preview = () => {
-    setSelected(1);
-    alert('preview');
-  };
-
+function NoteTabs({
+  saveContent,
+  updateTab,
+  tab,
+}: {
+  tab: number;
+  saveContent: () => void;
+  updateTab: (num: number) => void;
+}) {
   const bg = 'bg-slate-50 text-black';
   const opacity = 'bg-transparent text-black';
+
+  console.log(tab);
+
   const writeClass = [
     'hover:text-slate-700',
     'text-lg',
     'p-2',
     'mt-2',
-    'space-x-1',
-    'ml-2',
     'rounded-t-lg',
-    selected === 0 ? bg : opacity,
+    tab === 0 ? bg : opacity,
   ];
   const previewClass = [
     'hover:text-slate-700',
@@ -31,7 +30,7 @@ function NoteTabs({ saveContent }: { saveContent: () => void }) {
     'p-2',
     'mt-2',
     'rounded-t-lg',
-    selected === 1 ? bg : opacity,
+    tab === 1 ? bg : opacity,
   ];
   const saveClass = [
     'bg-slate-50',
@@ -46,10 +45,14 @@ function NoteTabs({ saveContent }: { saveContent: () => void }) {
   return (
     <div className="flex bg-blue-100 w-full rounded-t-lg justify-between">
       <div>
-        <Button title="Write" setClickHandler={write} className={writeClass} />
+        <Button
+          title="Write"
+          setClickHandler={() => updateTab(0)}
+          className={writeClass}
+        />
         <Button
           title="Preview"
-          setClickHandler={preview}
+          setClickHandler={() => updateTab(1)}
           className={previewClass}
         />
       </div>
