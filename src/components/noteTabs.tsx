@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Button from './parts/button';
 
-function NoteTabs() {
+function NoteTabs({ saveContent }: { saveContent: () => void }) {
   const [selected, setSelected] = useState(0);
   const write = () => {
     setSelected(0);
@@ -12,13 +12,10 @@ function NoteTabs() {
     setSelected(1);
     alert('preview');
   };
-  const save = () => {
-    alert('save');
-  };
-  const bg = 'bg-slate-100 text-black';
-  const opacity = 'bg-inherit text-black';
+
+  const bg = 'bg-slate-50 text-black';
+  const opacity = 'bg-transparent text-black';
   const writeClass = [
-    'bg-slate-100',
     'hover:text-slate-700',
     'text-lg',
     'p-2',
@@ -29,7 +26,6 @@ function NoteTabs() {
     selected === 0 ? bg : opacity,
   ];
   const previewClass = [
-    'bg-slate-100',
     'hover:text-slate-700',
     'text-lg',
     'p-2',
@@ -38,7 +34,7 @@ function NoteTabs() {
     selected === 1 ? bg : opacity,
   ];
   const saveClass = [
-    'bg-slate-100',
+    'bg-slate-50',
     'hover:text-slate-800',
     'hover:shadow-lg',
     'text-md',
@@ -57,7 +53,11 @@ function NoteTabs() {
           className={previewClass}
         />
       </div>
-      <Button title="保存する" setClickHandler={save} className={saveClass} />
+      <Button
+        title="保存する"
+        setClickHandler={saveContent}
+        className={saveClass}
+      />
     </div>
   );
 }

@@ -62,6 +62,16 @@ export default class Document {
     console.log(error);
   }
 
+  public async updateContent(id: string, content: string) {
+    const { data } = await supabase
+      .from('Document')
+      .update({ content })
+      .eq('id', id)
+      .eq('user_id', this.session?.user.id)
+      .select();
+    console.log(data);
+  }
+
   public async postTitle(title: string, lib: string | null) {
     const { data } = await supabase
       .from('Document')
