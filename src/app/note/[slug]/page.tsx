@@ -9,11 +9,26 @@ import Breadcrumb from '@/components/parts/breadcrumb';
 import Button from '@/components/parts/button';
 import getSession from '@/utils/getSession';
 
+interface LibData {
+  title: any;
+  created_at: any;
+  id: any;
+  libs: any;
+}
+
+interface DocData {
+  title: any;
+  created_at: any;
+  id: any;
+  content: any;
+  lib_id: any;
+}
+
 export default function Page({ params }: { params: { slug: string } }) {
   const [session, setSession] = useState<Session | null>(null);
   const [library, setLibrary] = useState<Library | null>(null);
   const [currentFile, setCurrentFile] = useState<any>(null);
-  const [bread, setBread] = useState<any[]>([]);
+  const [bread, setBread] = useState<(LibData | DocData)[]>([]);
 
   useEffect(() => {
     (async () => {
