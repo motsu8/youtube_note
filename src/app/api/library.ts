@@ -76,7 +76,6 @@ export default class Library {
     current: Data | undefined,
     list: (Data | null)[]
   ): any {
-    console.log(list);
     // 現在のidがnullの場合
     if (current === null) return [null, ...list];
     const parent = this.getData(current!.libs);
