@@ -16,22 +16,15 @@ function NoteTabs({
 
   console.log(tab);
 
-  const writeClass = [
+  const defaultClass = [
     'hover:text-slate-700',
     'text-lg',
     'p-2',
     'mt-2',
     'rounded-t-lg',
-    tab === 0 ? bg : opacity,
   ];
-  const previewClass = [
-    'hover:text-slate-700',
-    'text-lg',
-    'p-2',
-    'mt-2',
-    'rounded-t-lg',
-    tab === 1 ? bg : opacity,
-  ];
+  const writeClass = defaultClass.concat([tab === 0 ? bg : opacity, 'ml-2']);
+  const previewClass = defaultClass.concat([tab === 1 ? bg : opacity]);
   const saveClass = [
     'bg-slate-50',
     'hover:text-slate-800',

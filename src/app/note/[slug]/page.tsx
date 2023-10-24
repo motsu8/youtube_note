@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
+import './markdown.css';
+
 import Library from '@/app/api/library';
 import NoteDetail from '@/components/noteDetail';
 import Breadcrumb from '@/components/parts/breadcrumb';
