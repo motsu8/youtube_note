@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 
 import ConfirmVideo from '@/components/confirmVideo';
 // import DrawList from '@/components/drawList';
+import PopupContent from '@/components/parts/popupContent';
 import Search from '@/components/parts/search';
 import PostDocument from '@/components/postDocument';
 import { VideoData } from '@/types/components';
@@ -37,13 +38,14 @@ export default function Home() {
       id="dashBoard"
       className="w-full relative flex flex-col justify-start items-center space-y-10 overflow-auto h-screen"
     >
-      <ConfirmVideo
-        videoData={videoData}
-        session={session}
-        visible={visible}
-        setVideoData={setVideoData}
-        setVisible={setVisible}
-      />
+      <PopupContent visible={visible}>
+        <ConfirmVideo
+          videoData={videoData}
+          session={session}
+          setVideoData={setVideoData}
+          setVisible={setVisible}
+        />
+      </PopupContent>
       <Search
         placeholder="動画URLで追加"
         setInputValue={setVideoUrl}
