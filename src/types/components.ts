@@ -21,6 +21,7 @@ interface LibData {
 export type DrawList = {
   title: string;
   type: string;
+  message?: string;
   drawList: LibData[] | null;
   files:
     | {
