@@ -1,12 +1,23 @@
 import React from 'react';
 
+import { BTN_PINK } from '@/constants/buttonClass';
+
+import Button from './parts/button';
+
 function PlayTab({
   tab,
+  draw,
   setTab,
+  deleteAction,
+  setCreatePlayList,
 }: {
+  draw: boolean;
   tab: number;
+  deleteAction: () => void;
   setTab: (num: number) => void;
+  setCreatePlayList: (bool: boolean) => void;
 }) {
+  const popBtn = BTN_PINK.concat(draw ? 'block' : 'hidden');
   return (
     <div className="flex justify-between w-11/12 mb-5 px-12 py-3 border-b">
       <div className="flex space-x-10">
@@ -25,7 +36,18 @@ function PlayTab({
           プレイリスト
         </button>
       </div>
-      <div>新規作成</div>
+      <div className="space-x-2 flex">
+        <Button
+          title="削除する"
+          className={popBtn}
+          setClickHandler={() => deleteAction()}
+        />
+        <Button
+          title="プレイリスト作成"
+          className={BTN_PINK}
+          setClickHandler={() => setCreatePlayList(true)}
+        />
+      </div>
     </div>
   );
 }

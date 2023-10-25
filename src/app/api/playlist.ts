@@ -1,9 +1,8 @@
 import { Session } from '@supabase/supabase-js';
 
-import { VideoData } from '@/types/components';
 import supabase from '@/utils/supabaseClient';
 
-export default class Video {
+export default class Playlist {
   private session: Session | null;
 
   private data: any[] | null;
@@ -13,17 +12,14 @@ export default class Video {
     this.session = session;
   }
 
-  public async insertVideo(video: VideoData) {
+  public async insert(videosData: any) {
     const { data, error } = await supabase
-      .from('Video')
+      .from('Playlist')
       .insert([
         {
-          url: video.url,
           user_id: this.session?.user.id,
-          channel: video.channel,
-          title: video.title,
-          thumbnails: video.thumbnails,
-          channel_thumbnails: video.channel_thumbnails,
+          title: videosData.title,
+          videos: videosData.videos,
         },
       ])
       .select();
@@ -34,7 +30,7 @@ export default class Video {
 
   public async fetchAllData() {
     const { data } = await supabase
-      .from('Video')
+      .from('Playlist')
       .select('*')
       .eq('user_id', this.session?.user.id);
     this.data = data;
@@ -58,17 +54,19 @@ export default class Video {
   }
 
   public async deleteData(list: any[]) {
+    console.log(list);
     const results = [];
     for (const playlist of list) {
       results.push(
         supabase
-          .from('Video')
+          .from('Playlist')
           .delete()
           .eq('user_id', this.session?.user.id)
           .eq('id', playlist.id)
       );
     }
-    await Promise.all(results);
+    const data = await Promise.all(results);
+    console.log(data);
     return this.fetchAllData();
   }
 }

@@ -1,10 +1,24 @@
 import Image from 'next/image';
 import React from 'react';
 
-function VideoCard({ video }: { video: any }) {
+function VideoCard({
+  video,
+  setCheckboxAction,
+}: {
+  video: any;
+  setCheckboxAction: (dbId: string, checked: boolean) => void;
+}) {
   if (video) {
     return (
-      <div className="hover:bg-slate-50 px-1 pb-2 w-80 rounded-lg hover:shadow-md">
+      <div className="hover:bg-slate-50 relative px-1 pb-2 w-80 rounded-lg hover:shadow-md">
+        <input
+          type="checkbox"
+          name=""
+          className="absolute z-[1] scale-150 m-2 cursor-pointer checkbox"
+          value={video.id}
+          onChange={(e) => setCheckboxAction(video, e.target.checked)}
+          id=""
+        />
         <Image
           alt="動画サムネイル"
           className="rounded-md"

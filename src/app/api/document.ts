@@ -41,6 +41,7 @@ export default class Document {
 
   public async delete(list: string[]) {
     const results = [];
+    console.log(list);
     for (const id of list) {
       results.push(
         supabase

@@ -67,9 +67,6 @@ function Note() {
     setDrawFiles(temp!);
 
     setMessage('');
-    console.log(noteName);
-    console.log(draw);
-    console.log(temp);
     if (!draw?.length && !temp?.length) {
       console.log('no content');
       setMessage('コンテンツがありません。');
