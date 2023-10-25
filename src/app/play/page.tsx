@@ -6,6 +6,7 @@ import ConfirmVideo from '@/components/confirmVideo';
 import DrawVideos from '@/components/drawVideos';
 import PopupContent from '@/components/parts/popupContent';
 import Search from '@/components/parts/search';
+import PlayTab from '@/components/playTab';
 import { VideoData } from '@/types/components';
 import getSession from '@/utils/getSession';
 
@@ -90,25 +91,8 @@ function Play() {
           addVideo={addVideo}
         />
       </PopupContent>
-      <div className="flex justify-between w-11/12 mb-5 px-12 py-3 border-b">
-        <div className="flex space-x-10">
-          <button
-            type="button"
-            className={tab === 0 ? 'border-b' : ''}
-            onClick={() => setTab(0)}
-          >
-            動画
-          </button>
-          <button
-            type="button"
-            className={tab === 1 ? 'border-b' : ''}
-            onClick={() => setTab(1)}
-          >
-            プレイリスト
-          </button>
-        </div>
-        <div>新規作成</div>
-      </div>
+      <PlayTab tab={tab} setTab={setTab} />
+
       <DrawVideos visible={tab} id={0} videos={videoList} />
       <DrawVideos visible={tab} id={1} videos={drawPlayList} />
     </div>
