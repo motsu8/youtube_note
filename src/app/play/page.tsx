@@ -53,6 +53,10 @@ function Play() {
   };
 
   const addVideo = async () => {
+    if (video?.contain(videoData!.url)) {
+      alert('既に保存しています。');
+      return;
+    }
     await video!.insertVideo(videoData!);
     updateDraw(video!);
   };

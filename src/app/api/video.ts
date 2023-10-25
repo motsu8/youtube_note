@@ -47,4 +47,9 @@ export default class Video {
   public getData(videoId?: string) {
     return videoId ? this.data?.find((ele) => ele.id === videoId) : this.data;
   }
+
+  public contain(url: string): boolean {
+    const res = this.data!.some((ele) => ele.url === url);
+    return res;
+  }
 }
