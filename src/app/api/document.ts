@@ -96,4 +96,9 @@ export default class Document {
     await this.fetchAllData();
     console.log(data);
   }
+
+  public search(name: string) {
+    const reg = new RegExp(name);
+    return this.data?.filter((ele) => reg.test(ele.title));
+  }
 }

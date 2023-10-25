@@ -180,4 +180,9 @@ export default class Library {
       .select();
     console.log(data);
   }
+
+  public search(name: string) {
+    const reg = new RegExp(name);
+    return this.data?.filter((ele) => reg.test(ele.title));
+  }
 }

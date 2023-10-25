@@ -43,6 +43,8 @@ function Note() {
   const [deleteFolderList, setDeleteFolderList] = useState<string[]>([]);
   const [drawDelete, setDrawDelete] = useState(false);
 
+  const [message, setMessage] = useState('');
+
   const updateDraw = (libClient: Library, id: string) => {
     // フォルダ表示
     const drawData = libClient.getDrawList(id);
@@ -55,6 +57,23 @@ function Note() {
     // パンくずリスト
     const breadData = libClient.getBread(id);
     setBread(breadData);
+  };
+
+  const searchData = () => {
+    const draw = library!.search(noteName);
+    setDrawList(draw!);
+
+    const temp = library?.document.search(noteName);
+    setDrawFiles(temp!);
+
+    setMessage('');
+    console.log(noteName);
+    console.log(draw);
+    console.log(temp);
+    if (!draw?.length && !temp?.length) {
+      console.log('no content');
+      setMessage('コンテンツがありません。');
+    }
   };
 
   useEffect(() => {
@@ -79,8 +98,8 @@ function Note() {
   }, []);
 
   const filter = () => {
-    console.log(session);
-    alert(`${noteName}を探します`);
+    // args[noteName]
+    searchData();
   };
 
   const setCurrent = (id: string | null) => {
@@ -152,11 +171,16 @@ function Note() {
     else setDrawFiles(data as DocData[]);
   };
 
+  const setInputValue = (name: string) => {
+    setNoteName(name);
+    searchData();
+  };
+
   return (
     <div className="w-full h-screen relative flex flex-col items-center justify-start py-8 px-5">
       <Search
         placeholder="ノートを検索する"
-        setInputValue={setNoteName}
+        setInputValue={setInputValue}
         setSubmitAction={filter}
       />
       <NoteHead
@@ -177,6 +201,7 @@ function Note() {
         changeDeleteList={changeDeleteValue}
         setDeleteFile={setDeleteFile}
         changeDeleteFile={changeDeleteFile}
+        message={message}
       />
       <CreateContent
         setVisible={changeVisible}

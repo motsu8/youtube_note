@@ -19,12 +19,11 @@ export default function DrawList({
   changeDeleteList,
   setDeleteFile,
   changeDeleteFile,
+  message,
 }: DrawList) {
   const iconSize = '';
   const iconColor = '#bbbbbb';
   const bgClass = ['flex', 'justify-center', 'items-center'];
-
-  console.log(drawList);
 
   if (type === 'home') {
     return (
@@ -42,7 +41,7 @@ export default function DrawList({
         <p className="basis-6/12">タイトル</p>
         <p className="basis-5/12">作成日</p>
       </div>
-
+      <div>{message}</div>
       {drawList ? (
         drawList.map((ele: any) => {
           return (
