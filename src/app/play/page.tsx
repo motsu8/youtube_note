@@ -41,11 +41,24 @@ function Play() {
     })();
   }, []);
 
-  const checkUrl = () => /\?v=([^&]+)/.test(videoUrl);
+  const checkValidUrl = () => /\?v=([^&]+)/.test(videoUrl);
 
   const submitAction = () => {
-    if (!checkUrl()) {
+    // nullの場合、全表示
+    if (!videoUrl) {
+      updateDraw(video!);
+      return;
+    }
+    // URLが有効か
+    if (!checkValidUrl()) {
       alert('動画が見つかりませんでした。');
+      return;
+    }
+    // 既に保存済み
+    if (video?.contain(videoUrl)) {
+      const alreadyVideo = video.getUrlData(videoUrl);
+      console.log(alreadyVideo);
+      setVideoList([alreadyVideo]);
       return;
     }
     Youtube.getVideoSnippet(videoUrl, setVideoData);
