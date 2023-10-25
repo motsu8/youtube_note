@@ -13,6 +13,7 @@ function User() {
     const getData = async () => {
       const data = await getSession();
       setSession(data);
+      if (!data) window.location.href = '/';
     };
 
     getData();

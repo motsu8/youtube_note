@@ -63,6 +63,8 @@ function Play() {
   useEffect(() => {
     (async () => {
       const data = await getSession();
+      console.log(data);
+      if (!data) window.location.href = '/';
 
       // クライアント
       const videoClient = new Video(data);
@@ -113,7 +115,10 @@ function Play() {
       alert('既に保存しています。');
       return;
     }
-    await video!.insertVideo(videoData!);
+    console.log(video);
+    console.log(library);
+    console.log(playlist);
+    // await video!.insertVideo(videoData!);
     updateDraw(video!, playlist!, library!);
   };
 

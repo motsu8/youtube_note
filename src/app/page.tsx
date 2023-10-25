@@ -3,7 +3,6 @@ import Image from 'next/image';
 import SignUpForm from '@/components/signUpForm';
 
 export default function Landing() {
-  console.log(process.env.NEXT_PUBLIC_VERCEL_URL);
   return (
     <div className="w-full h-screen overflow-auto">
       <header id="lp-header" className="mx-2 my-10 p-3">

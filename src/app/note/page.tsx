@@ -1,6 +1,5 @@
 'use client';
 
-import { Session } from '@supabase/supabase-js';
 import React, { useState, useEffect } from 'react';
 
 import { getSession } from '@/app/api/supabase';
@@ -29,7 +28,6 @@ interface DocData {
 function Note() {
   // folder
   const [noteName, setNoteName] = useState('');
-  const [session, setSession] = useState<Session | null>(null);
   const [library, setLibrary] = useState<Library | null>(null);
   const [drawList, setDrawList] = useState<LibData[] | null>([]);
   const [currLibId, setCurrLibId] = useState<any>(null);
@@ -76,11 +74,8 @@ function Note() {
   useEffect(() => {
     (async () => {
       // session
-      let data = session;
-      if (data === null) {
-        data = await getSession();
-        setSession(data);
-      }
+      const data = await getSession();
+      if (!data) window.location.href = '/';
 
       // folderクライアント
       const libClient = new Library(data);

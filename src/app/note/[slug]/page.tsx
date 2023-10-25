@@ -52,6 +52,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   useEffect(() => {
     (async () => {
       const data = await getSession();
+      if (!data) window.location.href = '/';
 
       // folderクライアント
       const libClient = new Library(data);

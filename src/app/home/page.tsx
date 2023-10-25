@@ -13,6 +13,7 @@ export default function Home() {
     (async () => {
       const { data } = await supabase.auth.getSession();
       setSession(data.session);
+      if (!data) window.location.href = '/';
     })();
   }, []);
 
