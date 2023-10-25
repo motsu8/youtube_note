@@ -3,6 +3,7 @@
 import React from 'react';
 
 import Library from '@/app/api/library';
+import { BTN_PINK } from '@/constants/buttonClass';
 
 import Breadcrumb from './parts/breadcrumb';
 import Button from './parts/button';
@@ -22,15 +23,7 @@ function NoteHead({
   deleteFolderAction: () => void;
   deleteFileAction: () => void;
 }) {
-  const pink = [
-    'bg-rose-300',
-    'py-2',
-    'px-4',
-    'rounded-lg',
-    'shadow-md',
-    'hover:bg-rose-200',
-  ];
-  const deleteBtn = pink.concat(drawDelete ? 'block' : 'hidden');
+  const deleteBtn = BTN_PINK.concat(drawDelete ? 'block' : 'hidden');
 
   return (
     <div className="w-10/12 flex items-center justify-between">
@@ -47,7 +40,7 @@ function NoteHead({
         />
         <Button
           title="新規作成"
-          className={pink}
+          className={BTN_PINK}
           setClickHandler={() => {
             setVisible(true);
             console.log('click');
