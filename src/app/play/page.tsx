@@ -1,6 +1,5 @@
 'use client';
 
-import { Session } from '@supabase/supabase-js';
 import React, { useState, useEffect } from 'react';
 
 import ConfirmVideo from '@/components/confirmVideo';
@@ -16,17 +15,21 @@ import Youtube from '../api/youtube';
 function Play() {
   const [videoUrl, setVideoUrl] = useState('');
   const [visible, setVisible] = useState(false);
-  const [session, setSession] = useState<Session | null>(null);
   const [videoData, setVideoData] = useState<VideoData | null>(null);
   const [video, setVideo] = useState<Video | null>(null);
   const [videoList, setVideoList] = useState<any[]>([]);
   const [tab, setTab] = useState(0);
   const [drawPlayList, setDrawPlayList] = useState<any[]>([]);
 
+  const updateDraw = (client: Video) => {
+    const drawVideos = client.getData();
+    setVideoList(drawVideos);
+    setDrawPlayList(drawVideos);
+  };
+
   useEffect(() => {
     (async () => {
       const data = await getSession();
-      setSession(data);
 
       // videoクライアント
       const videoClient = new Video(data);
@@ -34,15 +37,9 @@ function Play() {
 
       // data fetch
       await videoClient.fetchAllData();
-      const drawVideos = videoClient.getData();
-      setVideoList(drawVideos);
-
-      // 一旦、
-      setDrawPlayList(drawVideos);
+      updateDraw(videoClient);
     })();
   }, []);
-
-  console.log(video);
 
   const checkUrl = () => /\?v=([^&]+)/.test(videoUrl);
 
@@ -55,6 +52,11 @@ function Play() {
     setVisible(true);
   };
 
+  const addVideo = async () => {
+    await video!.insertVideo(videoData!);
+    updateDraw(video!);
+  };
+
   return (
     <div className="w-full h-screen relative flex flex-col items-center justify-start pt-8 px-5">
       <Search
@@ -65,9 +67,9 @@ function Play() {
       <PopupContent visible={visible}>
         <ConfirmVideo
           videoData={videoData}
-          session={session}
           setVideoData={setVideoData}
           setVisible={setVisible}
+          addVideo={addVideo}
         />
       </PopupContent>
       <div className="flex justify-between w-11/12 mb-5 px-12 py-3 border-b">

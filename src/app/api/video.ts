@@ -27,8 +27,9 @@ export default class Video {
         },
       ])
       .select();
-    if (error) console.log(error);
+    if (error) alert(error.message);
     console.log(data);
+    await this.fetchAllData();
   }
 
   public async fetchAllData() {
