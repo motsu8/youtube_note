@@ -17,6 +17,8 @@ const getURL = () => {
 };
 
 export default function GoogleOauth() {
+  console.log(getURL());
+
   const auth = () => {
     console.log(getURL());
     supabase.auth.signInWithOAuth({
