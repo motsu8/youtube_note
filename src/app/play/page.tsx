@@ -78,7 +78,7 @@ function Play() {
   return (
     <div className="w-full h-screen relative flex flex-col items-center justify-start pt-8 px-5">
       <Search
-        placeholder="動画URLで検索"
+        placeholder="動画URLで追加"
         setInputValue={setVideoUrl}
         setSubmitAction={submitAction}
       />
