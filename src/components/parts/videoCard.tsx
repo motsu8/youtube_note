@@ -12,7 +12,7 @@ function VideoCard({
 }) {
   if (video) {
     return (
-      <div className="hover:bg-slate-50 relative px-1 pb-2 w-80 rounded-lg hover:shadow-md">
+      <div className="bg-slate-50 hover:z-50 relative px-1 pb-2 w-80 rounded-lg hover:shadow-md">
         <input
           type="checkbox"
           name=""
@@ -38,7 +38,7 @@ function VideoCard({
           />
           <button
             type="button"
-            className=""
+            className="flex flex-col justify-start text-start"
             onClick={() => jumpToNote(video.id)}
           >
             <p className="text-sm">{video.title.slice(0, 40).concat('...')}</p>
