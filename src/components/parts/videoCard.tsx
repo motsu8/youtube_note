@@ -4,8 +4,10 @@ import React from 'react';
 function VideoCard({
   video,
   setCheckboxAction,
+  jumpToNote,
 }: {
   video: any;
+  jumpToNote: (videoId: string) => void;
   setCheckboxAction: (dbId: string, checked: boolean) => void;
 }) {
   if (video) {
@@ -34,10 +36,14 @@ function VideoCard({
             width={35}
             height={35}
           />
-          <div className="">
+          <button
+            type="button"
+            className=""
+            onClick={() => jumpToNote(video.id)}
+          >
             <p className="text-sm">{video.title.slice(0, 40).concat('...')}</p>
             <p className="text-sm text-neutral-600">{video.channel}</p>
-          </div>
+          </button>
         </div>
       </div>
     );

@@ -4,16 +4,18 @@ import Mask from './mask';
 
 function PopupContent({
   visible,
+  height,
   children,
 }: {
   visible: boolean;
+  height: string;
   children: React.ReactNode;
 }) {
   return (
     <>
       <Mask visible={visible} />
       <div
-        className={`bg-neutral-200 absolute z-20 !top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-2/3 rounded-md shadow-md p-4 w-1/3 ${
+        className={`bg-neutral-200 absolute z-20 !top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md shadow-md p-4 lg:w-1/3 w-2/3 ${height} ${
           visible ? 'block' : 'hidden'
         }`}
       >

@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import React from 'react';
 
@@ -16,17 +18,19 @@ function ConfirmVideo({
 
   if (videoData) {
     return (
-      <>
+      <div className="flex flex-col justify-center items-center space-y-5 h-full overflow-auto">
         <Image
           alt="動画サムネイル"
-          src={videoData.thumbnails.standard.url}
-          width={videoData.thumbnails.standard.width}
-          height={videoData.thumbnails.standard.height}
+          src={videoData.thumbnails.medium.url}
+          width={videoData.thumbnails.medium.width}
+          height={videoData.thumbnails.medium.height}
+          className="bg-black w-2/3 rounded shadow"
         />
-        <div className="mt-2">
-          <p className="text-lg">{videoData.channel}</p>
+        <div className="px-3">
           <p>{videoData.title}</p>
+          <p className="text-neutral-600">{videoData.channel}</p>
         </div>
+
         <div className="flex justify-center space-x-5 mt-2">
           <button
             type="button"
@@ -46,7 +50,7 @@ function ConfirmVideo({
             追加する
           </button>
         </div>
-      </>
+      </div>
     );
   }
 }

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { BTN_DEFAULT, BTN_PINK } from '@/constants/buttonClass';
+
 import Button from './button';
 
 function RelationVideo({
@@ -12,38 +14,39 @@ function RelationVideo({
   relationAction: (videoId: string) => Promise<void>;
 }) {
   const [videoId, setVideoId] = useState('');
-  const defaultClass = [
-    'hover:text-slate-700',
-    'text-lg',
-    'p-2',
-    'mt-2',
-    'space-x-1',
-    'ml-2',
-    'rounded-t-lg',
-    'bg-blue-100',
-  ];
   return (
-    <>
-      <select name="" id="" onChange={(e) => setVideoId(e.target.value)}>
+    <div className="flex flex-col items-center justify-center px-4 space-y-4">
+      <p className="text-lg">参照する動画を選択</p>
+      <select
+        name=""
+        id=""
+        className="w-full px-2 py-1"
+        onChange={(e) => {
+          setVideoId(e.target.value);
+        }}
+      >
+        <option value="">-----</option>
         {videos.map((video) => {
           return (
             <option key={video.id} value={video.id}>
-              {video.title}
+              {video.title.slice(0, 40).concat('...')}
             </option>
           );
         })}
       </select>
-      <Button
-        title="閉じる"
-        className={defaultClass}
-        setClickHandler={() => closeAction(false)}
-      />
-      <Button
-        title="参照する"
-        className={defaultClass}
-        setClickHandler={() => relationAction(videoId)}
-      />
-    </>
+      <div className="flex justify-around w-full">
+        <Button
+          title="閉じる"
+          className={BTN_DEFAULT}
+          setClickHandler={() => closeAction(false)}
+        />
+        <Button
+          title="参照する"
+          className={BTN_PINK}
+          setClickHandler={() => relationAction(videoId)}
+        />
+      </div>
+    </div>
   );
 }
 

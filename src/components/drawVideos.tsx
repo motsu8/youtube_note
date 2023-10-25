@@ -8,10 +8,12 @@ function DrawVideos({
   visible,
   id,
   setCheckboxAction,
+  jumpToNote,
 }: {
   videos: any[];
   visible: number;
   id: number;
+  jumpToNote: (videoId: string) => void;
   setCheckboxAction: (dbId: string, checked: boolean) => void;
 }) {
   // 動画リスト
@@ -20,7 +22,7 @@ function DrawVideos({
       <div
         className={`${
           visible === id ? 'grid' : 'hidden'
-        } w-full gap-4 justify-items-center overflow-auto grid-cols-2 lg:grid-cols-5`}
+        } w-full gap-4 justify-items-center overflow-auto sm:grid-cols-2 md:grid-cols-4 lg:grid-cols4`}
       >
         {videos.map((video) => {
           return (
@@ -28,6 +30,7 @@ function DrawVideos({
               key={video.id}
               video={video}
               setCheckboxAction={setCheckboxAction}
+              jumpToNote={jumpToNote}
             />
           );
         })}
@@ -40,7 +43,7 @@ function DrawVideos({
     <div
       className={`${
         visible === id ? 'grid' : 'hidden'
-      } w-full justify-items-center overflow-auto grid-cols-2 lg:grid-cols-5`}
+      } w-full justify-items-center overflow-auto sm:grid-cols-2 md:grid-cols-4 lg:grid-cols4`}
     >
       {videos.map((playlist) => {
         return (

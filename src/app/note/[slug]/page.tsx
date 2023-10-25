@@ -33,9 +33,13 @@ interface DocData {
 }
 
 export default function Page({ params }: { params: { slug: string } }) {
+  // client
   const [library, setLibrary] = useState<Library | null>(null);
   const [video, setVideo] = useState<Video | null>(null);
+
+  // props
   const [currentFile, setCurrentFile] = useState<any>(null);
+
   const [bread, setBread] = useState<(LibData | DocData)[]>([]);
   const [content, setContent] = useState('');
   const [markdownString, setMarkdownString] = useState('');
@@ -68,8 +72,8 @@ export default function Page({ params }: { params: { slug: string } }) {
       setCurrentFile(file);
 
       // 記事に参照されている動画
-      const videoData = videoClient.getData(file!.video_id);
-      if (videoData) {
+      if (file!.video_id) {
+        const videoData = videoClient.getData(file!.video_id);
         const temp = Youtube.getVideoParams(videoData.url);
         setVideoParams(temp!);
       }
@@ -158,7 +162,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   return (
     <div className="w-full h-screen relative flex flex-col items-center justify-start pt-8 px-5">
-      <PopupContent visible={pageJump}>
+      <PopupContent height="h-fit" visible={pageJump}>
         <ConfirmJump close={noSaveClose} jumpLink={saveClose} />
       </PopupContent>
       <div className="w-11/12 h-1/12 flex items-center justify-between py-5">
@@ -170,7 +174,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         />
       </div>
       <YouTube videoId={videoParams} play={play} />
-      <PopupContent visible={popRelation}>
+      <PopupContent height="h-fit" visible={popRelation}>
         <RelationVideo
           videos={relationDocList}
           closeAction={updatePopRelation}

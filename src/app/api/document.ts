@@ -35,6 +35,10 @@ export default class Document {
     return this.data?.filter((ele) => ele.lib_id === id);
   }
 
+  public getFilesRelationalVideo(videoId: string | null) {
+    return this.data?.filter((ele) => ele.video_id === videoId);
+  }
+
   public getFile(id: string | null) {
     return this.data?.find((ele) => ele.id === id);
   }
@@ -84,6 +88,22 @@ export default class Document {
 
   get getData() {
     return this.data;
+  }
+
+  public async insertDocument(title: string, videoId: string, libId: string) {
+    const { data, error } = await supabase
+      .from('Document')
+      .insert([
+        {
+          title,
+          lib_id: libId,
+          user_id: this.session!.user.id,
+          video_id: videoId,
+        },
+      ])
+      .select();
+    if (error) alert(error.message);
+    console.log(data);
   }
 
   public async relateVideo(fileId: string, videoId: string) {
