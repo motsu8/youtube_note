@@ -3,11 +3,11 @@
 import { Session } from '@supabase/supabase-js';
 import React, { useState, useEffect } from 'react';
 
+import { getSession } from '@/app/api/supabase';
 import CreateContent from '@/components/createContent';
 import DrawList from '@/components/drawList';
 import NoteHead from '@/components/noteHead';
 import Search from '@/components/parts/search';
-import getSession from '@/utils/getSession';
 
 import Library from '../api/library';
 

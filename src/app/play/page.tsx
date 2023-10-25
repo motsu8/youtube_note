@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 
+import { getSession } from '@/app/api/supabase';
 import ConfirmVideo from '@/components/confirmVideo';
 import CreatePlaylist from '@/components/createPlaylist';
 import DrawVideos from '@/components/drawVideos';
@@ -10,7 +11,6 @@ import PopupContent from '@/components/parts/popupContent';
 import Search from '@/components/parts/search';
 import PlayTab from '@/components/playTab';
 import { VideoData } from '@/types/components';
-import getSession from '@/utils/getSession';
 
 import Library from '../api/library';
 import Playlist from '../api/playlist';

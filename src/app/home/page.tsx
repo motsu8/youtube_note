@@ -27,7 +27,6 @@ export default function Home() {
         <SignOut />
         <GetSession session={session} />
       </div>
-      {/* <DrawList type='home' title="DrawList" /> */}
       <PostDocument session={session} />
     </div>
   );
