@@ -20,7 +20,7 @@ function DrawVideos({
       <div
         className={`${
           visible === id ? 'grid' : 'hidden'
-        } w-full gap-4 justify-items-center overflow-auto grid-cols-2 lg:grid-cols-5`}
+        } w-full gap-4 justify-items-center overflow-auto grid-cols-2 md:grid-cols-4`}
       >
         {videos.map((video) => {
           return (
@@ -40,7 +40,7 @@ function DrawVideos({
     <div
       className={`${
         visible === id ? 'grid' : 'hidden'
-      } w-full justify-items-center overflow-auto grid-cols-2 lg:grid-cols-5`}
+      } w-full justify-items-center overflow-auto grid-cols-2 md:grid-cols-4`}
     >
       {videos.map((playlist) => {
         return (

@@ -86,6 +86,22 @@ export default class Document {
     return this.data;
   }
 
+  public async insertDocument(title: string, videoId: string, libId: string) {
+    const { data, error } = await supabase
+      .from('Document')
+      .insert([
+        {
+          title,
+          lib_id: libId,
+          user_id: this.session!.user.id,
+          video_id: videoId,
+        },
+      ])
+      .select();
+    if (error) alert(error.message);
+    console.log(data);
+  }
+
   public async relateVideo(fileId: string, videoId: string) {
     const { data, error } = await supabase
       .from('Document')
