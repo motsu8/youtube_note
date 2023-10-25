@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React from 'react';
 
 import { ConfirmVideo } from '@/types/components';
 
@@ -10,10 +10,7 @@ function ConfirmVideo({
   setVisible,
   setVideoData,
   addVideo,
-  folderData,
 }: ConfirmVideo) {
-  const [title, setTitle] = useState('');
-  const [folder, setFolder] = useState('');
   const closePopUp = () => {
     setVideoData(null);
     setVisible(false);
@@ -34,33 +31,6 @@ function ConfirmVideo({
           <p className="text-neutral-600">{videoData.channel}</p>
         </div>
 
-        {/* ノート */}
-        <div className="flex flex-col space-y-4 w-full">
-          <label htmlFor="selectFolder" className="">
-            <p>フォルダ</p>
-            <select
-              name=""
-              id="selectFolder"
-              className="px-2 py-1 w-3/4"
-              onChange={(e) => setFolder(e.target.value)}
-            >
-              <option value="">-----</option>
-              {folderData!.map((ele) => {
-                return (
-                  <option key={ele.id} value={ele.id}>
-                    {ele.title}
-                  </option>
-                );
-              })}
-            </select>
-          </label>
-          <input
-            type="text"
-            placeholder="ノート名"
-            className="px-2 py-1"
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </div>
         <div className="flex justify-center space-x-5 mt-2">
           <button
             type="button"
@@ -72,7 +42,7 @@ function ConfirmVideo({
           <button
             type="button"
             onClick={() => {
-              addVideo(folder, title);
+              addVideo();
               closePopUp();
             }}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"

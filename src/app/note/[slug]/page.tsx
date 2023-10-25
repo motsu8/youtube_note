@@ -68,8 +68,8 @@ export default function Page({ params }: { params: { slug: string } }) {
       setCurrentFile(file);
 
       // 記事に参照されている動画
-      const videoData = videoClient.getData(file!.video_id);
-      if (videoData) {
+      if (file!.video_id) {
+        const videoData = videoClient.getData(file!.video_id);
         const temp = Youtube.getVideoParams(videoData.url);
         setVideoParams(temp!);
       }

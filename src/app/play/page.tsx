@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import ConfirmVideo from '@/components/confirmVideo';
 import CreatePlaylist from '@/components/createPlaylist';
 import DrawVideos from '@/components/drawVideos';
+import JumpToNote from '@/components/parts/jumpToNote';
 import PopupContent from '@/components/parts/popupContent';
 import Search from '@/components/parts/search';
 import PlayTab from '@/components/playTab';
@@ -23,24 +24,27 @@ function Play() {
   const [playlist, setPlaylist] = useState<Playlist | null>(null);
 
   // DB表示データ
-  const [drawFolderData, setDrawFolderData] = useState<any[] | null>(null);
+  const [relationalFiles, setRelationalFiles] = useState<any[]>([]);
+  const [drawFiles, setDrawFiles] = useState<any[]>([]);
 
-  const [insertId, setInsertId] = useState<string>('');
-  const [insertTitle, setInsertTitle] = useState('');
-  const [insertFolder, setInsertFolder] = useState('');
+  // toggle components
+  const [toggleJumpToNote, setToggleJumpToNote] = useState(false);
+  const [tab, setTab] = useState(0);
+  const [visible, setVisible] = useState(false);
+  const [deleteBtn, setDeleteBtn] = useState(false);
+  const [popupPlayList, setPopupPlayList] = useState(false);
+
+  // コンポーネントに渡すProps
+  const [currentVideoId, setCurrentVideoId] = useState('');
 
   const [videoUrl, setVideoUrl] = useState('');
-  const [visible, setVisible] = useState(false);
   const [videoData, setVideoData] = useState<VideoData | null>(null);
   const [videoList, setVideoList] = useState<any[]>([]);
-  const [tab, setTab] = useState(0);
   const [drawPlayList, setDrawPlayList] = useState<any[]>([]);
-  const [deleteBtn, setDeleteBtn] = useState(false);
 
   const [playlistCheckbox, setPlayListCheckbox] = useState<any[]>([]);
 
   const [checkboxList, setCheckboxList] = useState<any[]>([]);
-  const [popupPlayList, setPopupPlayList] = useState(false);
 
   const [playlistTitle, setPlayListTitle] = useState<string>('');
 
@@ -51,9 +55,9 @@ function Play() {
     const drawPlayLists = pClient.getData();
     setDrawPlayList(drawPlayLists);
 
-    const folderData = lClient.getAllData;
-    console.log(folderData);
-    setDrawFolderData(folderData);
+    const noRelationalFiles = lClient.document.getFilesRelationalVideo(null);
+    console.log(noRelationalFiles);
+    setDrawFiles(noRelationalFiles!);
   };
 
   useEffect(() => {
@@ -78,16 +82,6 @@ function Play() {
       updateDraw(videoClient, playlistClient, libClient);
     })();
   }, []);
-
-  useEffect(() => {
-    (async () => {
-      await library?.document.insertDocument(
-        insertTitle,
-        insertId,
-        insertFolder
-      );
-    })();
-  }, [insertId]);
 
   const checkValidUrl = () => /\?v=([^&]+)/.test(videoUrl);
 
@@ -114,14 +108,12 @@ function Play() {
     setVisible(true);
   };
 
-  const addVideo = async (folder: string, title: string) => {
+  const addVideo = async () => {
     if (video?.contain(videoData!.url)) {
       alert('既に保存しています。');
       return;
     }
-    setInsertTitle(title);
-    setInsertFolder(folder);
-    await video!.insertVideo(videoData!, setInsertId);
+    await video!.insertVideo(videoData!);
     updateDraw(video!, playlist!, library!);
   };
 
@@ -182,6 +174,25 @@ function Play() {
     checkboxFalse();
   };
 
+  const jumpTo = (fileId: string) => {
+    window.location.href = `/note/${fileId}`;
+  };
+
+  const relateNote = async (fileId: string) => {
+    await library?.document.relateVideo(fileId, currentVideoId);
+  };
+
+  const jumpToNote = (videoId: string) => {
+    setCurrentVideoId(videoId);
+    const files = library?.document.getFilesRelationalVideo(videoId);
+    setRelationalFiles(files!);
+    if (files?.length === 1) {
+      jumpTo(files[0].id);
+      return;
+    }
+    setToggleJumpToNote(true);
+  };
+
   return (
     <div className="w-full h-screen relative flex flex-col items-center justify-start pt-8 px-5">
       <Search
@@ -189,13 +200,12 @@ function Play() {
         setInputValue={setVideoUrl}
         setSubmitAction={submitAction}
       />
-      <PopupContent visible={visible}>
+      <PopupContent height="h-3/4" visible={visible}>
         <ConfirmVideo
           videoData={videoData}
           setVideoData={setVideoData}
           setVisible={setVisible}
           addVideo={addVideo}
-          folderData={drawFolderData}
         />
       </PopupContent>
 
@@ -206,7 +216,7 @@ function Play() {
         setTab={setTab}
         setCreatePlayList={setPopupPlayList}
       />
-      <PopupContent visible={popupPlayList}>
+      <PopupContent height="h-3/4" visible={popupPlayList}>
         <CreatePlaylist
           videos={checkboxList}
           setClose={setPopupPlayList}
@@ -215,17 +225,29 @@ function Play() {
         />
       </PopupContent>
 
+      <PopupContent height="h-fit" visible={toggleJumpToNote}>
+        <JumpToNote
+          jumpTo={jumpTo}
+          relateNote={relateNote}
+          files={drawFiles}
+          relationalFiles={relationalFiles}
+          setClose={setToggleJumpToNote}
+        />
+      </PopupContent>
+
       <DrawVideos
         visible={tab}
         id={0}
         videos={videoList}
         setCheckboxAction={updateCheckboxList}
+        jumpToNote={jumpToNote}
       />
       <DrawVideos
         visible={tab}
         id={1}
         videos={drawPlayList}
         setCheckboxAction={updatePlaylistCheckbox}
+        jumpToNote={jumpToNote}
       />
     </div>
   );

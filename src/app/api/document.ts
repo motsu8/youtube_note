@@ -35,6 +35,10 @@ export default class Document {
     return this.data?.filter((ele) => ele.lib_id === id);
   }
 
+  public getFilesRelationalVideo(videoId: string | null) {
+    return this.data?.filter((ele) => ele.video_id === videoId);
+  }
+
   public getFile(id: string | null) {
     return this.data?.find((ele) => ele.id === id);
   }

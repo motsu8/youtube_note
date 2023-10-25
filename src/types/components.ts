@@ -93,9 +93,8 @@ export type VideoData = {
 };
 
 export type ConfirmVideo = {
-  folderData: any[] | null;
   videoData: VideoData | null;
-  addVideo: (folder: string, title: string) => void;
+  addVideo: () => void;
   setVisible: (variable: boolean) => void;
   setVideoData: (variable: VideoData | null) => void;
 };
