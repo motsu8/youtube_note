@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import './markdown.css';
 
 import Library from '@/app/api/library';
+import { getSession } from '@/app/api/supabase';
 import Video from '@/app/api/video';
 import Youtube from '@/app/api/youtube';
 import NoteDetail from '@/components/noteDetail';
@@ -14,7 +15,6 @@ import ConfirmJump from '@/components/parts/confirmJump';
 import PopupContent from '@/components/parts/popupContent';
 import RelationVideo from '@/components/parts/relationVideo';
 import YouTube from '@/components/parts/youtubeVideo';
-import getSession from '@/utils/getSession';
 
 interface LibData {
   title: any;

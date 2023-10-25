@@ -13,8 +13,6 @@ export default function SideContent({
   session,
 }: SideContent) {
   const setTransition = (link: string) => {
-    console.log(url);
-    console.log(session);
     if (session) {
       window.location.href = link;
     }

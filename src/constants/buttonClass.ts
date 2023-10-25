@@ -7,4 +7,11 @@ export const BTN_PINK = [
   'hover:bg-rose-200',
 ];
 
-export const BTN_DEFAULT = [];
+export const BTN_DEFAULT = [
+  'bg-neutral-50',
+  'py-2',
+  'px-4',
+  'rounded-lg',
+  'shadow-md',
+  'hover:bg-neutral-600',
+];
