@@ -93,8 +93,8 @@ export type VideoData = {
 };
 
 export type ConfirmVideo = {
-  session: Session | null;
   videoData: VideoData | null;
+  addVideo: () => void;
   setVisible: (variable: boolean) => void;
   setVideoData: (variable: VideoData | null) => void;
 };

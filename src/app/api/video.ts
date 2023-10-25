@@ -27,8 +27,9 @@ export default class Video {
         },
       ])
       .select();
-    if (error) console.log(error);
+    if (error) alert(error.message);
     console.log(data);
+    await this.fetchAllData();
   }
 
   public async fetchAllData() {
@@ -45,5 +46,14 @@ export default class Video {
 
   public getData(videoId?: string) {
     return videoId ? this.data?.find((ele) => ele.id === videoId) : this.data;
+  }
+
+  public getUrlData(url?: string) {
+    return this.data?.find((ele) => ele.url === url);
+  }
+
+  public contain(url: string): boolean {
+    const res = this.data!.some((ele) => ele.url === url);
+    return res;
   }
 }

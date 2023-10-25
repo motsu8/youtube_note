@@ -1,6 +1,5 @@
 'use client';
 
-import { Session } from '@supabase/supabase-js';
 import React, { useState, useEffect } from 'react';
 
 import ConfirmVideo from '@/components/confirmVideo';
@@ -16,17 +15,21 @@ import Youtube from '../api/youtube';
 function Play() {
   const [videoUrl, setVideoUrl] = useState('');
   const [visible, setVisible] = useState(false);
-  const [session, setSession] = useState<Session | null>(null);
   const [videoData, setVideoData] = useState<VideoData | null>(null);
   const [video, setVideo] = useState<Video | null>(null);
   const [videoList, setVideoList] = useState<any[]>([]);
   const [tab, setTab] = useState(0);
   const [drawPlayList, setDrawPlayList] = useState<any[]>([]);
 
+  const updateDraw = (client: Video) => {
+    const drawVideos = client.getData();
+    setVideoList(drawVideos);
+    setDrawPlayList(drawVideos);
+  };
+
   useEffect(() => {
     (async () => {
       const data = await getSession();
-      setSession(data);
 
       // videoクライアント
       const videoClient = new Video(data);
@@ -34,25 +37,42 @@ function Play() {
 
       // data fetch
       await videoClient.fetchAllData();
-      const drawVideos = videoClient.getData();
-      setVideoList(drawVideos);
-
-      // 一旦、
-      setDrawPlayList(drawVideos);
+      updateDraw(videoClient);
     })();
   }, []);
 
-  console.log(video);
-
-  const checkUrl = () => /\?v=([^&]+)/.test(videoUrl);
+  const checkValidUrl = () => /\?v=([^&]+)/.test(videoUrl);
 
   const submitAction = () => {
-    if (!checkUrl()) {
+    // nullの場合、全表示
+    if (!videoUrl) {
+      updateDraw(video!);
+      return;
+    }
+    // URLが有効か
+    if (!checkValidUrl()) {
       alert('動画が見つかりませんでした。');
+      return;
+    }
+    // 既に保存済み
+    if (video?.contain(videoUrl)) {
+      const alreadyVideo = video.getUrlData(videoUrl);
+      console.log(alreadyVideo);
+      setTab(0);
+      setVideoList([alreadyVideo]);
       return;
     }
     Youtube.getVideoSnippet(videoUrl, setVideoData);
     setVisible(true);
+  };
+
+  const addVideo = async () => {
+    if (video?.contain(videoData!.url)) {
+      alert('既に保存しています。');
+      return;
+    }
+    await video!.insertVideo(videoData!);
+    updateDraw(video!);
   };
 
   return (
@@ -65,9 +85,9 @@ function Play() {
       <PopupContent visible={visible}>
         <ConfirmVideo
           videoData={videoData}
-          session={session}
           setVideoData={setVideoData}
           setVisible={setVisible}
+          addVideo={addVideo}
         />
       </PopupContent>
       <div className="flex justify-between w-11/12 mb-5 px-12 py-3 border-b">

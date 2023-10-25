@@ -1,21 +1,14 @@
 import Image from 'next/image';
 import React from 'react';
 
-import Video from '@/app/api/video';
 import { ConfirmVideo } from '@/types/components';
 
 function ConfirmVideo({
-  session,
   videoData,
   setVisible,
   setVideoData,
+  addVideo,
 }: ConfirmVideo) {
-  const videoClient = new Video(session);
-
-  const addVideo = () => {
-    videoClient.insertVideo(videoData!);
-  };
-
   const closePopUp = () => {
     setVideoData(null);
     setVisible(false);
