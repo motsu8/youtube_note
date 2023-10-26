@@ -16,6 +16,10 @@
 ![image](https://img.shields.io/badge/prettier-E2E8F0?logo=prettier)
 ![image](https://img.shields.io/badge/YouTube-E2E8F0?logo=youtube&logoColor=ff0000)
 
+<div align=center>
+<img src="/public/demo.gif">
+</div>
+
 ## 概要
 YouTube動画を見ながらノートをとることができる[Webアプリ](https://youtube-note-neon.vercel.app/)アプリです。
 
@@ -26,7 +30,7 @@ YouTube動画を見ながらノートをとることができる[Webアプリ](h
 ## 使用方法
 1. ノート一覧画面にてノートを作成します。
 2. プレイリスト画面にて動画URLを指定し、動画を保存します。
-3. ノートエディタもしくは、動画選択でそれぞれの参照先を指定します。
+1. ノートエディタもしくは、動画選択でそれぞれの参照先を指定します。
 
 ### ノート一覧での利用機能
 - フォルダ・ノートの検索
@@ -51,9 +55,6 @@ YouTube動画を見ながらノートをとることができる[Webアプリ](h
 - 登録解除
 
 
-<div align=center>
-<img src="/public/demo.gif">
-</div>
 
 ## URL
 [Webアプリ](https://youtube-note-neon.vercel.app/)
