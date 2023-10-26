@@ -43,9 +43,9 @@ function Note() {
 
   const [message, setMessage] = useState('');
 
-  const updateDraw = (libClient: Library, id: string) => {
+  const updateDraw = (libClient: Library, id: string | null) => {
     // フォルダ表示
-    const drawData = libClient.getDrawList(id);
+    const drawData = libClient.getDrawList(id!);
     setDrawList(drawData!);
 
     // ファイル表示
@@ -146,6 +146,8 @@ function Note() {
     const list: string[] = [];
     setDeleteFolderList(list);
     setDrawDelete(false);
+
+    updateDraw(library!, null);
   };
 
   const deleteFolderAction = async () => {
@@ -156,6 +158,8 @@ function Note() {
     const list: string[] = [];
     setDeleteFolderList(list);
     setDrawDelete(false);
+
+    updateDraw(library!, null);
   };
 
   const setDraw = (data: LibData[] | DocData[], type: string) => {

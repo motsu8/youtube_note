@@ -52,7 +52,7 @@ YouTube動画を見ながらノートをとることができる[Webアプリ](h
 
 
 <div align=center>
-<img src="demo.gif">
+<img src="/public/demo.webm">
 </div>
 
 ## URL
