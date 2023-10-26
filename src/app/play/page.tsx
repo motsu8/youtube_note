@@ -56,14 +56,12 @@ function Play() {
     setDrawPlayList(drawPlayLists);
 
     const noRelationalFiles = lClient.document.getFilesRelationalVideo(null);
-    console.log(noRelationalFiles);
     setDrawFiles(noRelationalFiles!);
   };
 
   useEffect(() => {
     (async () => {
       const data = await getSession();
-      console.log(data);
       if (!data) window.location.href = '/';
 
       // クライアント
@@ -115,10 +113,7 @@ function Play() {
       alert('既に保存しています。');
       return;
     }
-    console.log(video);
-    console.log(library);
-    console.log(playlist);
-    // await video!.insertVideo(videoData!);
+    await video!.insertVideo(videoData!);
     updateDraw(video!, playlist!, library!);
   };
 
@@ -135,12 +130,10 @@ function Play() {
   const updateCheckboxList = (dbId: string, checked: boolean) => {
     if (checked) setCheckboxList([...checkboxList, dbId]);
     else setCheckboxList(checkboxList.filter((ele) => ele !== dbId));
-    console.log(checkboxList);
     checkDrawDelete();
   };
 
   const updatePlaylistCheckbox = (data: any, checked: boolean) => {
-    console.log(playlistCheckbox);
     if (checked) setPlayListCheckbox([...playlistCheckbox, data]);
     else setPlayListCheckbox(playlistCheckbox.filter((ele) => ele !== data));
     checkDrawDelete();
