@@ -39,8 +39,8 @@ export default function Home() {
   const [videoData, setVideoData] = useState<VideoData | null>(null);
 
   const updateDraw = (vClient: Video, pClient: Playlist, lClient: Library) => {
-    const drawVideos = vClient.getData();
-    setVideoList(drawVideos);
+    const drawVideos = vClient.getNewData();
+    setVideoList(drawVideos!);
 
     const drawPlayLists = pClient.getData();
     setDrawPlayList(drawPlayLists);

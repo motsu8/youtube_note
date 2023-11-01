@@ -8,8 +8,11 @@ export default class Video {
 
   private data: any[] | null;
 
+  private newData: any[] | null;
+
   constructor(session: Session | null) {
     this.data = null;
+    this.newData = null;
     this.session = session;
   }
 
@@ -38,6 +41,8 @@ export default class Video {
       .select('*')
       .eq('user_id', this.session?.user.id);
     this.data = data;
+    this.newData = [...data!];
+    this.newData.reverse();
   }
 
   public getRelationDocument(relationDocId: string | null) {
@@ -46,6 +51,10 @@ export default class Video {
 
   public getData(videoId?: string) {
     return videoId ? this.data?.find((ele) => ele.id === videoId) : this.data;
+  }
+
+  public getNewData() {
+    return this.newData;
   }
 
   public getUrlData(url?: string) {
