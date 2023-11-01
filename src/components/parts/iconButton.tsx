@@ -9,26 +9,28 @@ export default function IconButton({
   iconClass,
   bgClass,
   color,
+  title,
   setClickHandler,
 }: IconButton) {
   if (setClickHandler !== undefined) {
     return (
-      <div className={bgClass.join(' ')}>
-        <button
-          type="button"
-          onClick={() => {
-            setClickHandler();
-          }}
-        >
-          <FontAwesomeIcon icon={icon} className={iconClass} color={color} />
-        </button>
-      </div>
+      <button
+        type="button"
+        onClick={() => {
+          setClickHandler();
+        }}
+        className={bgClass.join(' ')}
+      >
+        <FontAwesomeIcon icon={icon} className={iconClass} color={color} />
+        <p>{title}</p>
+      </button>
     );
   }
 
   return (
     <div className={bgClass.join(' ')}>
       <FontAwesomeIcon icon={icon} className={iconClass} color={color} />
+      <p>{title}</p>
     </div>
   );
 }

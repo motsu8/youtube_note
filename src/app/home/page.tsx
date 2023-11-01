@@ -1,9 +1,11 @@
 'use client';
 
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useState } from 'react';
 
 import ConfirmVideo from '@/components/confirmVideo';
 import DrawVideos from '@/components/drawVideos';
+import IconButton from '@/components/parts/iconButton';
 import JumpToNote from '@/components/parts/jumpToNote';
 import PopupContent from '@/components/parts/popupContent';
 import Search from '@/components/parts/search';
@@ -70,7 +72,11 @@ export default function Home() {
     })();
   }, []);
 
-  const jumpTo = (fileId: string) => {
+  const jumpTo = (fileId?: string) => {
+    if (fileId === undefined) {
+      window.location.href = '/note';
+      return;
+    }
     window.location.href = `/note/${fileId}`;
   };
 
@@ -128,6 +134,21 @@ export default function Home() {
 
   console.log(drawPlayList);
 
+  const bgClass = [
+    'flex',
+    'justify-center',
+    'items-center',
+    'space-x-1',
+    'bg-neutral-100',
+    'hover:bg-neutral-200',
+    'px-2',
+    'rounded',
+  ];
+
+  const jumpToNotePage = () => {
+    jumpTo();
+  };
+
   return (
     <div
       id="dashBoard"
@@ -150,7 +171,17 @@ export default function Home() {
 
       {/* 動画リスト */}
       <div className="p-5 flex flex-col justify-start items-start w-10/12 border-b-2  border-b-zinc-200">
-        <p className="mb-3">最近追加した動画</p>
+        <div className="flex space-x-2 m-3">
+          <p className="text-lg">最近追加した動画</p>
+          <IconButton
+            icon={faPlay}
+            title="すべて見る"
+            bgClass={bgClass}
+            color="#ffbbbb"
+            iconClass="h-[15px]"
+            setClickHandler={jumpToNotePage}
+          />
+        </div>
         <div className="flex justify-around w-full">
           <DrawVideos
             videos={videoList}

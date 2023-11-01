@@ -33,7 +33,6 @@ function DrawVideos({
       >
         {videos.map((video, index) => {
           if (layout === 'flex') {
-            if (videos.length - 1 === index) return <p>一覧</p>;
             if (index >= 4) return <span className="hidden" />;
             return (
               <VideoCard
