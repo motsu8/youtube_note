@@ -5,6 +5,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import React, { useState } from 'react';
 
+import { signInWithEmail, signUpNewUser } from '@/app/api/supabase';
+
 import GoogleOauth from './parts/auth';
 import IconButton from './parts/iconButton';
 
@@ -14,13 +16,23 @@ export default function SignUpForm() {
   const [password, setPassword] = useState('');
   const [showPass, setShowPass] = useState(false);
 
-  const isFilled = email !== '' && password !== '';
+  const emailRegex =
+    /^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/;
+  const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,16}$/;
+
+  const validation = (regex: RegExp, content: string): boolean => {
+    return regex.test(content);
+  };
+
+  const validationCheck = () => {
+    return validation(passwordRegex, password) && validation(emailRegex, email);
+  };
 
   const bgClass = [
     'p-2',
     'rounded-lg',
     'border',
-    isFilled ? 'bg-rose-300' : 'bg-neutral-50',
+    validationCheck() ? 'bg-rose-300' : 'bg-neutral-50',
   ];
 
   const eyeClass = [
@@ -31,13 +43,9 @@ export default function SignUpForm() {
     '-translate-y-1/2',
   ];
 
-  const emailRegex =
-    /^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/;
-  const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,16}$/;
-
-  const validation = (regex: RegExp, content: string) => {
-    return regex.test(content);
-  };
+  console.log(
+    validation(emailRegex, email) && validation(passwordRegex, password)
+  );
 
   return (
     <div className="flex flex-col items-center justify-center shadow-lg space-y-3 py-5 px-3 w-1/5">
@@ -72,7 +80,7 @@ export default function SignUpForm() {
           placeholder="メールアドレス"
           onChange={(e) => setEmail(e.target.value)}
         />
-        {validation(emailRegex, email) ? (
+        {validation(emailRegex, email) || toggle === 0 ? (
           <p />
         ) : (
           <p className="text-red-100 text-xs">
@@ -93,14 +101,14 @@ export default function SignUpForm() {
           <IconButton
             icon={showPass ? faEyeSlash : faEye}
             bgClass={eyeClass}
-            color={isFilled ? '#ffffff' : '#bbbbbb'}
+            color="#bbbbbb"
             iconClass="h-[20px]"
             setClickHandler={() => {
               setShowPass(!showPass);
             }}
           />
         </div>
-        {validation(passwordRegex, password) ? (
+        {validation(passwordRegex, password) || toggle === 0 ? (
           <p />
         ) : (
           <p className="text-red-100 text-xs">
@@ -112,11 +120,18 @@ export default function SignUpForm() {
       <IconButton
         icon={faArrowRight}
         bgClass={bgClass}
-        color={isFilled ? '#ffffff' : '#bbbbbb'}
+        color={validationCheck() ? '#ffffff' : '#bbbbbb'}
         iconClass="h-[40px]"
-        isDisabled={!isFilled}
-        setClickHandler={() => {
-          alert('login');
+        isDisabled={!validationCheck()}
+        setClickHandler={async () => {
+          let loginData;
+          if (toggle === 0) {
+            loginData = await signInWithEmail(email, password);
+            if (loginData.session !== null) window.location.href = '/home';
+          } else if (toggle === 1) {
+            loginData = await signUpNewUser(email, password);
+            alert('登録完了メールを確認してください。');
+          }
         }}
       />
     </div>

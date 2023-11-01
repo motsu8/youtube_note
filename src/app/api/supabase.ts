@@ -4,6 +4,7 @@ import supabase from '@/utils/supabaseClient';
 
 export async function getSession() {
   const { data } = await supabase.auth.getSession();
+  console.log(data.session);
   return data.session;
 }
 
@@ -26,5 +27,24 @@ export const deleteUser = async (userId: string) => {
     alert(error.message);
     return;
   }
+  await signOut();
   window.location.href = '/';
 };
+
+export async function signInWithEmail(email: string, password: string) {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+  if (error) alert(error.message);
+  return data;
+}
+
+export async function signUpNewUser(email: string, password: string) {
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+  });
+  if (error) alert(error.message);
+  return data;
+}
