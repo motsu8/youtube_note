@@ -1,8 +1,19 @@
+'use client';
+
 import Image from 'next/image';
+import { useEffect } from 'react';
 
 import SignUpForm from '@/components/signUpForm';
 
+import { getSession } from './api/supabase';
+
 export default function Landing() {
+  useEffect(() => {
+    (async () => {
+      const data = await getSession();
+      if (data) window.location.href = '/home';
+    })();
+  }, []);
   return (
     <div className="w-full h-screen overflow-auto">
       <header id="lp-header" className="mx-2 my-10 p-3">
