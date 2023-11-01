@@ -182,15 +182,13 @@ export default function Home() {
             setClickHandler={jumpToNotePage}
           />
         </div>
-        <div className="flex justify-around w-full">
-          <DrawVideos
-            videos={videoList}
-            visible={0}
-            id={0}
-            isGrid={false}
-            jumpToNote={jumpToNote}
-          />
-        </div>
+        <DrawVideos
+          videos={videoList}
+          visible={0}
+          id={0}
+          isGrid={false}
+          jumpToNote={jumpToNote}
+        />
       </div>
 
       <PopupContent height="h-fit" visible={toggleJumpToNote}>

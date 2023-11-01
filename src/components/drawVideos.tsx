@@ -27,9 +27,11 @@ function DrawVideos({
   if (id === 0) {
     return (
       <div
-        className={`${
-          visible === id ? layout : 'hidden'
-        } w-full gap-4 justify-items-center overflow-auto sm:grid-cols-2 md:grid-cols-4 lg:grid-cols4`}
+        className={`${visible === id ? layout : 'hidden'} ${
+          layout === 'grid'
+            ? 'gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols4'
+            : 'justify-around'
+        } w-full justify-items-center overflow-auto`}
       >
         {videos.map((video, index) => {
           if (layout === 'flex') {
