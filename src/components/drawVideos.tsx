@@ -31,7 +31,19 @@ function DrawVideos({
           visible === id ? layout : 'hidden'
         } w-full gap-4 justify-items-center overflow-auto sm:grid-cols-2 md:grid-cols-4 lg:grid-cols4`}
       >
-        {videos.map((video) => {
+        {videos.map((video, index) => {
+          if (layout === 'flex') {
+            if (videos.length - 1 === index) return <p>一覧</p>;
+            if (index >= 4) return <span className="hidden" />;
+            return (
+              <VideoCard
+                key={video.id}
+                video={video}
+                setCheckboxAction={setCheckboxAction!}
+                jumpToNote={jumpToNote!}
+              />
+            );
+          }
           return (
             <VideoCard
               key={video.id}
