@@ -30,7 +30,7 @@ function DrawVideos({
         className={`${visible === id ? layout : 'hidden'} ${
           layout === 'grid'
             ? 'gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols4'
-            : 'justify-around'
+            : 'justify-start'
         } w-full justify-items-center overflow-auto`}
       >
         {videos.map((video, index) => {
