@@ -1,4 +1,8 @@
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowRight,
+  faEye,
+  faEyeSlash,
+} from '@fortawesome/free-solid-svg-icons';
 import React, { useState } from 'react';
 
 import GoogleOauth from './parts/auth';
@@ -8,6 +12,7 @@ export default function SignUpForm() {
   const [toggle, setToggle] = useState(0);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPass, setShowPass] = useState(false);
 
   const isFilled = email !== '' && password !== '';
 
@@ -16,6 +21,14 @@ export default function SignUpForm() {
     'rounded-lg',
     'border',
     isFilled ? 'bg-rose-300' : 'bg-neutral-50',
+  ];
+
+  const eyeClass = [
+    'absolute',
+    'end-1',
+    'top-1/2',
+    'z-[5]',
+    '-translate-y-1/2',
   ];
 
   const emailRegex =
@@ -70,12 +83,23 @@ export default function SignUpForm() {
 
       {/* password */}
       <div className="w-5/6">
-        <input
-          type="password"
-          className="bg-slate-100 px-3 py-1 w-full"
-          placeholder="パスワード"
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div className="relative">
+          <input
+            type={showPass ? 'text' : 'password'}
+            className="bg-slate-100 px-3 py-1 w-full"
+            placeholder="パスワード"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <IconButton
+            icon={showPass ? faEyeSlash : faEye}
+            bgClass={eyeClass}
+            color={isFilled ? '#ffffff' : '#bbbbbb'}
+            iconClass="h-[20px]"
+            setClickHandler={() => {
+              setShowPass(!showPass);
+            }}
+          />
+        </div>
         {validation(passwordRegex, password) ? (
           <p />
         ) : (
