@@ -44,6 +44,9 @@ export async function signUpNewUser(email: string, password: string) {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
+    options: {
+      emailRedirectTo: 'https://youtube-note-neon.vercel.app/home/',
+    },
   });
   if (error) alert(error.message);
   return data;
