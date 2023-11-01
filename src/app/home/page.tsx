@@ -74,7 +74,7 @@ export default function Home() {
 
   const jumpTo = (fileId?: string) => {
     if (fileId === undefined) {
-      window.location.href = '/note';
+      window.location.href = '/play ';
       return;
     }
     window.location.href = `/note/${fileId}`;

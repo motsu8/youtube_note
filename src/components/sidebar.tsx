@@ -45,7 +45,7 @@ export default function Sidebar() {
     >
       <div className="space-y-7">
         <div
-          className={`flex items-center ${
+          className={`flex items-center  ${
             toggle ? 'justify-around' : 'justify-center'
           }`}
         >
