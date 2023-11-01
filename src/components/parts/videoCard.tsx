@@ -13,14 +13,18 @@ function VideoCard({
   if (video) {
     return (
       <div className="bg-slate-50 hover:z-50 relative px-1 pb-2 w-80 rounded-lg hover:shadow-md">
-        <input
-          type="checkbox"
-          name=""
-          className="absolute z-[1] scale-150 m-2 cursor-pointer checkbox"
-          value={video.id}
-          onChange={(e) => setCheckboxAction(video, e.target.checked)}
-          id=""
-        />
+        {setCheckboxAction ? (
+          <input
+            type="checkbox"
+            name=""
+            className="absolute z-[1] scale-150 m-2 cursor-pointer checkbox"
+            value={video.id}
+            onChange={(e) => setCheckboxAction(video, e.target.checked)}
+            id=""
+          />
+        ) : (
+          <span />
+        )}
         <Image
           alt="動画サムネイル"
           className="rounded-md"

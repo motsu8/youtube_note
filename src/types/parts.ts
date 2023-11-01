@@ -6,6 +6,7 @@ export type IconButton = {
   iconClass: string;
   bgClass: string[];
   color: string;
+  title?: string;
   setClickHandler?: () => void;
 };
 
