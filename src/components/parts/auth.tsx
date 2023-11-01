@@ -28,7 +28,7 @@ const auth = async () => {
 
 export default function GoogleOauth() {
   return (
-    <div className="w-full border-b border-neutral pb-3 flex justify-center">
+    <div className="w-full border-b border-neutral pb-5 flex justify-center">
       <div className="shadow-lg px-3 py-1 max-w-fit rounded-lg bg-neutral-50">
         <button
           type="button"

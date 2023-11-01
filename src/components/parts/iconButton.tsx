@@ -10,6 +10,7 @@ export default function IconButton({
   bgClass,
   color,
   title,
+  isDisabled,
   setClickHandler,
 }: IconButton) {
   if (setClickHandler !== undefined) {
@@ -20,6 +21,7 @@ export default function IconButton({
           setClickHandler();
         }}
         className={bgClass.join(' ')}
+        disabled={isDisabled}
       >
         <FontAwesomeIcon icon={icon} className={iconClass} color={color} />
         <p>{title}</p>
