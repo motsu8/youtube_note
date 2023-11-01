@@ -130,6 +130,7 @@ export default function SignUpForm() {
             if (loginData.session !== null) window.location.href = '/home';
           } else if (toggle === 1) {
             loginData = await signUpNewUser(email, password);
+            console.log(loginData);
             alert('登録完了メールを確認してください。');
           }
         }}
