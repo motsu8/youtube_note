@@ -5,7 +5,8 @@ import GoogleOauth from './parts/auth';
 
 export default function SignUpForm() {
   return (
-    <div className="flex flex-col items-center shadow-lg space-y-3 p-3 max-w-fit">
+    <div className="flex flex-col items-center shadow-lg space-y-3 p-3 w-1/5">
+      <GoogleOauth />
       <div className="text-3xl my-3">ログイン</div>
       <div>
         <input
@@ -21,8 +22,6 @@ export default function SignUpForm() {
           placeholder="パスワード"
         />
       </div>
-
-      <GoogleOauth />
 
       <div className="shadow-lg max-w-fit p-3 rounded-xl">
         <FontAwesomeIcon

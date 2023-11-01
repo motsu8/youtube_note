@@ -28,10 +28,13 @@ const auth = async () => {
 
 export default function GoogleOauth() {
   return (
-    <div className="shadow-lg px-3 py-1 max-w-fit rounded-lg">
-      <button type="button" onClick={() => auth()}>
-        <Image src="/search.png" alt="Google icon" height={25} width={25} />
-      </button>
+    <div className="w-full border-b border-neutral py-3 flex justify-center">
+      <div className="shadow-lg px-3 py-1 max-w-fit rounded-lg bg-neutral-50">
+        <button type="button" className="flex space-x-2" onClick={() => auth()}>
+          <Image src="/search.png" alt="Google icon" height={25} width={25} />
+          <p>Google認証</p>
+        </button>
+      </div>
     </div>
   );
 }
