@@ -1,8 +1,10 @@
 'use client';
 
-import Image from 'next/image';
 import { useEffect } from 'react';
 
+import 'swiper/css/bundle';
+
+import Slider from '@/components/parts/slider';
 import SignUpForm from '@/components/signUpForm';
 
 import { getSession } from './api/supabase';
@@ -23,13 +25,7 @@ export default function Landing() {
         </p>
       </div>
       <div className="flex justify-around h-5/6 items-center">
-        <Image
-          className="rounded-2xl shadow-lg border-2"
-          src="/service.png"
-          alt="Landing image"
-          width={960}
-          height={540}
-        />
+        <Slider />
         <SignUpForm />
       </div>
     </div>
