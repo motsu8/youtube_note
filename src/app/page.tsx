@@ -16,19 +16,19 @@ export default function Landing() {
   }, []);
   return (
     <div className="w-full h-screen overflow-auto">
-      <header id="lp-header" className="mx-2 my-10 p-3">
+      <div id="lp-header" className="mx-2 p-10 h-1/6">
         <h1 className="text-7xl">YouTube Note</h1>
         <p className="text-3xl">
           YouTube動画を複合的なノートで学習することができます。
         </p>
-      </header>
-      <div className="flex justify-around">
-        <div id="lp_content" />
+      </div>
+      <div className="flex justify-around h-5/6 items-center">
         <Image
-          src="/book-solid.svg"
+          className="rounded-2xl shadow-lg border-2"
+          src="/service.png"
           alt="Landing image"
-          width="64"
-          height="64"
+          width={960}
+          height={540}
         />
         <SignUpForm />
       </div>
