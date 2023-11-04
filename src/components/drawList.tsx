@@ -34,6 +34,11 @@ export default function DrawList({
     );
   }
 
+  const drawDate = (date: string) => {
+    const dateString = new Date(date);
+    return dateString.toLocaleString('ja');
+  };
+
   return (
     <div className="p-5 w-full">
       <div className="w-full p-3 flex flex-row items-center border-zinc-300 border-b-2">
@@ -74,7 +79,7 @@ export default function DrawList({
                 />
                 <p>{ele.title}</p>
               </button>
-              <p className="basis-5/12">{ele.created_at}</p>
+              <p className="basis-5/12">{drawDate(ele.created_at)}</p>
             </div>
           );
         })
@@ -112,7 +117,7 @@ export default function DrawList({
                 />
                 <p>{ele.title}</p>
               </Link>
-              <p className="basis-5/12">{ele.created_at}</p>
+              <p className="basis-5/12">{drawDate(ele.created_at)}</p>
             </div>
           );
         })
