@@ -29,6 +29,7 @@ export default function SideContent({
         iconClass={iconClass}
         bgClass={BG_CENTER}
         color={iconColor}
+        isDisabled={session === null}
         setClickHandler={() => setTransition(url)}
       />
       <button type="button" onClick={() => setTransition(url)}>
