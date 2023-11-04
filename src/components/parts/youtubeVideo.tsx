@@ -17,8 +17,8 @@ export default function Youtube({
   };
 
   const opts: YouTubeProps['opts'] = {
-    height: '390',
-    width: '640',
+    height: '100%',
+    width: '100%',
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 0,
@@ -27,7 +27,9 @@ export default function Youtube({
 
   return videoId ? (
     <YouTube
-      className={play ? 'block' : 'hidden'}
+      className={`${
+        play ? 'flex justify-center' : 'hidden'
+      } col-span-2 w-full h-full border-2`}
       videoId={videoId}
       opts={opts}
       onReady={onPlayerReady}

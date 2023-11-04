@@ -160,11 +160,11 @@ export default function Page({ params }: { params: { slug: string } }) {
   ];
 
   return (
-    <div className="w-full h-screen relative flex flex-col items-center justify-start pt-8 px-5">
+    <div className="w-full h-screen relative flex flex-col items-center justify-start p-5">
       <PopupContent height="h-fit" visible={pageJump}>
         <ConfirmJump close={noSaveClose} jumpLink={saveClose} />
       </PopupContent>
-      <div className="w-11/12 h-1/12 flex items-center justify-between py-5">
+      <div className="w-11/12 h-min flex items-center justify-between py-5">
         <Breadcrumb bread={bread} setCurrLibId={popup} />
         {currentFile ? (
           <p className="text-xl">{currentFile.title}</p>
@@ -177,7 +177,6 @@ export default function Page({ params }: { params: { slug: string } }) {
           className={videoBtnClass}
         />
       </div>
-      <YouTube videoId={videoParams} play={play} />
       <PopupContent height="h-fit" visible={popRelation}>
         <RelationVideo
           videos={relationDocList}
@@ -185,13 +184,21 @@ export default function Page({ params }: { params: { slug: string } }) {
           relationAction={relationAction}
         />
       </PopupContent>
-      <NoteDetail
-        content={content}
-        updateContent={updateContent}
-        saveContent={saveContent}
-        markdownString={markdownString}
-        updateMarkdownString={updateMarkdownString}
-      />
+
+      <div
+        className={`w-full h-full ${
+          play ? 'grid grid-cols-3 items-center' : 'flex'
+        }`}
+      >
+        <YouTube videoId={videoParams} play={play} />
+        <NoteDetail
+          content={content}
+          updateContent={updateContent}
+          saveContent={saveContent}
+          markdownString={markdownString}
+          updateMarkdownString={updateMarkdownString}
+        />
+      </div>
     </div>
   );
 }

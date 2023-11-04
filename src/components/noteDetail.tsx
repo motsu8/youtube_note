@@ -42,7 +42,7 @@ function NoteDetail({
   ]);
 
   return (
-    <>
+    <div className="w-full h-full flex flex-col">
       <NoteTabs saveContent={saveContent} updateTab={updateTab} tab={tab} />
       <textarea
         value={content}
@@ -56,7 +56,7 @@ function NoteDetail({
       >
         {markdownString}
       </ReactMarkdown>
-    </>
+    </div>
   );
 }
 
