@@ -81,7 +81,6 @@ export default function Page({ params }: { params: { slug: string } }) {
 
       // パンくずリスト
       const breadData = libClient.getBread(file?.lib_id);
-      breadData.push(file);
       setBread(breadData);
     })();
   }, []);
@@ -97,7 +96,6 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   const updateContent = (str: string) => {
     setContent(str);
-    console.log(str);
   };
 
   const popup = () => {
@@ -168,6 +166,11 @@ export default function Page({ params }: { params: { slug: string } }) {
       </PopupContent>
       <div className="w-11/12 h-1/12 flex items-center justify-between py-5">
         <Breadcrumb bread={bread} setCurrLibId={popup} />
+        {currentFile ? (
+          <p className="text-xl">{currentFile.title}</p>
+        ) : (
+          <p className="text-xl">loading...</p>
+        )}
         <Button
           title={play ? '動画を隠す' : '動画を表示'}
           setClickHandler={playVideo}
