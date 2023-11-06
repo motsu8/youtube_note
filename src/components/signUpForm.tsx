@@ -48,7 +48,7 @@ export default function SignUpForm() {
   );
 
   return (
-    <div className="flex flex-col items-center justify-center shadow-lg space-y-3 mx-10 py-5 px-3 xl:w-2/5">
+    <div className="flex flex-col items-center justify-center shadow-lg space-y-3 mx-10 py-5 px-3 w-4/5 sm:w-3/5 md:w-2/5 lg:w-2/6 xl:w-2/5">
       <GoogleOauth />
 
       <div className="flex space-x-8">
