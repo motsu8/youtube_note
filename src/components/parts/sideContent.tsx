@@ -11,6 +11,7 @@ export default function SideContent({
   title,
   url,
   session,
+  hidden,
 }: SideContent) {
   const setTransition = (link: string) => {
     if (session) {
@@ -20,7 +21,9 @@ export default function SideContent({
 
   return (
     <div
-      className={`flex px-3 py-1 hover:bg-neutral-200 items-center ${
+      className={`${
+        hidden ? 'hidden' : 'flex'
+      } px-3 py-1 hover:bg-neutral-200 items-center ${
         toggle ? 'justify-start space-x-4' : 'justify-center'
       }`}
     >

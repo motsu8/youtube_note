@@ -37,7 +37,7 @@ function Slider() {
         return (
           <SwiperSlide key={`${obj.id}`}>
             <Image
-              className="rounded-lg shadow-lg border-2 absolute object-contain !w-full !h-1/2 sm:!h-3/4 md:!h-4/5 lg:!h-5/6 !-translate-y-1/2 !top-1/2 "
+              className="rounded-lg shadow-lg border-2 absolute object-contain !w-full !h-3/4 sm:!h-3/4 md:!h-4/5 lg:!h-5/6 !-translate-y-1/2 !top-1/2 "
               src={obj.src}
               fill
               alt="test_image"
