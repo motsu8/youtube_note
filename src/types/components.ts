@@ -9,6 +9,7 @@ export type SideContent = {
   title: string;
   url: string;
   session: Session | null;
+  hidden?: boolean;
 };
 
 interface LibData {

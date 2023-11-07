@@ -24,7 +24,7 @@ const images = [
 function Slider() {
   return (
     <Swiper
-      className="w-3/5 h-3/4"
+      className="w-5/6 !h-1/2 sm:!h-3/4 md:!h-4/5 lg:!h-5/6"
       modules={[Navigation, Pagination, Autoplay]}
       slidesPerView={1}
       loop
@@ -37,11 +37,9 @@ function Slider() {
         return (
           <SwiperSlide key={`${obj.id}`}>
             <Image
-              className="rounded-lg shadow-lg border-2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+              className="rounded-lg shadow-lg border-2 absolute object-contain !w-full !h-3/4 sm:!h-3/4 md:!h-4/5 lg:!h-5/6 !-translate-y-1/2 !top-1/2 "
               src={obj.src}
-              layout="responsive"
-              width={640}
-              height={400}
+              fill
               alt="test_image"
             />
           </SwiperSlide>

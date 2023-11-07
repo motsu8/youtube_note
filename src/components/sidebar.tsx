@@ -39,13 +39,13 @@ export default function Sidebar() {
 
   return (
     <div
-      className={`flex flex-col justify-between bg-slate-100 h-screen p-3 pt-7 text-2xl ${
-        toggle ? 'w-96' : 'max-w-min'
+      className={`flex w-full sm:flex-col justify-between bg-slate-100 sm:h-screen p-3 sm:pt-7 text-2xl ${
+        toggle ? 'w-96' : 'sm:max-w-min'
       }`}
     >
-      <div className="space-y-7">
+      <div className="sm:space-y-7 flex sm:flex sm:flex-col w-full justify-around max-h-min">
         <div
-          className={`flex items-center  ${
+          className={`hidden sm:flex items-center  ${
             toggle ? 'justify-around' : 'justify-center'
           }`}
         >
@@ -104,7 +104,7 @@ export default function Sidebar() {
           session={session}
         />
       </div>
-      <div className="space-y-7">
+      <div className="hidden sm:block space-y-7">
         <SideContent
           toggle={toggle}
           icon={faUser}

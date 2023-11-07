@@ -48,13 +48,13 @@ export default function SignUpForm() {
   );
 
   return (
-    <div className="flex flex-col items-center justify-center shadow-lg space-y-3 py-5 px-3 w-1/5 mr-20">
+    <div className="flex flex-col items-center justify-center shadow-lg space-y-3 mx-10 py-5 px-3 w-4/5 sm:w-3/5 md:w-2/5 lg:w-2/6 xl:w-2/5">
       <GoogleOauth />
 
       <div className="flex space-x-8">
         <button
           type="button"
-          className={`text-xl my-3 px-3 py-1 ${
+          className={`text-md xl:text-xl my-3 px-3 py-1 ${
             toggle === 0 ? 'border-b-2' : ''
           }`}
           onClick={() => setToggle(0)}
@@ -63,7 +63,7 @@ export default function SignUpForm() {
         </button>
         <button
           type="button"
-          className={`text-xl my-3 px-3 py-1 ${
+          className={`text-md xl:text-xl my-3 px-3 py-1 ${
             toggle === 1 ? 'border-b-2' : ''
           }`}
           onClick={() => setToggle(1)}
