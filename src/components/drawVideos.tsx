@@ -28,7 +28,7 @@ function DrawVideos({
     return (
       <div
         className={`${visible === id ? 'grid' : 'hidden'} 
-          gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols4 w-full justify-items-center overflow-auto`}
+          gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 w-full justify-items-center overflow-auto`}
       >
         {videos.map((video, index) => {
           if (layout === 'flex') {

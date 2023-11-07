@@ -6,7 +6,7 @@ import { Search } from '@/types/parts';
 
 function Search({ placeholder, setInputValue, setSubmitAction }: Search) {
   return (
-    <div className="flex relative justify-center align-center h-max w-10/12 my-5">
+    <div className="flex relative justify-center align-center w-10/12 my-5">
       <form
         action=""
         className="w-full"
