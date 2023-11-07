@@ -40,14 +40,14 @@ export default function DrawList({
   };
 
   return (
-    <div className="p-5 w-full h-full">
+    <div className="p-5 w-full h-9/10">
       <div className="w-full p-3 flex flex-row items-center border-zinc-300 border-b-2">
         <input type="checkbox" name="" id="" className="basis-1/12 h-1/4" />
         <p className="basis-6/12">タイトル</p>
         <p className="basis-5/12">作成日</p>
       </div>
       <div>{message}</div>
-      <div className="h-3/4 overflow-auto py-2">
+      <div className="h-3/4 sm:h-full overflow-auto py-2">
         {drawList ? (
           drawList.map((ele: any) => {
             return (
