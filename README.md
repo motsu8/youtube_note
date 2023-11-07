@@ -14,7 +14,7 @@
 ![image](https://img.shields.io/badge/tailwindcss-E2E8F0?logo=tailwindcss)
 ![image](https://img.shields.io/badge/ESLint-E2E8F0?logo=eslint&logoColor=9932cc)
 ![image](https://img.shields.io/badge/prettier-E2E8F0?logo=prettier)
-![image](https://img.shields.io/badge/YouTube-E2E8F0?logo=youtube&logoColor=ff0000)
+![image](https://img.shields.io/badge/YouTubeDataAPI-E2E8F0?logo=youtube&logoColor=ff0000)
 
 
 ## 概要
