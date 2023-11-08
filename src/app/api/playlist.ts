@@ -12,6 +12,10 @@ export default class Playlist {
     this.session = session;
   }
 
+  /**
+   * DBへビデオデータを保存する
+   * @param videosData
+   */
   public async insert(videosData: any) {
     const { data, error } = await supabase
       .from('Playlist')
@@ -28,6 +32,9 @@ export default class Playlist {
     await this.fetchAllData();
   }
 
+  /**
+   * インスタンス変数のdataへ取得したデータを格納する
+   */
   public async fetchAllData() {
     const { data } = await supabase
       .from('Playlist')
@@ -36,25 +43,49 @@ export default class Playlist {
     this.data = data;
   }
 
+  /**
+   * ファイルidが紐づけされたプレイリストを返す
+   * @param relationDocId
+   * @returns
+   */
   public getRelationDocument(relationDocId: string | null) {
     return this.data?.filter((ele) => ele.doc_id === relationDocId);
   }
 
+  /**
+   * 指定したビデオidのデータを返す
+   * @param videoId
+   * @returns
+   */
   public getData(videoId?: string) {
     return videoId ? this.data?.find((ele) => ele.id === videoId) : this.data;
   }
 
+  /**
+   * 指定したurlのデータを返す
+   * @param url
+   * @returns
+   */
   public getUrlData(url?: string) {
     return this.data?.find((ele) => ele.url === url);
   }
 
+  /**
+   * インスタンス変数dataに指定urlがあるか判定する
+   * @param url
+   * @returns boolean
+   */
   public contain(url: string): boolean {
     const res = this.data!.some((ele) => ele.url === url);
     return res;
   }
 
+  /**
+   * DBデータを削除する
+   * @param list
+   * @returns
+   */
   public async deleteData(list: any[]) {
-    console.log(list);
     const results = [];
     for (const playlist of list) {
       results.push(
