@@ -2,12 +2,20 @@ import { SupabaseClient } from '@supabase/supabase-js';
 
 import supabase from '@/utils/supabaseClient';
 
+/**
+ * セッション情報を取得する
+ * @returns Session
+ */
 export async function getSession() {
   const { data } = await supabase.auth.getSession();
   console.log(data.session);
   return data.session;
 }
 
+/**
+ * サインアウトする
+ * @returns undefined
+ */
 export const signOut = async () => {
   const { error } = await supabase.auth.signOut();
   if (error) {
@@ -17,6 +25,11 @@ export const signOut = async () => {
   window.location.href = '/';
 };
 
+/**
+ * 登録解除する
+ * @param userId
+ * @returns undefined
+ */
 export const deleteUser = async (userId: string) => {
   const client = new SupabaseClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL as string,
@@ -31,6 +44,12 @@ export const deleteUser = async (userId: string) => {
   window.location.href = '/';
 };
 
+/**
+ * emailでログインする
+ * @param email
+ * @param password
+ * @returns Session, User
+ */
 export async function signInWithEmail(email: string, password: string) {
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
@@ -40,6 +59,12 @@ export async function signInWithEmail(email: string, password: string) {
   return data;
 }
 
+/**
+ * emailでサインアップする
+ * @param email
+ * @param password
+ * @returns Session, User
+ */
 export async function signUpNewUser(email: string, password: string) {
   const { data, error } = await supabase.auth.signUp({
     email,
