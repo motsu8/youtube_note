@@ -44,6 +44,9 @@ export default class Library {
     this.document = new Document(this.session);
   }
 
+  /**
+   * インスタンス変数dataへ取得したデータを格納する
+   */
   public async fetchAllData() {
     const { data } = await supabase
       .from('Library')
@@ -52,11 +55,21 @@ export default class Library {
     this.data = data;
   }
 
+  /**
+   * 親フォルダidから表示するフォルダリストを取得する
+   * @param parentId
+   * @returns folders[]
+   */
   public getDrawList(parentId: string) {
     const res = this.data?.filter((ele) => ele.libs === parentId);
     return res;
   }
 
+  /**
+   * フォルダidに紐づけされたファイルリストを返す
+   * @param currentId
+   * @returns files[]
+   */
   public getDrawFiles(currentId: string | null) {
     const res = this.document.getFiles(currentId);
     return res;
@@ -72,6 +85,12 @@ export default class Library {
     return this.getBreadHelper(current!, []);
   }
 
+  /**
+   * getBread()の再帰関数ヘルパー
+   * @param current
+   * @param list
+   * @returns (folder|null)[]
+   */
   private getBreadHelper(
     current: Data | undefined,
     list: (Data | null)[]
@@ -82,6 +101,11 @@ export default class Library {
     return this.getBreadHelper(parent!, [current!, ...list]);
   }
 
+  /**
+   * DBデータを削除する
+   * @param list
+   * @returns undefined
+   */
   public async delete(list: string[]) {
     const results = [];
     for (const id of list) {
@@ -97,6 +121,10 @@ export default class Library {
     return this.fetchAllData();
   }
 
+  /**
+   * フォルダタイトルをDBへ保存する
+   * @param title
+   */
   public async insertData(title: string) {
     const { data } = await supabase
       .from('Library')
@@ -105,6 +133,10 @@ export default class Library {
     console.log(data);
   }
 
+  /**
+   * folderIdでDBデータを取得する
+   * @param libId
+   */
   public async fetchData(libId: string): Promise<any>;
 
   public async fetchData(libId: string | null): Promise<any>;
@@ -142,23 +174,43 @@ export default class Library {
     return data;
   }
 
+  /**
+   * インスタンス変数parentを更新する
+   * @param parent
+   */
   public setParent(parent: Library | null) {
     this.parent = parent;
   }
 
+  /**
+   * インスタンス変数parentを返す
+   * @returns folder
+   */
   public getParent() {
     return this.parent;
   }
 
+  /**
+   * folderIdでインスタンス変数のdataを返す
+   * @param id
+   * @returns
+   */
   public getData(id: string | null) {
     if (id === null) return null;
     return this.data?.find((ele) => ele.id === id);
   }
 
+  /**
+   * インスタンス変数のdataを返す
+   */
   public get getAllData() {
     return this.data;
   }
 
+  /**
+   * インスタンス変数のタイトルを設定する
+   * @returns
+   */
   private async setTitle() {
     if (this.id === null) {
       this.title = null;
@@ -173,6 +225,11 @@ export default class Library {
     this.title = data?.pop()?.title;
   }
 
+  /**
+   *タイトルとフォルダキーを指定して保存する
+   * @param title
+   * @param libs
+   */
   public async postTitle(title: string, libs: string | null) {
     const { data } = await supabase
       .from('Library')
@@ -181,6 +238,11 @@ export default class Library {
     console.log(data);
   }
 
+  /**
+   * タイトルを検索する
+   * @param name
+   * @returns folder[]
+   */
   public search(name: string) {
     const reg = new RegExp(name);
     return this.data?.filter((ele) => reg.test(ele.title));
