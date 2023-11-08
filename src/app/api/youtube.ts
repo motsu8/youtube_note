@@ -25,6 +25,11 @@ export default class Youtube {
     apiKey: Youtube.apiKey,
   };
 
+  /**
+   * YouTube動画のURLからビデオidを取得する
+   * @param videoUrl
+   * @returns
+   */
   public static getVideoParams(videoUrl: string) {
     const url = new URL(videoUrl);
     const params = new URLSearchParams(url.search);
@@ -32,6 +37,11 @@ export default class Youtube {
     return videoId;
   }
 
+  /**
+   * Youtube動画情報を取得する
+   * @param videoUrl
+   * @param videoDataHooks
+   */
   public static getVideoSnippet(
     videoUrl: string,
     videoDataHooks: (data: VideoData) => void
