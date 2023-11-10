@@ -4,6 +4,7 @@ import { faFolder, faFile } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import React from 'react';
 
+import { ICON_COLOR } from '@/constants/iconBackGround';
 import { DrawList } from '@/types/components';
 
 import Content from './parts/content';
@@ -22,7 +23,6 @@ export default function DrawList({
   message,
 }: DrawList) {
   const iconSize = '';
-  const iconColor = '#bbbbbb';
   const bgClass = ['flex', 'justify-center', 'items-center'];
 
   if (type === 'home') {
@@ -77,7 +77,7 @@ export default function DrawList({
                     icon={faFolder}
                     iconClass={iconSize}
                     bgClass={bgClass}
-                    color={iconColor}
+                    color={ICON_COLOR}
                   />
                   <p>{ele.title}</p>
                 </button>
@@ -115,7 +115,7 @@ export default function DrawList({
                     icon={faFile}
                     iconClass={iconSize}
                     bgClass={bgClass}
-                    color={iconColor}
+                    color={ICON_COLOR}
                   />
                   <p>{ele.title}</p>
                 </Link>

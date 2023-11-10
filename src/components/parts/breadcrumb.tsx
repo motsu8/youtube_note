@@ -1,6 +1,8 @@
 import { faFolder, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 
+import { ICON_COLOR } from '@/constants/iconBackGround';
+
 import IconButton from './iconButton';
 
 function Breadcrumb({
@@ -11,7 +13,6 @@ function Breadcrumb({
   setCurrLibId: (id: string, title?: string) => void;
 }) {
   const iconSize = 'h-8';
-  const iconColor = '#bbbbbb';
   const bgClass = ['flex', 'justify-center', 'items-center'];
 
   if (bread === null) return <p>Loading...</p>;
@@ -26,7 +27,7 @@ function Breadcrumb({
                 icon={faFolder}
                 iconClass={iconSize}
                 bgClass={bgClass}
-                color={iconColor}
+                color={ICON_COLOR}
                 setClickHandler={() => setCurrLibId(ele)}
               />
             </div>
@@ -37,7 +38,7 @@ function Breadcrumb({
               icon={faChevronRight}
               iconClass={iconSize}
               bgClass={bgClass}
-              color={iconColor}
+              color={ICON_COLOR}
             />
             <div>
               <button

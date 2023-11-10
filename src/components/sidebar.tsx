@@ -15,14 +15,13 @@ import { Session } from '@supabase/supabase-js';
 import { useState, useEffect } from 'react';
 
 import { getSession } from '@/app/api/supabase';
-import { BG_ROSE } from '@/constants/iconBackGround';
+import { BG_ROSE, ICON_COLOR } from '@/constants/iconBackGround';
 
 import IconButton from './parts/iconButton';
 import SideContent from './parts/sideContent';
 
 export default function Sidebar() {
   const iconSize = 'h-[50px]';
-  const iconColor = '#333333';
   const [toggle, setToggle] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
 
@@ -52,7 +51,7 @@ export default function Sidebar() {
           <FontAwesomeIcon
             icon={faBookOpen}
             className={`${iconSize} ${toggle ? 'block' : 'hidden'}`}
-            color={iconColor}
+            color={ICON_COLOR}
           />
           <div className={`${toggle ? 'block' : 'hidden'}`}>
             <p>YouTube</p>
@@ -62,7 +61,7 @@ export default function Sidebar() {
             icon={toggle ? faChevronLeft : faChevronRight}
             iconClass={iconSize}
             bgClass={BG_ROSE}
-            color={iconColor}
+            color={ICON_COLOR}
             setClickHandler={toggleBar}
           />
         </div>
@@ -71,7 +70,7 @@ export default function Sidebar() {
           toggle={toggle}
           icon={faHouse}
           iconClass={iconSize}
-          iconColor={iconColor}
+          iconColor={ICON_COLOR}
           title="ホーム"
           url="/home"
           session={session}
@@ -80,7 +79,7 @@ export default function Sidebar() {
           toggle={toggle}
           icon={faFilm}
           iconClass={iconSize}
-          iconColor={iconColor}
+          iconColor={ICON_COLOR}
           title="プレイリスト"
           url="/play"
           session={session}
@@ -89,7 +88,7 @@ export default function Sidebar() {
           toggle={toggle}
           icon={faBookOpen}
           iconClass={iconSize}
-          iconColor={iconColor}
+          iconColor={ICON_COLOR}
           title="ノート"
           url="/note"
           session={session}
@@ -98,7 +97,7 @@ export default function Sidebar() {
           toggle={toggle}
           icon={faTags}
           iconClass={iconSize}
-          iconColor={iconColor}
+          iconColor={ICON_COLOR}
           title="単語帳"
           url="/card"
           session={session}
@@ -109,7 +108,7 @@ export default function Sidebar() {
           toggle={toggle}
           icon={faUser}
           iconClass={iconSize}
-          iconColor={iconColor}
+          iconColor={ICON_COLOR}
           title="ユーザー"
           url="/user"
           session={session}
@@ -118,7 +117,7 @@ export default function Sidebar() {
           toggle={toggle}
           icon={faGear}
           iconClass={iconSize}
-          iconColor={iconColor}
+          iconColor={ICON_COLOR}
           title="設定"
           url="/setting"
           session={session}

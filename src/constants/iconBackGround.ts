@@ -16,3 +16,6 @@ export const BG_ROSE = [
 ];
 
 export const BG_ROUND_SHADOW = ['flex', 'justify-center', 'align-center'];
+
+export const ICON_COLOR = '#3f3f3f';
+
