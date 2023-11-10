@@ -15,14 +15,14 @@ import { Session } from '@supabase/supabase-js';
 import { useState, useEffect } from 'react';
 
 import { getSession } from '@/app/api/supabase';
-import { BG_CENTER } from '@/constants/iconBackGround';
+import { BG_ROSE } from '@/constants/iconBackGround';
 
 import IconButton from './parts/iconButton';
 import SideContent from './parts/sideContent';
 
 export default function Sidebar() {
   const iconSize = 'h-[50px]';
-  const iconColor = '#bbbbbb';
+  const iconColor = '#333333';
   const [toggle, setToggle] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
 
@@ -39,8 +39,8 @@ export default function Sidebar() {
 
   return (
     <div
-      className={`flex w-full sm:flex-col justify-between bg-slate-100 sm:h-screen p-3 sm:pt-7 text-2xl ${
-        toggle ? 'w-96' : 'sm:max-w-min'
+      className={`flex w-full sm:flex-col justify-between bg-rose-300 sm:h-screen p-3 sm:pt-7 text-2xl ${
+        toggle ? 'w-3/12' : 'sm:max-w-min'
       }`}
     >
       <div className="sm:space-y-7 flex sm:flex sm:flex-col w-full justify-around max-h-min">
@@ -61,7 +61,7 @@ export default function Sidebar() {
           <IconButton
             icon={toggle ? faChevronLeft : faChevronRight}
             iconClass={iconSize}
-            bgClass={BG_CENTER}
+            bgClass={BG_ROSE}
             color={iconColor}
             setClickHandler={toggleBar}
           />

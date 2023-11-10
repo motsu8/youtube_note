@@ -23,7 +23,7 @@ export default function SideContent({
     <div
       className={`${
         hidden ? 'hidden' : 'flex'
-      } px-3 py-1 hover:bg-neutral-200 items-center ${
+      } px-3 py-1 hover:bg-rose-200 items-center ${
         toggle ? 'justify-start space-x-4' : 'justify-center'
       }`}
     >
