@@ -22,15 +22,16 @@ export default function IconButton({
         }}
         className={bgClass.join(' ')}
         disabled={isDisabled}
+        aria-disabled={isDisabled}
+        aria-label={title ?? 'ページ遷移ボタン'}
       >
         <FontAwesomeIcon icon={icon} className={iconClass} color={color} />
-        <p>{title}</p>
       </button>
     );
   }
 
   return (
-    <div className={bgClass.join(' ')}>
+    <div className={bgClass.join(' ')} aria-label={title}>
       <FontAwesomeIcon icon={icon} className={iconClass} color={color} />
       <p>{title}</p>
     </div>
