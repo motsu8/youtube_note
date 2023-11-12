@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import './markdown.css';
@@ -49,10 +50,13 @@ export default function Page({ params }: { params: { slug: string } }) {
   const [relationDocList, setRelationDocList] = useState<any[]>([]);
   const [videoParams, setVideoParams] = useState<string>('');
 
+  // router
+  const router = useRouter()
+
   useEffect(() => {
     (async () => {
       const data = await getSession();
-      if (!data) window.location.href = '/';
+      if (!data) router.push('/');
 
       // folderクライアント
       const libClient = new Library(data);
@@ -86,7 +90,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   }, []);
 
   const jumpLink = () => {
-    window.location.href = '/note';
+    router.push('/note');
   };
 
   const saveContent = () => {

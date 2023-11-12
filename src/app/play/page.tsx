@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
 
 import { getSession } from '@/app/api/supabase';
@@ -41,12 +42,12 @@ function Play() {
   const [videoData, setVideoData] = useState<VideoData | null>(null);
   const [videoList, setVideoList] = useState<any[]>([]);
   const [drawPlayList, setDrawPlayList] = useState<any[]>([]);
-
   const [playlistCheckbox, setPlayListCheckbox] = useState<any[]>([]);
-
   const [checkboxList, setCheckboxList] = useState<any[]>([]);
-
   const [playlistTitle, setPlayListTitle] = useState<string>('');
+
+  // router
+  const router = useRouter();
 
   const updateDraw = (vClient: Video, pClient: Playlist, lClient: Library) => {
     const drawVideos = vClient.getData();
@@ -62,7 +63,7 @@ function Play() {
   useEffect(() => {
     (async () => {
       const data = await getSession();
-      if (!data) window.location.href = '/';
+      if (!data) router.push('/');
 
       // クライアント
       const videoClient = new Video(data);
@@ -99,7 +100,6 @@ function Play() {
     // 既に保存済み
     if (video?.contain(videoUrl)) {
       const alreadyVideo = video.getUrlData(videoUrl);
-      console.log(alreadyVideo);
       setTab(0);
       setVideoList([alreadyVideo]);
       return;
@@ -173,7 +173,7 @@ function Play() {
   };
 
   const jumpTo = (fileId: string) => {
-    window.location.href = `/note/${fileId}`;
+    router.push(`/note/${fileId}`);
   };
 
   const relateNote = async (fileId: string) => {

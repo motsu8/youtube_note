@@ -1,3 +1,7 @@
+'use client'
+
+import { useRouter } from 'next/navigation';
+
 import { BG_CENTER } from '@/constants/iconBackGround';
 import { SideContent } from '@/types/components';
 
@@ -13,9 +17,10 @@ export default function SideContent({
   session,
   hidden,
 }: SideContent) {
+  const router = useRouter();
   const setTransition = (link: string) => {
     if (session) {
-      window.location.href = link;
+      router.push(link);
     }
   };
 
@@ -32,11 +37,12 @@ export default function SideContent({
         iconClass={iconClass}
         bgClass={BG_CENTER}
         color={iconColor}
+        title={title}
         isDisabled={session === null}
         setClickHandler={() => setTransition(url)}
       />
-      <button type="button" onClick={() => setTransition(url)}>
-        <p className={toggle ? 'block' : 'hidden'}>{title}</p>
+      <button type="button" className={toggle ? 'block' : 'hidden'} onClick={() => setTransition(url)}>
+        <p>{title}</p>
       </button>
     </div>
   );

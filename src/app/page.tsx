@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 import 'swiper/css/bundle';
@@ -10,10 +11,11 @@ import SignUpForm from '@/components/signUpForm';
 import { getSession } from './api/supabase';
 
 export default function Landing() {
+  const router = useRouter();
   useEffect(() => {
     (async () => {
       const data = await getSession();
-      if (data) window.location.href = '/home';
+      if (data) router.push('/home');
     })();
   }, []);
   return (
