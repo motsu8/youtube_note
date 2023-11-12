@@ -1,7 +1,9 @@
 'use client';
 
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+
 
 import ConfirmVideo from '@/components/confirmVideo';
 import DrawVideos from '@/components/drawVideos';
@@ -26,7 +28,6 @@ export default function Home() {
   // draw DB data
   const [videoList, setVideoList] = useState<any[]>([]);
   const [drawFiles, setDrawFiles] = useState<any[]>([]);
-  const [drawPlayList, setDrawPlayList] = useState<any[]>([]);
 
   // toggle UI
   const [toggleJumpToNote, setToggleJumpToNote] = useState<boolean>(false);
@@ -38,12 +39,12 @@ export default function Home() {
   const [videoUrl, setVideoUrl] = useState<string>('');
   const [videoData, setVideoData] = useState<VideoData | null>(null);
 
+  // router
+  const router = useRouter();
+
   const updateDraw = (vClient: Video, pClient: Playlist, lClient: Library) => {
     const drawVideos = vClient.getNewData();
     setVideoList(drawVideos!);
-
-    const drawPlayLists = pClient.getData();
-    setDrawPlayList(drawPlayLists);
 
     const noRelationalFiles = lClient.document.getFilesRelationalVideo(null);
     setDrawFiles(noRelationalFiles!);
@@ -53,7 +54,7 @@ export default function Home() {
     (async () => {
       // session
       const data = await getSession();
-      if (!data) window.location.href = '/';
+      if (!data) router.push('/');
 
       // client
       const videoClient = new Video(data);
@@ -74,10 +75,10 @@ export default function Home() {
 
   const jumpTo = (fileId?: string) => {
     if (fileId === undefined) {
-      window.location.href = '/play ';
+      router.push('/play');
       return;
     }
-    window.location.href = `/note/${fileId}`;
+    router.push(`/note/${fileId}`);
   };
 
   const jumpToNote = (videoId: string) => {
@@ -115,7 +116,6 @@ export default function Home() {
     // 既に保存済み
     if (video?.contain(videoUrl)) {
       const alreadyVideo = video.getUrlData(videoUrl);
-      console.log(alreadyVideo);
       setVideoList([alreadyVideo]);
       return;
     }
@@ -131,8 +131,6 @@ export default function Home() {
     await video!.insertVideo(videoData!);
     updateDraw(video!, playlist!, library!);
   };
-
-  console.log(drawPlayList);
 
   const bgClass = [
     'flex',

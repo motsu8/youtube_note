@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 import Button from '@/components/parts/button';
@@ -9,11 +10,12 @@ import { deleteUser, getSession, signOut } from '../api/supabase';
 
 function User() {
   const [session, setSession] = useState<any>(null);
+  const router = useRouter();
   useEffect(() => {
     const getData = async () => {
       const data = await getSession();
       setSession(data);
-      if (!data) window.location.href = '/';
+      if (!data) router.push('/');
     };
 
     getData();

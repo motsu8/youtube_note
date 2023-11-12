@@ -43,10 +43,6 @@ export default function SignUpForm() {
     '-translate-y-1/2',
   ];
 
-  console.log(
-    validation(emailRegex, email) && validation(passwordRegex, password)
-  );
-
   return (
     <div className="flex flex-col items-center justify-center shadow-lg space-y-3 mx-10 py-5 px-3 w-4/5 sm:w-3/5 md:w-2/5 lg:w-2/6 xl:w-2/5">
       <GoogleOauth />
@@ -130,7 +126,6 @@ export default function SignUpForm() {
             if (loginData.session !== null) window.location.href = '/home';
           } else if (toggle === 1) {
             loginData = await signUpNewUser(email, password);
-            console.log(loginData);
             alert('登録完了メールを確認してください。');
           }
         }}

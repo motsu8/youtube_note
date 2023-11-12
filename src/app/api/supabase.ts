@@ -8,7 +8,6 @@ import supabase from '@/utils/supabaseClient';
  */
 export async function getSession() {
   const { data } = await supabase.auth.getSession();
-  console.log(data.session);
   return data.session;
 }
 

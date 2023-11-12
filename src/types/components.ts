@@ -39,6 +39,15 @@ export type DrawList = {
   changeDeleteFile: (id: string) => void;
 };
 
+export type DrawVideosProps = {
+  videos: any[];
+  visible: number;
+  id: number;
+  isGrid?: boolean;
+  jumpToNote?: (videoId: string) => void;
+  setCheckboxAction?: (dbId: string, checked: boolean) => void;
+};
+
 export type SupabaseSession = {
   session: Session | null;
 };

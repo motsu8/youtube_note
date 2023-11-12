@@ -35,7 +35,6 @@ function NoteHead({
           setClickHandler={() => {
             deleteFolderAction();
             deleteFileAction();
-            console.log('click');
           }}
         />
         <Button
@@ -43,7 +42,6 @@ function NoteHead({
           className={BTN_PINK}
           setClickHandler={() => {
             setVisible(true);
-            console.log('click');
           }}
         />
       </div>

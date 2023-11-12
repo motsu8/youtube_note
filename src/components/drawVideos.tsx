@@ -1,22 +1,15 @@
 import React from 'react';
 
+import { DrawVideosProps } from '@/types/components';
+
 import PlaylistCard from './parts/playlistCard';
 import VideoCard from './parts/videoCard';
-
-type DrawVideosProps = {
-  videos: any[];
-  visible: number;
-  id: number;
-  isGrid?: boolean;
-  jumpToNote?: (videoId: string) => void;
-  setCheckboxAction?: (dbId: string, checked: boolean) => void;
-};
 
 function DrawVideos({
   videos,
   visible,
   id,
-  isGrid,
+  isGrid = true,
   setCheckboxAction,
   jumpToNote,
 }: DrawVideosProps) {
@@ -35,7 +28,7 @@ function DrawVideos({
       >
         {videos.map((video, index) => {
           if (layout === 'flex') {
-            if (index >= 4) return <span className="hidden" />;
+            if (index >= 4) return <span key={video.id} className="hidden" />;
             return (
               <VideoCard
                 key={video.id}
@@ -77,11 +70,5 @@ function DrawVideos({
     </div>
   );
 }
-
-DrawVideos.defaultProps = {
-  isGrid: true,
-  jumpToNote: null,
-  setCheckboxAction: null,
-};
 
 export default DrawVideos;

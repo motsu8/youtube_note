@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
 
 import { getSession } from '@/app/api/supabase';
@@ -43,6 +44,9 @@ function Note() {
 
   const [message, setMessage] = useState('');
 
+  // router
+  const router = useRouter();
+
   const updateDraw = (libClient: Library, id: string | null) => {
     // フォルダ表示
     const drawData = libClient.getDrawList(id!);
@@ -66,7 +70,6 @@ function Note() {
 
     setMessage('');
     if (!draw?.length && !temp?.length) {
-      console.log('no content');
       setMessage('コンテンツがありません。');
     }
   };
@@ -75,7 +78,7 @@ function Note() {
     (async () => {
       // session
       const data = await getSession();
-      if (!data) window.location.href = '/';
+      if (!data) router.push('/');
 
       // folderクライアント
       const libClient = new Library(data);
@@ -133,7 +136,6 @@ function Note() {
 
   const changeDeleteValue = (id: string) => {
     const idList = deleteFolderList.filter((ele) => ele !== id);
-    console.log(idList);
     setDeleteFolderList(idList);
     checkDrawDelete();
   };
