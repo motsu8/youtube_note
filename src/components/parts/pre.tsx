@@ -34,7 +34,7 @@ export default function Pre({
   };
 
   return (
-    <div className="w-1/2 shadow-xl">
+    <div className="w-3/4 shadow-xl">
       {fileName && (
         <div className="bg-neutral-300 rounded-t pl-2">
           <span>{fileName}</span>
