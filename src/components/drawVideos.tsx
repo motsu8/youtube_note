@@ -5,14 +5,14 @@ import { DrawVideosProps } from '@/types/components';
 import PlaylistCard from './parts/playlistCard';
 import VideoCard from './parts/videoCard';
 
-function DrawVideos({
+const DrawVideos = React.memo(({
   videos,
   visible,
   id,
   isGrid = true,
   setCheckboxAction,
   jumpToNote,
-}: DrawVideosProps) {
+}: DrawVideosProps) => {
   // レイアウト
   const layout = isGrid ? 'grid' : 'flex';
 
@@ -69,6 +69,8 @@ function DrawVideos({
       })}
     </div>
   );
-}
+});
+
+DrawVideos.displayName = 'DrawVideos';
 
 export default DrawVideos;
