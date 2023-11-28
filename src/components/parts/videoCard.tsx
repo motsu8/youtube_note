@@ -12,7 +12,7 @@ function VideoCard({
 }) {
   if (video) {
     return (
-      <div className="bg-slate-50 hover:z-50 relative px-1 pb-2 w-80 rounded-lg hover:shadow-md">
+      <div className="bg-neutral-50 hover:z-50 h-max relative px-1 pb-2 w-80 rounded-lg hover:shadow-md">
         {setCheckboxAction ? (
           <input
             type="checkbox"
@@ -32,7 +32,7 @@ function VideoCard({
           width={video.thumbnails.medium.width}
           height={video.thumbnails.medium.height}
         />
-        <div className="flex p-1 space-x-1">
+        <div className="flex p-1 space-x-2">
           <Image
             alt="チャンネルサムネイル"
             className="rounded-full w-9 h-9"
@@ -45,7 +45,9 @@ function VideoCard({
             className="flex flex-col justify-start text-start"
             onClick={() => jumpToNote(video.id)}
           >
-            <p className="text-sm">{video.title.slice(0, 40).concat('...')}</p>
+            <p className="text-sm h-11">
+              {video.title.slice(0, 60).concat('...')}
+            </p>
             <p className="text-sm text-neutral-600">{video.channel}</p>
           </button>
         </div>
