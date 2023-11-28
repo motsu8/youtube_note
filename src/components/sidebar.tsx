@@ -39,13 +39,13 @@ export default function Sidebar() {
   return (
     <div
       className={`flex w-full sm:flex-col justify-between bg-rose-300 sm:h-screen p-3 sm:pt-7 text-2xl ${
-        toggle ? 'w-3/12' : 'sm:max-w-min'
+        toggle ? 'max-w-min' : 'sm:max-w-min'
       }`}
     >
       <div className="sm:space-y-7 flex sm:flex sm:flex-col w-full justify-around max-h-min">
         <div
-          className={`hidden sm:flex items-center  ${
-            toggle ? 'justify-around' : 'justify-center'
+          className={`sm:flex px-2 w-full items-center  ${
+            toggle ? 'justify-around space-x-4' : 'justify-center'
           }`}
         >
           <FontAwesomeIcon
@@ -103,6 +103,7 @@ export default function Sidebar() {
           session={session}
         />
       </div>
+
       <div className="hidden sm:block space-y-7">
         <SideContent
           toggle={toggle}

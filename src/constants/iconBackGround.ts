@@ -1,7 +1,8 @@
 export const BG_CENTER = [
   'flex',
   'justify-center',
-  'align-center',
+  'items-center',
+  'space-x-3',
   'px-2',
   'py-1',
 ];
@@ -18,4 +19,3 @@ export const BG_ROSE = [
 export const BG_ROUND_SHADOW = ['flex', 'justify-center', 'align-center'];
 
 export const ICON_COLOR = '#3f3f3f';
-

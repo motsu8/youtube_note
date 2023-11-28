@@ -4,7 +4,6 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
-
 import ConfirmVideo from '@/components/confirmVideo';
 import DrawVideos from '@/components/drawVideos';
 import IconButton from '@/components/parts/iconButton';

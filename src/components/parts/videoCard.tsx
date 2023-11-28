@@ -10,6 +10,13 @@ function VideoCard({
   jumpToNote: (videoId: string) => void;
   setCheckboxAction: (dbId: string, checked: boolean) => void;
 }) {
+  const videoTitleNum = 40;
+  const channelTitleNum = 18;
+
+  const compareStr = (str: string, num: number) => {
+    return str.length >= num ? str.slice(0, num).concat('...') : str;
+  };
+
   if (video) {
     return (
       <div className="bg-neutral-50 hover:z-50 h-max relative px-1 pb-2 w-80 rounded-lg hover:shadow-md">
@@ -46,9 +53,11 @@ function VideoCard({
             onClick={() => jumpToNote(video.id)}
           >
             <p className="text-sm h-11">
-              {video.title.slice(0, 60).concat('...')}
+              {compareStr(video.title, videoTitleNum)}
             </p>
-            <p className="text-sm text-neutral-600">{video.channel}</p>
+            <p className="text-sm text-neutral-600">
+              {compareStr(video.channel, channelTitleNum)}
+            </p>
           </button>
         </div>
       </div>

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useRouter } from 'next/navigation';
 
@@ -38,12 +38,10 @@ export default function SideContent({
         bgClass={BG_CENTER}
         color={iconColor}
         title={title}
+        toggle={toggle}
         isDisabled={session === null}
         setClickHandler={() => setTransition(url)}
       />
-      <button type="button" className={toggle ? 'block' : 'hidden'} onClick={() => setTransition(url)}>
-        <p>{title}</p>
-      </button>
     </div>
   );
 }
