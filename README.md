@@ -28,6 +28,9 @@ YouTube動画を見ながらノートをとることができる[Webアプリ](h
 https://github.com/motsu8/youtube_note/assets/80054036/8b69098f-82bb-40db-b6f9-191b0cf3d5b5
 
 
+## URL
+[https://youtube-note-neon.vercel.app](https://youtube-note-neon.vercel.app/)
+
 ## 使用方法
 1. ノート一覧画面にてノートを作成します。
 2. プレイリスト画面にて動画URLを指定し、動画を保存します。
@@ -55,10 +58,6 @@ https://github.com/motsu8/youtube_note/assets/80054036/8b69098f-82bb-40db-b6f9-1
 - email/passwordでのサインイン
 - サインアウト
 - 登録解除
-
-
-## URL
-[Webアプリ](https://youtube-note-neon.vercel.app/)
 
 ## 使用技術
 |カテゴリ|技術|
