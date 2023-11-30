@@ -40,7 +40,7 @@ export default function Sidebar() {
     <div
       className={`flex w-full sm:flex-col justify-between bg-rose-300 sm:h-screen p-3 sm:pt-7 text-2xl ${
         toggle ? 'max-w-min' : 'sm:max-w-min'
-      }`}
+      } ${session ? 'block' : 'hidden'}`}
     >
       <div className="sm:space-y-7 flex sm:flex sm:flex-col w-full justify-around max-h-min">
         <div
