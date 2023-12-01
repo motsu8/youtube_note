@@ -1,25 +1,12 @@
 import Image from 'next/image'
 import React from 'react'
 
-import { BTN_BASE, BTN_ACCENT } from '@/constants/buttonClass'
+import { BTN_BASE, BTN_ACCENT} from '@/constants/buttonClass'
+import { LP_TABS } from '@/constants/headerTabs'
 
 import Button from '../button'
 
-
 function Header() {
-  const headerTab = [
-    {
-      key: 1,
-      title: 'プレイリスト',
-      id: '#section-playlist'
-    },
-    {
-      key: 2,
-      title: 'ノート',
-      id: '#section-note'
-    }
-  ];
-
   return (
     <div id="header" className="w-full flex justify-around py-3">
       <div className="w-3/4 flex justify-between">
@@ -33,7 +20,7 @@ function Header() {
           />
           <p className="text-3xl font-extrabold align-middle">YouTube Note</p>
           <ul className="pl-8 flex text-black font-bold space-x-4">
-            {headerTab.map(ele => {
+            {LP_TABS.map(ele => {
               return (
                 <li key={ele.key}>
                   <a href={ele.id}>

@@ -6,13 +6,11 @@ function Button({
   className,
 }: {
   title: string;
-  className: string[];
+  className: string;
   setClickHandler: () => void;
 }) {
-  const classStr = className.join(' ');
-
   return (
-    <button type="button" onClick={setClickHandler} className={classStr}>
+    <button type="button" onClick={setClickHandler} className={className}>
       {title}
     </button>
   );
