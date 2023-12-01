@@ -4,11 +4,12 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
-import 'swiper/css/bundle';
-
 import Button from '@/components/parts/button';
+import Header from '@/components/parts/LP/header';
+import { BTN_ACCENT } from '@/constants/buttonClass';
 
 import { getSession } from './api/supabase';
+
 
 export default function Landing() {
   const router = useRouter();
@@ -19,57 +20,11 @@ export default function Landing() {
     })();
   }, []);
 
-  const baseBtnClass = [
-    'hover:bg-neutral-50',
-    'rounded-lg',
-    'px-4',
-    'py-2',
-    'text-[#F59236]',
-    'font-bold',
-  ];
-
-  const accentBtnClass = [
-    'hover:bg-[#E0822A]',
-    'bg-[#F59236]',
-    'rounded-lg',
-    'px-4',
-    'py-2',
-    'text-white',
-    'font-extrabold',
-  ];
 
   return (
     <div className="font-mono w-screen flex flex-col items-center">
-      <div id="header" className="w-full flex justify-around py-3">
-        <div className="w-3/4 flex justify-between">
-          <div className="flex space-x-3 items-center">
-            <Image
-              src="/icon.png"
-              alt="YouTube Note Icon"
-              height={40}
-              width={40}
-              style={{ objectFit: 'contain' }}
-            />
-            <p className="text-3xl font-extrabold align-middle">YouTube Note</p>
-            <ul className="pl-8 flex text-black font-bold space-x-4">
-              <li>プレイリスト</li>
-              <li>ノート</li>
-            </ul>
-          </div>
-          <div className="auth">
-            <Button
-              title="ログイン"
-              className={baseBtnClass}
-              setClickHandler={() => alert('click')}
-            />
-            <Button
-              title="新規登録"
-              className={accentBtnClass}
-              setClickHandler={() => alert('click')}
-            />
-          </div>
-        </div>
-      </div>
+
+      <Header/>
 
       <div
         id="section-1"
@@ -86,7 +41,7 @@ export default function Landing() {
             </p>
             <Button
               title="新規登録"
-              className={accentBtnClass}
+              className={BTN_ACCENT}
               setClickHandler={() => alert('click')}
             />
           </div>
@@ -106,7 +61,7 @@ export default function Landing() {
       </div>
 
       <div
-        id="section-2"
+        id="section-playlist"
         className="w-full flex flex-col justify-center items-center space-y-10 py-10 shadow-sm"
       >
         <p className="text-3xl">YouTube動画のURLで追加・検索</p>
@@ -114,7 +69,7 @@ export default function Landing() {
       </div>
 
       <div
-        id="section-3"
+        id="section-note"
         className="w-full bg-[#BD3246] py-10 space-y-10 flex flex-col justify-center items-center shadow-sm"
       >
         <p className="text-3xl text-white">エンジニアライクなノートを提供</p>
@@ -142,7 +97,7 @@ export default function Landing() {
         <p className="text-3xl">無料で始める</p>
         <Button
           title="新規登録"
-          className={accentBtnClass}
+          className={BTN_ACCENT}
           setClickHandler={() => alert('click')}
         />
       </div>
