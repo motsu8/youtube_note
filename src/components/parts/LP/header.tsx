@@ -4,11 +4,15 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
 import { BTN_BASE, BTN_ACCENT } from '@/constants/buttonClass';
-import { LP_TABS } from '@/constants/lp';
+import { AUTH_SIGN_IN, AUTH_SIGN_UP, LP_TABS } from '@/constants/lp';
 
 import Button from '../button';
 
-function Header() {
+function Header({
+  updateVisibleAuth,
+}: {
+  updateVisibleAuth: (type: string) => void;
+}) {
   const [isDown, setIsDown] = useState(false);
   let scrollPosition = 0;
 
@@ -63,12 +67,12 @@ function Header() {
           <Button
             title="ログイン"
             className={BTN_BASE}
-            setClickHandler={() => alert('click')}
+            setClickHandler={() => updateVisibleAuth(AUTH_SIGN_IN)}
           />
           <Button
             title="新規登録"
             className={BTN_ACCENT}
-            setClickHandler={() => alert('click')}
+            setClickHandler={() => updateVisibleAuth(AUTH_SIGN_UP)}
           />
         </div>
       </div>

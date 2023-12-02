@@ -27,3 +27,7 @@ export const LP_NOTE_CARD = [
     url: '',
   },
 ];
+
+export const AUTH_SIGN_UP = 'signUp';
+export const AUTH_SIGN_IN = 'signIn';
+export const AUTH_CLOSE = '';

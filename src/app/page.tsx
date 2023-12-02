@@ -2,18 +2,26 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
+import AuthForm from '@/components/authForm';
 import Button from '@/components/parts/button';
 import Header from '@/components/parts/LP/header';
 import NoteCard from '@/components/parts/LP/noteCard';
+import PopupContent from '@/components/parts/popupContent';
 import { BTN_ACCENT } from '@/constants/buttonClass';
-import { LP_NOTE_CARD } from '@/constants/lp';
+import {
+  AUTH_CLOSE,
+  AUTH_SIGN_IN,
+  AUTH_SIGN_UP,
+  LP_NOTE_CARD,
+} from '@/constants/lp';
 
 import { getSession } from './api/supabase';
 
 export default function Landing() {
   const router = useRouter();
+  const [visibleAuth, setVisibleAuth] = useState(AUTH_CLOSE);
 
   useEffect(() => {
     // セッション取得
@@ -25,9 +33,15 @@ export default function Landing() {
     getSessionData();
   }, []);
 
+  const updateVisibleAuth = (type: string) => {
+    setVisibleAuth(type);
+  };
+
+  const closeAuth = () => setVisibleAuth(AUTH_CLOSE);
+
   return (
     <div className="font-mono w-screen flex flex-col items-center">
-      <Header />
+      <Header updateVisibleAuth={updateVisibleAuth} />
 
       <div
         id="section-1"
@@ -45,7 +59,7 @@ export default function Landing() {
             <Button
               title="新規登録"
               className={BTN_ACCENT}
-              setClickHandler={() => alert('click')}
+              setClickHandler={() => updateVisibleAuth(AUTH_SIGN_UP)}
             />
           </div>
 
@@ -90,9 +104,17 @@ export default function Landing() {
         <Button
           title="新規登録"
           className={BTN_ACCENT}
-          setClickHandler={() => alert('click')}
+          setClickHandler={() => updateVisibleAuth(AUTH_SIGN_UP)}
         />
       </div>
+
+      <PopupContent visible={visibleAuth} closeFnc={closeAuth}>
+        {visibleAuth === AUTH_SIGN_UP ? (
+          <AuthForm type={AUTH_SIGN_UP} title="新規登録" />
+        ) : (
+          <AuthForm type={AUTH_SIGN_IN} title="ログイン" />
+        )}
+      </PopupContent>
     </div>
   );
 }

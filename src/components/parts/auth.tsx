@@ -17,7 +17,6 @@ const getURL = () => {
 };
 
 const auth = async () => {
-  console.log(getURL());
   await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
@@ -28,7 +27,7 @@ const auth = async () => {
 
 export default function GoogleOauth() {
   return (
-    <div className="w-full border-b border-neutral pb-5 flex justify-center">
+    <div className="w-full border-t border-neutral pt-5 flex justify-center">
       <div className="shadow-lg px-3 py-1 max-w-fit rounded-lg bg-neutral-50">
         <button
           type="button"
