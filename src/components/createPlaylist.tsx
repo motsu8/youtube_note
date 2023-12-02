@@ -17,7 +17,7 @@ function CreatePlaylist({
   setClose: (bool: boolean) => void;
 }) {
   return (
-    <div className="w-full h-full space-y-5 flex justify-center flex-col items-center">
+    <div className="w-full h-full space-y-5 flex justify-center flex-col items-center py-4">
       {/* 動画リスト */}
       {videos.length !== 0 ? (
         <>
@@ -54,7 +54,7 @@ function CreatePlaylist({
           <input
             type="text"
             onChange={(e) => setTitle(e.target.value)}
-            className="w-1/2 px-2 py-1"
+            className="w-2/3 px-2 py-1 bg-slate-100 rounded shadow border"
             placeholder="プレイリスト名"
           />
 

@@ -18,7 +18,7 @@ function JumpToNote({
 }) {
   const [toggleTab, setToggleTab] = useState(0);
   return (
-    <div className="flex flex-col space-y-4 justify-center items-center">
+    <div className="flex flex-col space-y-4 justify-around items-center h-full py-4">
       {files.length === 0 && relationalFiles.length === 0 ? (
         <p>ノートを作成してください</p>
       ) : (
@@ -26,7 +26,7 @@ function JumpToNote({
           <button
             type="button"
             className={`rounded px-2 py-1 ${
-              toggleTab === 0 ? 'bg-slate-50' : ''
+              toggleTab === 0 ? 'bg-slate-100' : ''
             }`}
             onClick={() => setToggleTab(0)}
           >
@@ -35,7 +35,7 @@ function JumpToNote({
           <button
             type="button"
             className={`rounded px-2 py-1 ${
-              toggleTab === 1 ? 'bg-slate-50' : ''
+              toggleTab === 1 ? 'bg-slate-100' : ''
             }`}
             onClick={() => setToggleTab(1)}
           >

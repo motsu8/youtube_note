@@ -20,4 +20,4 @@ export const BG_ROUND_SHADOW = ['flex', 'justify-center', 'align-center'];
 
 export const ICON_COLOR = '#3f3f3f';
 
-export const TOP_RIGHT = ['absolute', 'end-3', 'top-3'];
+export const TOP_RIGHT = ['absolute', 'right-3', 'top-3'];

@@ -22,12 +22,8 @@ function Relate({
   setToggleTab: (num: number) => void;
 }) {
   const [fileId, setFileId] = useState('');
-  return (
-    <div
-      className={`flex flex-col space-y-3 justify-center items-center w-full ${
-        toggle === id ? 'block' : 'hidden'
-      }`}
-    >
+  return toggle === id ? (
+    <>
       {files.length !== 0 ? (
         <select
           className="w-3/4 px-2 py-1"
@@ -65,8 +61,8 @@ function Relate({
           className={BTN_PINK}
         />
       </div>
-    </div>
-  );
+    </>
+  ) : null;
 }
 
 export default Relate;

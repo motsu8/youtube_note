@@ -7,6 +7,7 @@ import { getSession } from '@/app/api/supabase';
 import CreateContent from '@/components/createContent';
 import DrawList from '@/components/drawList';
 import NoteHead from '@/components/noteHead';
+import PopupContent from '@/components/parts/popupContent';
 import Search from '@/components/parts/search';
 
 import Library from '../api/library';
@@ -102,9 +103,8 @@ function Note() {
     updateDraw(library!, id!);
   };
 
-  const changeVisible = (bool: boolean) => {
-    setVisible(bool);
-  };
+  const updateVisible = (bool: boolean) => setVisible(bool);
+  const closeVisible = () => updateVisible(false);
 
   const checkDrawDelete = () => {
     const checkList: boolean[] = [];
@@ -182,7 +182,7 @@ function Note() {
         setSubmitAction={filter}
       />
       <NoteHead
-        setVisible={changeVisible}
+        setVisible={updateVisible}
         bread={bread}
         drawDelete={drawDelete}
         setCurrLibId={setCurrent}
@@ -201,13 +201,16 @@ function Note() {
         changeDeleteFile={changeDeleteFile}
         message={message}
       />
-      <CreateContent
-        setVisible={changeVisible}
-        setDrawList={setDraw}
-        currLibId={currLibId}
-        library={library}
-        visible={visible}
-      />
+
+      <PopupContent visible={visible} closeFnc={closeVisible}>
+        <CreateContent
+          setVisible={updateVisible}
+          setDrawList={setDraw}
+          currLibId={currLibId}
+          library={library}
+          visible={visible}
+        />
+      </PopupContent>
     </div>
   );
 }

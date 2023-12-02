@@ -30,7 +30,12 @@ export default function Home() {
 
   // toggle UI
   const [toggleJumpToNote, setToggleJumpToNote] = useState<boolean>(false);
+  const updateToggleJumpToNote = (bool: boolean) => setToggleJumpToNote(bool);
+  const closeToggleJumpToNote = () => updateToggleJumpToNote(false);
+
   const [visible, setVisible] = useState<boolean>(false);
+  const updateVisible = (bool: boolean) => setVisible(bool);
+  const closeVideo = () => updateVisible(false);
 
   // util
   const [currentVideoId, setCurrentVideoId] = useState<string>('');
@@ -157,7 +162,12 @@ export default function Home() {
         setInputValue={setVideoUrl}
         setSubmitAction={submitAction}
       />
-      <PopupContent height="h-3/4" visible={visible}>
+      <PopupContent
+        visible={visible}
+        closeFnc={closeVideo}
+        height="h-1/2"
+        width="w-1/3"
+      >
         <ConfirmVideo
           videoData={videoData}
           setVideoData={setVideoData}
@@ -188,7 +198,12 @@ export default function Home() {
         />
       </div>
 
-      <PopupContent height="h-fit" visible={toggleJumpToNote}>
+      <PopupContent
+        visible={toggleJumpToNote}
+        closeFnc={closeToggleJumpToNote}
+        width="w-1/3"
+        height="h-1/4"
+      >
         <JumpToNote
           jumpTo={jumpTo}
           relateNote={relateNote}

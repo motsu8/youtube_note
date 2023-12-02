@@ -11,11 +11,11 @@ function PlaylistCard({
   const video = data.videos[0];
 
   return (
-    <div className="hover:bg-slate-50 relative px-1 pb-2 w-80 rounded-lg hover:shadow-md">
+    <div className="hover:bg-slate-50 px-1 pb-2 w-80 rounded-lg hover:shadow-md">
       <input
         type="checkbox"
         name=""
-        className="absolute z-[1] scale-150 m-2 cursor-pointer checkbox"
+        className="absolute scale-150 m-2 cursor-pointer checkbox"
         value={data.id}
         onChange={(e) => setCheckboxAction(data, e.target.checked)}
         id=""

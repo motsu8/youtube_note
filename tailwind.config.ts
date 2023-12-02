@@ -30,6 +30,8 @@ const config = {
       pattern: /(bg|text|border)-(main|base|accent)/,
       variants: ['hover'],
     },
+    'right-3',
+    'top-3',
   ],
 };
 

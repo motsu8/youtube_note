@@ -108,7 +108,12 @@ export default function Landing() {
         />
       </div>
 
-      <PopupContent visible={visibleAuth} closeFnc={closeAuth}>
+      <PopupContent
+        visible={visibleAuth}
+        closeFnc={closeAuth}
+        height="h-1/2"
+        width="w-1/3"
+      >
         {visibleAuth === AUTH_SIGN_UP ? (
           <AuthForm type={AUTH_SIGN_UP} title="新規登録" />
         ) : (

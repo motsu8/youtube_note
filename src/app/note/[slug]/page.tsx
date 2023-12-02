@@ -16,6 +16,7 @@ import ConfirmJump from '@/components/parts/confirmJump';
 import PopupContent from '@/components/parts/popupContent';
 import RelationVideo from '@/components/parts/relationVideo';
 import YouTube from '@/components/parts/youtubeVideo';
+import { BTN_ACCENT } from '@/constants/buttonClass';
 
 interface LibData {
   title: any;
@@ -51,7 +52,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   const [videoParams, setVideoParams] = useState<string>('');
 
   // router
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     (async () => {
@@ -102,9 +103,9 @@ export default function Page({ params }: { params: { slug: string } }) {
     setContent(str);
   };
 
-  const popup = () => {
-    setPageJump(true);
-  };
+  const popup = () => setPageJump(true);
+
+  const closePopUp = () => setPageJump(false);
 
   const noSaveClose = () => {
     setPageJump(false);
@@ -133,9 +134,8 @@ export default function Page({ params }: { params: { slug: string } }) {
     setPlay(!play);
   };
 
-  const updatePopRelation = (bool: boolean) => {
-    setPopRelation(bool);
-  };
+  const updatePopRelation = (bool: boolean) => setPopRelation(bool);
+  const closePopRelation = () => updatePopRelation(false);
 
   const relationAction = async (videoId: string) => {
     await library?.document.relateVideo(currentFile.id, videoId);
@@ -151,23 +151,12 @@ export default function Page({ params }: { params: { slug: string } }) {
     setPlay(!play);
   };
 
-  const videoBtnClass = [
-    'bg-rose-300',
-    'hove:bg-rose-100',
-    'rounded-lg',
-    'shadow-lg',
-    'py-2',
-    'px-3',
-    'flex',
-    'items-center',
-    'justify-center',
-  ];
-
   return (
     <div className="w-full h-screen relative flex flex-col items-center justify-start p-5">
-      <PopupContent height="h-fit" visible={pageJump}>
+      <PopupContent visible={pageJump} closeFnc={closePopUp}>
         <ConfirmJump close={noSaveClose} jumpLink={saveClose} />
       </PopupContent>
+
       <div className="w-11/12 h-min flex items-center justify-between py-5">
         <Breadcrumb bread={bread} setCurrLibId={popup} />
         {currentFile ? (
@@ -178,10 +167,10 @@ export default function Page({ params }: { params: { slug: string } }) {
         <Button
           title={play ? '動画を隠す' : '動画を表示'}
           setClickHandler={playVideo}
-          className={videoBtnClass}
+          className={BTN_ACCENT}
         />
       </div>
-      <PopupContent height="h-fit" visible={popRelation}>
+      <PopupContent visible={popRelation} closeFnc={closePopRelation}>
         <RelationVideo
           videos={relationDocList}
           closeAction={updatePopRelation}

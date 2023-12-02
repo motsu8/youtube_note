@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BTN_PINK } from '@/constants/buttonClass';
+import { BTN_ACCENT } from '@/constants/buttonClass';
 
 import Button from './parts/button';
 
@@ -17,9 +17,8 @@ function PlayTab({
   setTab: (num: number) => void;
   setCreatePlayList: (bool: boolean) => void;
 }) {
-  const popBtn = BTN_PINK.concat(draw ? 'block' : 'hidden');
   return (
-    <div className="flex justify-between w-11/12 mb-5 px-3 py-3 sm:px-12 sm:py-3 border-b text-sm sm:text-base">
+    <div className="flex justify-between w-11/12 mb-5 px-3 py-3 sm:px-12 sm:py-3 border-b text-sm">
       <div className="flex space-x-3 sm:space-x-10">
         <button
           type="button"
@@ -37,14 +36,16 @@ function PlayTab({
         </button>
       </div>
       <div className="space-x-2 flex">
-        <Button
-          title="削除する"
-          className={popBtn}
-          setClickHandler={() => deleteAction()}
-        />
+        {draw ? (
+          <Button
+            title="削除する"
+            className={BTN_ACCENT}
+            setClickHandler={() => deleteAction()}
+          />
+        ) : null}
         <Button
           title="プレイリスト作成"
-          className={BTN_PINK}
+          className={BTN_ACCENT}
           setClickHandler={() => setCreatePlayList(true)}
         />
       </div>

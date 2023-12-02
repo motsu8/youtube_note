@@ -18,7 +18,7 @@ function ConfirmVideo({
 
   if (videoData) {
     return (
-      <div className="flex flex-col justify-center items-center space-y-5 h-full overflow-auto">
+      <div className="z-20 flex flex-col justify-center items-center space-y-5 h-full overflow-auto">
         <Image
           alt="動画サムネイル"
           src={videoData.thumbnails.medium.url}
