@@ -20,10 +20,15 @@ const config = {
         main: '#FFFBF8',
         base: '#F59236',
         accent: '#E0822A',
-      }
+      },
     },
   },
   plugins: [],
+  safelist: [
+    {
+      pattern: /(bg|text|border)-(main|base|accent)/,
+    },
+  ],
 };
 
-module.exports = config
+module.exports = config;

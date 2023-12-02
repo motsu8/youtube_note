@@ -10,7 +10,6 @@ import { BTN_ACCENT } from '@/constants/buttonClass';
 
 import { getSession } from './api/supabase';
 
-
 export default function Landing() {
   const router = useRouter();
   useEffect(() => {
@@ -20,11 +19,9 @@ export default function Landing() {
     })();
   }, []);
 
-
   return (
     <div className="font-mono w-screen flex flex-col items-center">
-
-      <Header/>
+      <Header />
 
       <div
         id="section-1"
