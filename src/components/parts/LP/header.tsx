@@ -1,12 +1,37 @@
+'use client';
+
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { BTN_BASE, BTN_ACCENT } from '@/constants/buttonClass';
-import { LP_TABS } from '@/constants/headerTabs';
+import { LP_TABS } from '@/constants/lp';
 
 import Button from '../button';
 
-function Header({ isDown }: { isDown: boolean }) {
+function Header() {
+  const [isDown, setIsDown] = useState(false);
+  let scrollPosition = 0;
+
+  /**
+   * 上下判定
+   * @returns boolean
+   */
+  const isDownScroll = () => scrollPosition < window.scrollY;
+
+  /**
+   * スクロールイベント関数
+   */
+  const scrollFnc = () => {
+    setIsDown(isDownScroll());
+    scrollPosition = window.scrollY;
+  };
+
+  useEffect(() => {
+    // スクロールイベント
+    window.addEventListener('scroll', scrollFnc);
+    return () => window.removeEventListener('scroll', scrollFnc);
+  }, []);
+
   return (
     <div
       id="lp-header"

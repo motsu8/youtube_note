@@ -18,8 +18,9 @@ const config = {
       },
       colors: {
         main: '#FFFBF8',
-        base: '#F59236',
+        base: '#BD3246',
         accent: '#E0822A',
+        'accent-dark': '#B86B23',
       },
     },
   },
@@ -27,6 +28,7 @@ const config = {
   safelist: [
     {
       pattern: /(bg|text|border)-(main|base|accent)/,
+      variants: ['hover'],
     },
   ],
 };

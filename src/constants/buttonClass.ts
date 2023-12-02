@@ -26,8 +26,8 @@ export const BTN_BASE = [
 ].join(' ');
 
 export const BTN_ACCENT = [
-  'hover:bg-accent',
-  'bg-base',
+  'hover:bg-accent-dark',
+  'bg-accent',
   'rounded-lg',
   'px-4',
   'py-2',

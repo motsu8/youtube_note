@@ -2,32 +2,18 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import Button from '@/components/parts/button';
 import Header from '@/components/parts/LP/header';
+import NoteCard from '@/components/parts/LP/noteCard';
 import { BTN_ACCENT } from '@/constants/buttonClass';
+import { LP_NOTE_CARD } from '@/constants/lp';
 
 import { getSession } from './api/supabase';
 
 export default function Landing() {
   const router = useRouter();
-  const [isDown, setIsDown] = useState(false);
-  let scrollPosition = 0;
-
-  /**
-   * 上下判定
-   * @returns boolean
-   */
-  const isDownScroll = () => scrollPosition < window.scrollY;
-
-  /**
-   * スクロールイベント関数
-   */
-  const scrollFnc = () => {
-    setIsDown(isDownScroll());
-    scrollPosition = window.scrollY;
-  };
 
   useEffect(() => {
     // セッション取得
@@ -35,21 +21,17 @@ export default function Landing() {
       const data = await getSession();
       if (data) router.push('/home');
     };
+
     getSessionData();
-
-    // スクロールイベント
-    window.addEventListener('scroll', scrollFnc);
-
-    return () => window.removeEventListener('scroll', scrollFnc);
   }, []);
 
   return (
     <div className="font-mono w-screen flex flex-col items-center">
-      <Header isDown={isDown} />
+      <Header />
 
       <div
         id="section-1"
-        className="w-full bg-[#FFFBF8] flex justify-center shadow-sm"
+        className="w-full bg-main flex justify-center shadow-sm"
       >
         <div className="w-3/4 py-40 flex justify-between">
           <div className="space-y-8">
@@ -91,30 +73,19 @@ export default function Landing() {
 
       <div
         id="section-note"
-        className="w-full bg-[#BD3246] py-10 space-y-10 flex flex-col justify-center items-center shadow-sm"
+        className="w-full bg-base py-10 space-y-10 flex flex-col justify-center items-center shadow-sm"
       >
         <p className="text-3xl text-white">エンジニアライクなノートを提供</p>
 
         <div className="w-3/4 grid grid-cols-2 gap-10">
-          <div className="bg-[#FFFBF8] w- py-5 px-5 rounded-tl-3xl rounded-br-3xl">
-            <p className="text-xl font-bold">マークダウンエディタ</p>
-            <p>
-              YouTube動画を見ながら、マークダウン記法でノートをとることができる。
-            </p>
-          </div>
-          <div className="bg-[#FFFBF8] py-5 px-5 rounded-tl-3xl rounded-br-3xl">
-            <p className="text-xl font-bold">HTMLプレビュー</p>
-            <p>
-              GitHubでのスタイルを適用しており、プログラミング言語別でシンタックスハイライトに対応。
-            </p>
-          </div>
+          {LP_NOTE_CARD.map((ele) => {
+            const { key, ...props } = ele;
+            return <NoteCard key={key} {...props} />;
+          })}
         </div>
       </div>
 
-      <div
-        id="section-4"
-        className="w-full bg-[#FFFBF8] py-10 space-y-10 flex flex-col justify-center items-center shadow-sm"
-      >
+      <div className="w-full bg-main py-10 space-y-10 flex flex-col justify-center items-center shadow-sm">
         <p className="text-3xl">無料で始める</p>
         <Button
           title="新規登録"
