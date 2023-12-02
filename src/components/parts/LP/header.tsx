@@ -1,14 +1,19 @@
-import Image from 'next/image'
-import React from 'react'
+import Image from 'next/image';
+import React from 'react';
 
-import { BTN_BASE, BTN_ACCENT} from '@/constants/buttonClass'
-import { LP_TABS } from '@/constants/headerTabs'
+import { BTN_BASE, BTN_ACCENT } from '@/constants/buttonClass';
+import { LP_TABS } from '@/constants/headerTabs';
 
-import Button from '../button'
+import Button from '../button';
 
-function Header() {
+function Header({ isDown }: { isDown: boolean }) {
   return (
-    <div id="header" className="w-full flex justify-around py-3">
+    <div
+      id="lp-header"
+      className={`w-full flex justify-around py-3 mb-1 shadow bg-white fixed duration-1000 ${
+        isDown ? '-top-32' : 'top-0'
+      }`}
+    >
       <div className="w-3/4 flex justify-between">
         <div className="flex space-x-3 items-center">
           <Image
@@ -20,14 +25,12 @@ function Header() {
           />
           <p className="text-3xl font-extrabold align-middle">YouTube Note</p>
           <ul className="pl-8 flex text-black font-bold space-x-4">
-            {LP_TABS.map(ele => {
+            {LP_TABS.map((ele) => {
               return (
                 <li key={ele.key}>
-                  <a href={ele.id}>
-                    {ele.title}
-                  </a>
+                  <a href={ele.id}>{ele.title}</a>
                 </li>
-              )
+              );
             })}
           </ul>
         </div>
@@ -45,7 +48,7 @@ function Header() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Header
+export default Header;

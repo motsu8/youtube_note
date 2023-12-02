@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import Button from '@/components/parts/button';
 import Header from '@/components/parts/LP/header';
@@ -12,16 +12,40 @@ import { getSession } from './api/supabase';
 
 export default function Landing() {
   const router = useRouter();
+  const [isDown, setIsDown] = useState(false);
+  let scrollPosition = 0;
+
+  /**
+   * 上下判定
+   * @returns boolean
+   */
+  const isDownScroll = () => scrollPosition < window.scrollY;
+
+  /**
+   * スクロールイベント関数
+   */
+  const scrollFnc = () => {
+    setIsDown(isDownScroll());
+    scrollPosition = window.scrollY;
+  };
+
   useEffect(() => {
-    (async () => {
+    // セッション取得
+    const getSessionData = async () => {
       const data = await getSession();
       if (data) router.push('/home');
-    })();
+    };
+    getSessionData();
+
+    // スクロールイベント
+    window.addEventListener('scroll', scrollFnc);
+
+    return () => window.removeEventListener('scroll', scrollFnc);
   }, []);
 
   return (
     <div className="font-mono w-screen flex flex-col items-center">
-      <Header />
+      <Header isDown={isDown} />
 
       <div
         id="section-1"
