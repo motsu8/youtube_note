@@ -40,7 +40,7 @@ export default function Landing() {
   const closeAuth = () => setVisibleAuth(AUTH_CLOSE);
 
   return (
-    <div className="w-screen relative flex flex-col items-center">
+    <div className="relative flex flex-col items-center">
       <Header updateVisibleAuth={updateVisibleAuth} />
 
       <div
@@ -67,7 +67,7 @@ export default function Landing() {
             src="/service.png"
             alt="サービスイメージ"
             height={400}
-            width={600}
+            width={500}
             style={{
               borderWidth: 1,
               borderRadius: 10,
