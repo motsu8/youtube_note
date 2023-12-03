@@ -47,7 +47,7 @@ export default function Landing() {
         id="section-1"
         className="w-full bg-main flex justify-center shadow-sm"
       >
-        <div className="w-3/4 py-40 flex justify-between">
+        <div className="w-3/4 py-40 flex justify-around">
           <div className="space-y-8">
             <div>
               <p className="text-6xl">エンジニア志向</p>
@@ -67,7 +67,7 @@ export default function Landing() {
             src="/service.png"
             alt="サービスイメージ"
             height={400}
-            width={500}
+            width={600}
             style={{
               borderWidth: 1,
               borderRadius: 10,
