@@ -25,7 +25,9 @@ YouTube動画を見ながらノートをとることができる[Webアプリ](h
 学習したい動画はアプリ内で動画のURLを指定し、動画を保存することでノートでの参照ができるようになります。
 
 
-https://github.com/motsu8/youtube_note/assets/80054036/8b69098f-82bb-40db-b6f9-191b0cf3d5b5
+
+https://github.com/motsu8/youtube_note/assets/80054036/eae50423-6adc-45db-89ea-905a19ecd183
+
 
 
 ## URL
