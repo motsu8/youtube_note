@@ -8,7 +8,7 @@ export const BTN_PINK = [
 ].join(' ');
 
 export const BTN_DEFAULT = [
-  'hover:bg-neutral-100',
+  'hover:bg-neutral-200',
   'bg-neutral-50',
   'py-2',
   'px-4',

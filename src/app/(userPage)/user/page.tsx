@@ -22,7 +22,7 @@ function User() {
   }, []);
 
   return (
-    <div className="w-full h-screen flex space-x-10 justify-center items-center">
+    <div className="w-full h-full flex space-x-10 justify-center items-center">
       <Button
         title="サインアウト"
         setClickHandler={() => signOut()}

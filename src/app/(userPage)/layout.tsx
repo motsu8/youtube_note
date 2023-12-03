@@ -7,7 +7,7 @@ function layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex flex-col w-screen h-screen">
       <UserHeader />
-      <div className="flex pt-16 h-full">
+      <div className="flex flex-col md:flex-row pt-16 h-full ">
         <Sidebar />
         {children}
       </div>

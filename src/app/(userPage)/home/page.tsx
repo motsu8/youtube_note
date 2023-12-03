@@ -177,7 +177,7 @@ export default function Home() {
       </PopupContent>
 
       {/* 動画リスト */}
-      <div className="p-5 flex flex-col justify-around items-start w-11/12 h-2/5 border-b-2 border-b-zinc-200">
+      <div className="p-5 flex flex-col justify-around items-start w-11/12 h-96 border-b-2 border-b-zinc-200">
         <div className="flex space-x-2 m-3">
           <p className="text-lg">最近追加した動画</p>
           <IconButton

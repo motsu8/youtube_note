@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { BTN_ACCENT, BTN_DEFAULT } from '@/constants/buttonClass';
+
 import Button from './button';
 
 function ConfirmJump({
@@ -9,30 +11,22 @@ function ConfirmJump({
   close: () => void;
   jumpLink: () => void;
 }) {
-  const defaultClass = [
-    'hover:text-slate-700',
-    'text-lg',
-    'p-2',
-    'mt-2',
-    'space-x-1',
-    'ml-2',
-    'rounded-t-lg',
-    'bg-blue-100',
-  ];
   return (
-    <>
+    <div className="flex flex-col space-y-2 p-2">
       <p>保存しましたか？</p>
-      <Button
-        title="保存せず移動する"
-        className={defaultClass}
-        setClickHandler={close}
-      />
-      <Button
-        title="保存して移動する"
-        className={defaultClass}
-        setClickHandler={jumpLink}
-      />
-    </>
+      <div>
+        <Button
+          title="保存せず移動する"
+          className={BTN_DEFAULT}
+          setClickHandler={close}
+        />
+        <Button
+          title="保存して移動する"
+          className={BTN_ACCENT}
+          setClickHandler={jumpLink}
+        />
+      </div>
+    </div>
   );
 }
 
