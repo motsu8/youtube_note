@@ -3,7 +3,7 @@ import React from 'react';
 
 function Title() {
   return (
-    <div className="flex space-x-2 items-center">
+    <div className="flex space-x-2 items-center font-mono">
       <Image
         src="/icon.png"
         alt="YouTube Note Icon"
