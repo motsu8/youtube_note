@@ -40,7 +40,7 @@ export default function Landing() {
   const closeAuth = () => setVisibleAuth(AUTH_CLOSE);
 
   return (
-    <div className="font-mono w-full flex flex-col items-center">
+    <div className="w-screen relative flex flex-col items-center">
       <Header updateVisibleAuth={updateVisibleAuth} />
 
       <div
