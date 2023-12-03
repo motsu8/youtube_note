@@ -7,7 +7,6 @@ export type IconButton = {
   bgClass: string[];
   color: string;
   title?: string;
-  toggle?: boolean;
   isDisabled?: boolean;
   setClickHandler?: () => void;
 };

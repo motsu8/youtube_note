@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import Button from '@/components/parts/button';
 import { BTN_DEFAULT } from '@/constants/buttonClass';
 
-import { deleteUser, getSession, signOut } from '../api/supabase';
+import { deleteUser, getSession, signOut } from '../../api/supabase';
 
 function User() {
   const [session, setSession] = useState<any>(null);
@@ -22,7 +22,7 @@ function User() {
   }, []);
 
   return (
-    <div className="w-full h-screen flex space-x-10 justify-center items-center">
+    <div className="w-full h-full flex space-x-10 justify-center items-center">
       <Button
         title="サインアウト"
         setClickHandler={() => signOut()}

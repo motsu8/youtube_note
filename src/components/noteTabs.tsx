@@ -11,18 +11,15 @@ function NoteTabs({
   saveContent: () => void;
   updateTab: (num: number) => void;
 }) {
-  const bg = 'bg-slate-50 text-black';
-  const opacity = 'bg-transparent text-black';
+  const opacity = 'bg-transparent text-slate-600 hover:text-slate-900';
 
-  const defaultClass = [
-    'hover:text-slate-700',
-    'text-lg',
-    'p-2',
-    'mt-2',
-    'rounded-t-lg',
-  ];
-  const writeClass = defaultClass.concat([tab === 0 ? bg : opacity, 'ml-2']);
-  const previewClass = defaultClass.concat([tab === 1 ? bg : opacity]);
+  const defaultClass = ['text-lg', 'px-4', 'rounded-t-lg', 'h-full', 'm-0'];
+  const writeClass = defaultClass.concat([
+    tab === 0 ? 'bg-white border-r text-black' : opacity,
+  ]);
+  const previewClass = defaultClass.concat([
+    tab === 1 ? 'bg-white border-x text-black' : opacity,
+  ]);
   const saveClass = [
     'bg-slate-50',
     'hover:text-slate-800',
@@ -34,23 +31,23 @@ function NoteTabs({
     'rounded-lg',
   ];
   return (
-    <div className="flex bg-blue-100 w-full rounded-t-lg justify-between">
+    <div className="flex bg-main-dark border-x border-t w-full rounded-t-lg justify-between">
       <div>
         <Button
           title="Write"
           setClickHandler={() => updateTab(0)}
-          className={writeClass}
+          className={writeClass.join(' ')}
         />
         <Button
           title="Preview"
           setClickHandler={() => updateTab(1)}
-          className={previewClass}
+          className={previewClass.join(' ')}
         />
       </div>
       <Button
         title="保存する"
         setClickHandler={saveContent}
-        className={saveClass}
+        className={saveClass.join(' ')}
       />
     </div>
   );

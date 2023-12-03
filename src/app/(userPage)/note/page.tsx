@@ -7,9 +7,10 @@ import { getSession } from '@/app/api/supabase';
 import CreateContent from '@/components/createContent';
 import DrawList from '@/components/drawList';
 import NoteHead from '@/components/noteHead';
+import PopupContent from '@/components/parts/popupContent';
 import Search from '@/components/parts/search';
 
-import Library from '../api/library';
+import Library from '../../api/library';
 
 interface LibData {
   title: any;
@@ -102,9 +103,8 @@ function Note() {
     updateDraw(library!, id!);
   };
 
-  const changeVisible = (bool: boolean) => {
-    setVisible(bool);
-  };
+  const updateVisible = (bool: boolean) => setVisible(bool);
+  const closeVisible = () => updateVisible(false);
 
   const checkDrawDelete = () => {
     const checkList: boolean[] = [];
@@ -175,14 +175,14 @@ function Note() {
   };
 
   return (
-    <div className="w-full h-9/10 relative flex flex-col items-center justify-start py-8 px-5">
+    <div className="w-full h-9/10 relative flex flex-col items-center justify-start px-5">
       <Search
         placeholder="ノートを検索する"
         setInputValue={setInputValue}
         setSubmitAction={filter}
       />
       <NoteHead
-        setVisible={changeVisible}
+        setVisible={updateVisible}
         bread={bread}
         drawDelete={drawDelete}
         setCurrLibId={setCurrent}
@@ -201,13 +201,20 @@ function Note() {
         changeDeleteFile={changeDeleteFile}
         message={message}
       />
-      <CreateContent
-        setVisible={changeVisible}
-        setDrawList={setDraw}
-        currLibId={currLibId}
-        library={library}
+
+      <PopupContent
         visible={visible}
-      />
+        closeFnc={closeVisible}
+        height="h-auto"
+        width="w-1/3"
+      >
+        <CreateContent
+          setVisible={updateVisible}
+          setDrawList={setDraw}
+          currLibId={currLibId}
+          library={library}
+        />
+      </PopupContent>
     </div>
   );
 }

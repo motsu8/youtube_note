@@ -12,11 +12,11 @@ import PopupContent from '@/components/parts/popupContent';
 import Search from '@/components/parts/search';
 import { VideoData } from '@/types/components';
 
-import Library from '../api/library';
-import Playlist from '../api/playlist';
-import { getSession } from '../api/supabase';
-import Video from '../api/video';
-import Youtube from '../api/youtube';
+import Library from '../../api/library';
+import Playlist from '../../api/playlist';
+import { getSession } from '../../api/supabase';
+import Video from '../../api/video';
+import Youtube from '../../api/youtube';
 
 export default function Home() {
   // client
@@ -30,7 +30,12 @@ export default function Home() {
 
   // toggle UI
   const [toggleJumpToNote, setToggleJumpToNote] = useState<boolean>(false);
+  const updateToggleJumpToNote = (bool: boolean) => setToggleJumpToNote(bool);
+  const closeToggleJumpToNote = () => updateToggleJumpToNote(false);
+
   const [visible, setVisible] = useState<boolean>(false);
+  const updateVisible = (bool: boolean) => setVisible(bool);
+  const closeVideo = () => updateVisible(false);
 
   // util
   const [currentVideoId, setCurrentVideoId] = useState<string>('');
@@ -149,7 +154,7 @@ export default function Home() {
   return (
     <div
       id="dashBoard"
-      className="w-full h-screen relative flex flex-col justify-start items-center overflow-auto"
+      className="w-full h-full relative flex flex-col justify-start items-center overflow-auto"
     >
       {/* 検索窓 */}
       <Search
@@ -157,7 +162,12 @@ export default function Home() {
         setInputValue={setVideoUrl}
         setSubmitAction={submitAction}
       />
-      <PopupContent height="h-3/4" visible={visible}>
+      <PopupContent
+        visible={visible}
+        closeFnc={closeVideo}
+        height="h-1/2"
+        width="w-1/3"
+      >
         <ConfirmVideo
           videoData={videoData}
           setVideoData={setVideoData}
@@ -167,7 +177,7 @@ export default function Home() {
       </PopupContent>
 
       {/* 動画リスト */}
-      <div className="p-5 flex flex-col justify-around items-start w-11/12 h-2/5 border-b-2 border-b-zinc-200">
+      <div className="py-5 flex flex-col justify-around items-start w-11/12 h-96 border-b-2 border-b-zinc-200">
         <div className="flex space-x-2 m-3">
           <p className="text-lg">最近追加した動画</p>
           <IconButton
@@ -188,7 +198,12 @@ export default function Home() {
         />
       </div>
 
-      <PopupContent height="h-fit" visible={toggleJumpToNote}>
+      <PopupContent
+        visible={toggleJumpToNote}
+        closeFnc={closeToggleJumpToNote}
+        width="w-1/3"
+        height="h-1/4"
+      >
         <JumpToNote
           jumpTo={jumpTo}
           relateNote={relateNote}

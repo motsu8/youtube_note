@@ -6,12 +6,18 @@ import {
 import React, { useState } from 'react';
 
 import { signInWithEmail, signUpNewUser } from '@/app/api/supabase';
+import { AUTH_SIGN_IN, AUTH_SIGN_UP } from '@/constants/lp';
 
 import GoogleOauth from './parts/auth';
 import IconButton from './parts/iconButton';
 
-export default function SignUpForm() {
-  const [toggle, setToggle] = useState(0);
+export default function AuthForm({
+  type,
+  title,
+}: {
+  type: string;
+  title: string;
+}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPass, setShowPass] = useState(false);
@@ -35,38 +41,11 @@ export default function SignUpForm() {
     validationCheck() ? 'bg-rose-300' : 'bg-neutral-50',
   ];
 
-  const eyeClass = [
-    'absolute',
-    'end-1',
-    'top-1/2',
-    'z-[5]',
-    '-translate-y-1/2',
-  ];
+  const eyeClass = ['absolute', 'end-1', 'top-1/2', '-translate-y-1/2'];
 
   return (
-    <div className="flex flex-col items-center justify-center shadow-lg space-y-3 mx-10 py-5 px-3 w-4/5 sm:w-3/5 md:w-2/5 lg:w-2/6 xl:w-2/5">
-      <GoogleOauth />
-
-      <div className="flex space-x-8">
-        <button
-          type="button"
-          className={`text-md xl:text-xl my-3 px-3 py-1 ${
-            toggle === 0 ? 'border-b-2' : ''
-          }`}
-          onClick={() => setToggle(0)}
-        >
-          ログイン
-        </button>
-        <button
-          type="button"
-          className={`text-md xl:text-xl my-3 px-3 py-1 ${
-            toggle === 1 ? 'border-b-2' : ''
-          }`}
-          onClick={() => setToggle(1)}
-        >
-          新規登録
-        </button>
-      </div>
+    <div className="flex flex-col justify-around items-center h-full">
+      <p className="text-2xl font-bold">{title}</p>
 
       {/* email */}
       <div className="w-5/6">
@@ -76,10 +55,10 @@ export default function SignUpForm() {
           placeholder="メールアドレス"
           onChange={(e) => setEmail(e.target.value)}
         />
-        {validation(emailRegex, email) || toggle === 0 ? (
+        {validation(emailRegex, email) ? (
           <p />
         ) : (
-          <p className="text-red-100 text-xs">
+          <p className="text-accent text-xs">
             有効なメールアドレスを入力してください
           </p>
         )}
@@ -104,10 +83,10 @@ export default function SignUpForm() {
             }}
           />
         </div>
-        {validation(passwordRegex, password) || toggle === 0 ? (
+        {validation(passwordRegex, password) ? (
           <p />
         ) : (
-          <p className="text-red-100 text-xs">
+          <p className="text-accent text-xs">
             大文字・小文字・数字を使用した8~16字
           </p>
         )}
@@ -121,15 +100,17 @@ export default function SignUpForm() {
         isDisabled={!validationCheck()}
         setClickHandler={async () => {
           let loginData;
-          if (toggle === 0) {
+          if (type === AUTH_SIGN_IN) {
             loginData = await signInWithEmail(email, password);
             if (loginData.session !== null) window.location.href = '/home';
-          } else if (toggle === 1) {
+          } else if (type === AUTH_SIGN_UP) {
             loginData = await signUpNewUser(email, password);
             alert('登録完了メールを確認してください。');
           }
         }}
       />
+
+      <GoogleOauth />
     </div>
   );
 }

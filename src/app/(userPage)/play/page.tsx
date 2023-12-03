@@ -13,10 +13,10 @@ import Search from '@/components/parts/search';
 import PlayTab from '@/components/playTab';
 import { VideoData } from '@/types/components';
 
-import Library from '../api/library';
-import Playlist from '../api/playlist';
-import Video from '../api/video';
-import Youtube from '../api/youtube';
+import Library from '../../api/library';
+import Playlist from '../../api/playlist';
+import Video from '../../api/video';
+import Youtube from '../../api/youtube';
 
 function Play() {
   // client
@@ -191,14 +191,23 @@ function Play() {
     setToggleJumpToNote(true);
   };
 
+  const closeVisible = () => setVisible(false);
+  const closePopupPlayList = () => setPopupPlayList(false);
+  const closeToggleJumpToNote = () => setToggleJumpToNote(false);
+
   return (
-    <div className="w-full h-9/10 relative flex flex-col items-center justify-start pt-3 sm:pt-8 px-5">
+    <div className="w-full h-9/10 relative flex flex-col items-center justify-start px-5">
       <Search
         placeholder="動画URLで追加"
         setInputValue={setVideoUrl}
         setSubmitAction={submitAction}
       />
-      <PopupContent height="h-3/4" visible={visible}>
+      <PopupContent
+        visible={visible}
+        closeFnc={closeVisible}
+        height="h-1/2"
+        width="w-1/3"
+      >
         <ConfirmVideo
           videoData={videoData}
           setVideoData={setVideoData}
@@ -214,7 +223,12 @@ function Play() {
         setTab={setTab}
         setCreatePlayList={setPopupPlayList}
       />
-      <PopupContent height="h-3/4" visible={popupPlayList}>
+      <PopupContent
+        visible={popupPlayList}
+        closeFnc={closePopupPlayList}
+        height="h-2/5"
+        width="w-1/3"
+      >
         <CreatePlaylist
           videos={checkboxList}
           setClose={setPopupPlayList}
@@ -223,7 +237,12 @@ function Play() {
         />
       </PopupContent>
 
-      <PopupContent height="h-fit" visible={toggleJumpToNote}>
+      <PopupContent
+        visible={toggleJumpToNote}
+        closeFnc={closeToggleJumpToNote}
+        height="h-auto"
+        width="w-auto"
+      >
         <JumpToNote
           jumpTo={jumpTo}
           relateNote={relateNote}

@@ -26,7 +26,7 @@ function NoteDetail({
   };
 
   const defaultClass = [
-    'bg-stone-100',
+    'bg-white',
     'p-5',
     'h-full',
     'w-full',
@@ -34,28 +34,26 @@ function NoteDetail({
     'rounded-b-lg',
   ];
 
-  const textareaClass = defaultClass.concat(tab === 0 ? 'block' : 'hidden');
-  const markdownClass = defaultClass.concat([
-    tab === 1 ? 'block' : 'hidden',
-    'markdown-preview',
-    'rounded-b',
-  ]);
+  const markdownClass = defaultClass.concat(['markdown-preview', 'rounded-b']);
 
   return (
-    <div className="w-full h-full flex flex-col">
+    <div className="w-full h-full flex flex-col border rounded-t-lg">
       <NoteTabs saveContent={saveContent} updateTab={updateTab} tab={tab} />
-      <textarea
-        value={content}
-        onChange={(e) => updateContent(e.target.value)}
-        className={textareaClass.join(' ')}
-      />
-      <ReactMarkdown
-        components={{ pre: Pre }}
-        className={markdownClass.join(' ')}
-        remarkPlugins={[remarkGfm]}
-      >
-        {markdownString}
-      </ReactMarkdown>
+      {tab === 0 ? (
+        <textarea
+          value={content}
+          onChange={(e) => updateContent(e.target.value)}
+          className={defaultClass.join(' ')}
+        />
+      ) : (
+        <ReactMarkdown
+          components={{ pre: Pre }}
+          className={markdownClass.join(' ')}
+          remarkPlugins={[remarkGfm]}
+        >
+          {markdownString}
+        </ReactMarkdown>
+      )}
     </div>
   );
 }

@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import React from 'react';
 
+import { BTN_ACCENT, BTN_DEFAULT } from '@/constants/buttonClass';
 import { ConfirmVideo } from '@/types/components';
 
 function ConfirmVideo({
@@ -18,7 +19,7 @@ function ConfirmVideo({
 
   if (videoData) {
     return (
-      <div className="flex flex-col justify-center items-center space-y-5 h-full overflow-auto">
+      <div className="z-20 flex flex-col justify-center items-center space-y-5 h-full overflow-auto">
         <Image
           alt="動画サムネイル"
           src={videoData.thumbnails.medium.url}
@@ -35,7 +36,7 @@ function ConfirmVideo({
           <button
             type="button"
             onClick={() => closePopUp()}
-            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+            className={BTN_DEFAULT}
           >
             閉じる
           </button>
@@ -45,7 +46,7 @@ function ConfirmVideo({
               addVideo();
               closePopUp();
             }}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+            className={BTN_ACCENT}
           >
             追加する
           </button>

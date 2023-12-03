@@ -3,7 +3,7 @@
 import React from 'react';
 
 import Library from '@/app/api/library';
-import { BTN_PINK } from '@/constants/buttonClass';
+import { BTN_ACCENT } from '@/constants/buttonClass';
 
 import Breadcrumb from './parts/breadcrumb';
 import Button from './parts/button';
@@ -23,23 +23,23 @@ function NoteHead({
   deleteFolderAction: () => void;
   deleteFileAction: () => void;
 }) {
-  const deleteBtn = BTN_PINK.concat(drawDelete ? 'block' : 'hidden');
-
   return (
     <div className="w-10/12 flex items-center justify-between">
       <Breadcrumb bread={bread} setCurrLibId={setCurrLibId} />
       <div className="flex space-x-2">
-        <Button
-          title="削除"
-          className={deleteBtn}
-          setClickHandler={() => {
-            deleteFolderAction();
-            deleteFileAction();
-          }}
-        />
+        {drawDelete ? (
+          <Button
+            title="削除"
+            className={BTN_ACCENT}
+            setClickHandler={() => {
+              deleteFolderAction();
+              deleteFileAction();
+            }}
+          />
+        ) : null}
         <Button
           title="新規作成"
-          className={BTN_PINK}
+          className={BTN_ACCENT}
           setClickHandler={() => {
             setVisible(true);
           }}

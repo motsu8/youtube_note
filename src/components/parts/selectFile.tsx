@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { BTN_DEFAULT, BTN_PINK } from '@/constants/buttonClass';
+import { BTN_ACCENT, BTN_DEFAULT } from '@/constants/buttonClass';
 
 import Button from './button';
 
@@ -20,12 +20,8 @@ function SelectFile({
   jumpTo: (jumpId: string) => void;
 }) {
   const [fileId, setFileId] = useState('');
-  return (
-    <div
-      className={`flex flex-col space-y-3 justify-center items-center w-full ${
-        toggle === id ? 'block' : 'hidden'
-      }`}
-    >
+  return toggle === id ? (
+    <>
       {files.length !== 0 ? (
         <select
           className="w-3/4 px-2 py-1"
@@ -59,11 +55,11 @@ function SelectFile({
           setClickHandler={() => {
             jumpTo(fileId);
           }}
-          className={BTN_PINK}
+          className={BTN_ACCENT}
         />
       </div>
-    </div>
-  );
+    </>
+  ) : null;
 }
 
 export default SelectFile;
