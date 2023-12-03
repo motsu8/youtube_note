@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 
-import { BTN_DEFAULT, BTN_PINK } from '@/constants/buttonClass';
+import { BTN_ACCENT, BTN_DEFAULT } from '@/constants/buttonClass';
 
 import Button from './parts/button';
 
@@ -68,7 +68,7 @@ function CreatePlaylist({
             <Button
               title="作成する"
               setClickHandler={() => createPlaylist()}
-              className={BTN_PINK}
+              className={BTN_ACCENT}
             />
           </div>
         </>

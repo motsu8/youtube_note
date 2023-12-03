@@ -19,12 +19,12 @@ function VideoCard({
 
   if (video) {
     return (
-      <div className="bg-neutral-50 h-max px-1 pb-2 w-80 rounded-lg hover:shadow-md">
+      <div className="bg-neutral-50 relative h-max px-1 pb-2 w-80 rounded-lg hover:shadow-md">
         {setCheckboxAction ? (
           <input
             type="checkbox"
             name=""
-            className="absolute z-[0] scale-150 m-2 cursor-pointer checkbox"
+            className="absolute top-0 left-1 z-[2] scale-150 m-2 cursor-pointer checkbox"
             value={video.id}
             onChange={(e) => setCheckboxAction(video, e.target.checked)}
             id=""

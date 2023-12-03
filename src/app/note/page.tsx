@@ -202,13 +202,17 @@ function Note() {
         message={message}
       />
 
-      <PopupContent visible={visible} closeFnc={closeVisible}>
+      <PopupContent
+        visible={visible}
+        closeFnc={closeVisible}
+        height="h-auto"
+        width="w-1/3"
+      >
         <CreateContent
           setVisible={updateVisible}
           setDrawList={setDraw}
           currLibId={currLibId}
           library={library}
-          visible={visible}
         />
       </PopupContent>
     </div>

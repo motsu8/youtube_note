@@ -34,13 +34,13 @@ function PopupContent({
   const createClassStr = (strList: string[]) => strList.join(' ');
 
   return visible ? (
-    <div className="w-screen h-screen fixed z-10" ref={modalRef}>
-      <div className="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+    <div className="w-screen h-screen fixed z-10 left-0" ref={modalRef}>
+      <div className="w-full h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         <button
           type="button"
           aria-label="mask"
           onClick={() => closeFnc()}
-          className="w-screen h-screen relative bg-black opacity-80 "
+          className="w-full h-full relative bg-black opacity-80"
         />
         <div
           className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-main rounded-md shadow-md p-4 ${createClassStr(

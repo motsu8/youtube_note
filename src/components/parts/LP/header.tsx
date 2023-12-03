@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
-import { BTN_BASE, BTN_ACCENT } from '@/constants/buttonClass';
+import { BTN_ACCENT, BTN_DEFAULT } from '@/constants/buttonClass';
 import { AUTH_SIGN_IN, AUTH_SIGN_UP, LP_TABS } from '@/constants/lp';
 
 import Button from '../button';
@@ -66,7 +66,7 @@ function Header({
         <div className="auth">
           <Button
             title="ログイン"
-            className={BTN_BASE}
+            className={BTN_DEFAULT}
             setClickHandler={() => updateVisibleAuth(AUTH_SIGN_IN)}
           />
           <Button

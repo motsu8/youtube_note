@@ -8,12 +8,12 @@ export const BTN_PINK = [
 ].join(' ');
 
 export const BTN_DEFAULT = [
+  'hover:bg-neutral-100',
   'bg-neutral-50',
   'py-2',
   'px-4',
   'rounded-lg',
-  'shadow-md',
-  'hover:bg-neutral-600',
+  'font-bold',
 ].join(' ');
 
 export const BTN_BASE = [
@@ -22,6 +22,7 @@ export const BTN_BASE = [
   'px-4',
   'py-2',
   'text-base',
+  'shadow-md',
   'font-bold',
 ].join(' ');
 
@@ -32,5 +33,6 @@ export const BTN_ACCENT = [
   'px-4',
   'py-2',
   'text-white',
-  'font-extrabold',
+  'shadow-md',
+  'font-bold',
 ].join(' ');

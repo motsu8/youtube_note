@@ -32,6 +32,8 @@ const config = {
     },
     'right-3',
     'top-3',
+    'hover:bg-neutral-100',
+    'hover:shadow',
   ],
 };
 

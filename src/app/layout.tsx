@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`font-sans ${inter.className}`}>
-        <div className="flex flex-col-reverse sm:flex-row justify-between">
+        <div className="h-screen w-screen flex flex-col-reverse sm:flex-row justify-between">
           <Sidebar />
           {children}
         </div>

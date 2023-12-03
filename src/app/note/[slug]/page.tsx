@@ -153,7 +153,12 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   return (
     <div className="w-full h-screen relative flex flex-col items-center justify-start p-5">
-      <PopupContent visible={pageJump} closeFnc={closePopUp}>
+      <PopupContent
+        visible={pageJump}
+        closeFnc={closePopUp}
+        height="h-auto"
+        width="w-auto"
+      >
         <ConfirmJump close={noSaveClose} jumpLink={saveClose} />
       </PopupContent>
 
