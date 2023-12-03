@@ -13,16 +13,15 @@ export default function SideContent({
   iconColor,
   title,
   url,
-  hidden,
 }: SideContent) {
   const router = useRouter();
   const setTransition = (link: string) => router.push(link);
 
   return (
-    <div
-      className={`${
-        hidden ? 'hidden' : 'flex'
-      } px-3 py-1 hover:bg-main-dark items-center`}
+    <button
+      type="button"
+      onClick={() => setTransition(url)}
+      className="w-full flex justify-start px-3 py-1 hover:bg-main-dark items-center"
     >
       <IconButton
         icon={icon}
@@ -30,8 +29,7 @@ export default function SideContent({
         bgClass={BG_CENTER}
         color={iconColor}
         title={title}
-        setClickHandler={() => setTransition(url)}
       />
-    </div>
+    </button>
   );
 }

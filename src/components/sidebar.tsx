@@ -31,7 +31,7 @@ export default function Sidebar() {
         session ? 'block' : 'hidden'
       }`}
     >
-      <div className="sm:space-y-7 flex sm:flex sm:flex-col w-full justify-around max-h-min">
+      <div className="sm:space-y-7 flex sm:flex sm:flex-col w-full justify-start max-h-min">
         <SideContent
           icon={faHouse}
           iconClass={ICON_SIZE}
@@ -62,7 +62,7 @@ export default function Sidebar() {
         />
       </div>
 
-      <div className="hidden sm:block space-y-7">
+      <div className="w-full">
         <SideContent
           icon={faGear}
           iconClass={ICON_SIZE}
