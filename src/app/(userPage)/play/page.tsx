@@ -13,10 +13,10 @@ import Search from '@/components/parts/search';
 import PlayTab from '@/components/playTab';
 import { VideoData } from '@/types/components';
 
-import Library from '../api/library';
-import Playlist from '../api/playlist';
-import Video from '../api/video';
-import Youtube from '../api/youtube';
+import Library from '../../api/library';
+import Playlist from '../../api/playlist';
+import Video from '../../api/video';
+import Youtube from '../../api/youtube';
 
 function Play() {
   // client

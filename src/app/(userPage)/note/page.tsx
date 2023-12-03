@@ -10,7 +10,7 @@ import NoteHead from '@/components/noteHead';
 import PopupContent from '@/components/parts/popupContent';
 import Search from '@/components/parts/search';
 
-import Library from '../api/library';
+import Library from '../../api/library';
 
 interface LibData {
   title: any;

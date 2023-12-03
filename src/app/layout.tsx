@@ -2,8 +2,6 @@ import './globals.css';
 import { Inter } from 'next/font/google';
 import Script from 'next/script';
 
-import Sidebar from '@/components/sidebar';
-
 import type { Metadata } from 'next';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -21,12 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={`font-sans ${inter.className}`}>
-        <div className="h-screen w-screen flex flex-col-reverse sm:flex-row justify-between">
-          <Sidebar />
-          {children}
-        </div>
-      </body>
+      <body className={`font-sans ${inter.className}`}>{children}</body>
       <Script src="https://apis.google.com/js/api.js" />
     </html>
   );

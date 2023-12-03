@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import Button from '@/components/parts/button';
 import { BTN_DEFAULT } from '@/constants/buttonClass';
 
-import { deleteUser, getSession, signOut } from '../api/supabase';
+import { deleteUser, getSession, signOut } from '../../api/supabase';
 
 function User() {
   const [session, setSession] = useState<any>(null);

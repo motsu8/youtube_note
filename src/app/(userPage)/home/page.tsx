@@ -12,11 +12,11 @@ import PopupContent from '@/components/parts/popupContent';
 import Search from '@/components/parts/search';
 import { VideoData } from '@/types/components';
 
-import Library from '../api/library';
-import Playlist from '../api/playlist';
-import { getSession } from '../api/supabase';
-import Video from '../api/video';
-import Youtube from '../api/youtube';
+import Library from '../../api/library';
+import Playlist from '../../api/playlist';
+import { getSession } from '../../api/supabase';
+import Video from '../../api/video';
+import Youtube from '../../api/youtube';
 
 export default function Home() {
   // client

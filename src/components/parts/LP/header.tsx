@@ -8,11 +8,11 @@ import { AUTH_SIGN_IN, AUTH_SIGN_UP, LP_TABS } from '@/constants/lp';
 
 import Button from '../button';
 
-function Header({
-  updateVisibleAuth,
-}: {
+interface HeaderProps {
   updateVisibleAuth: (type: string) => void;
-}) {
+}
+
+function Header({ updateVisibleAuth }: HeaderProps) {
   const [isDown, setIsDown] = useState(false);
   let scrollPosition = 0;
 
@@ -30,8 +30,8 @@ function Header({
     scrollPosition = window.scrollY;
   };
 
+  // スクロールイベント
   useEffect(() => {
-    // スクロールイベント
     window.addEventListener('scroll', scrollFnc);
     return () => window.removeEventListener('scroll', scrollFnc);
   }, []);
