@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { BTN_DEFAULT, BTN_PINK } from '@/constants/buttonClass';
+import { BTN_ACCENT, BTN_DEFAULT } from '@/constants/buttonClass';
 
 import Button from './button';
 
@@ -58,7 +58,7 @@ function Relate({
             relateNote(fileId);
             jumpTo(fileId);
           }}
-          className={BTN_PINK}
+          className={BTN_ACCENT}
         />
       </div>
     </>

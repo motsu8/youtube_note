@@ -69,7 +69,7 @@ export default function Landing() {
             height={400}
             width={600}
             style={{
-              borderWidth: 2,
+              borderWidth: 1,
               borderRadius: 10,
               boxShadow: '1px 2px 9px #aaaaaa',
             }}
@@ -82,7 +82,15 @@ export default function Landing() {
         className="w-full flex flex-col justify-center items-center space-y-10 py-10 shadow-sm"
       >
         <p className="text-3xl">YouTube動画のURLで追加・検索</p>
-        <Image src="/demo.gif" alt="検索イメージ" height={400} width={600} />
+        <video
+          controls
+          muted
+          width={800}
+          height={700}
+          className="border rounded"
+        >
+          <source src="/search.mp4" />
+        </video>
       </div>
 
       <div
