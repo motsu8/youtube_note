@@ -11,7 +11,6 @@ export default function IconButton({
   color,
   title,
   isDisabled,
-  toggle,
   setClickHandler,
 }: IconButton) {
   if (setClickHandler !== undefined) {
@@ -27,11 +26,7 @@ export default function IconButton({
         aria-label={title ?? 'ページ遷移ボタン'}
       >
         <FontAwesomeIcon icon={icon} className={iconClass} color={color} />
-        {toggle === undefined ? (
-          <p>{title}</p>
-        ) : (
-          <p className={toggle ? 'block' : 'hidden'}>{title}</p>
-        )}
+        {title !== undefined ? <p>{title}</p> : null}
       </button>
     );
   }

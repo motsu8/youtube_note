@@ -152,7 +152,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   };
 
   return (
-    <div className="w-full h-screen relative flex flex-col items-center justify-start p-5">
+    <div className="w-full h-full relative flex flex-col items-center justify-start px-5">
       <PopupContent
         visible={pageJump}
         closeFnc={closePopUp}
@@ -165,7 +165,7 @@ export default function Page({ params }: { params: { slug: string } }) {
       <div className="w-11/12 h-min flex items-center justify-between py-5">
         <Breadcrumb bread={bread} setCurrLibId={popup} />
         {currentFile ? (
-          <p className="text-xl">{currentFile.title}</p>
+          <p className="text-xl font-bold">{currentFile.title}</p>
         ) : (
           <p className="text-xl">loading...</p>
         )}
@@ -175,7 +175,12 @@ export default function Page({ params }: { params: { slug: string } }) {
           className={BTN_ACCENT}
         />
       </div>
-      <PopupContent visible={popRelation} closeFnc={closePopRelation}>
+      <PopupContent
+        visible={popRelation}
+        closeFnc={closePopRelation}
+        height="h-auto"
+        width="w-auto"
+      >
         <RelationVideo
           videos={relationDocList}
           closeAction={updatePopRelation}

@@ -1,17 +1,17 @@
 import React from 'react';
 
-// import Header from '@/components/parts/LP/header';
 import Sidebar from '@/components/sidebar';
+import UserHeader from '@/components/user/header';
 
 function layout({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      {/* <Header />  */}
-      <div>
+    <div className="flex flex-col w-screen h-screen">
+      <UserHeader />
+      <div className="flex pt-16 h-full">
         <Sidebar />
         {children}
       </div>
-    </>
+    </div>
   );
 }
 

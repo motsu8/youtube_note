@@ -21,6 +21,7 @@ const config = {
         base: '#BD3246',
         accent: '#E0822A',
         'accent-dark': '#B86B23',
+        'main-dark': '#F0ECE9',
       },
     },
   },

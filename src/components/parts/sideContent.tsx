@@ -8,29 +8,21 @@ import { SideContent } from '@/types/components';
 import IconButton from './iconButton';
 
 export default function SideContent({
-  toggle,
   icon,
   iconClass,
   iconColor,
   title,
   url,
-  session,
   hidden,
 }: SideContent) {
   const router = useRouter();
-  const setTransition = (link: string) => {
-    if (session) {
-      router.push(link);
-    }
-  };
+  const setTransition = (link: string) => router.push(link);
 
   return (
     <div
       className={`${
         hidden ? 'hidden' : 'flex'
-      } px-3 py-1 hover:bg-rose-200 items-center ${
-        toggle ? 'justify-start space-x-4' : 'justify-center'
-      }`}
+      } px-3 py-1 hover:bg-main-dark items-center`}
     >
       <IconButton
         icon={icon}
@@ -38,8 +30,6 @@ export default function SideContent({
         bgClass={BG_CENTER}
         color={iconColor}
         title={title}
-        toggle={toggle}
-        isDisabled={session === null}
         setClickHandler={() => setTransition(url)}
       />
     </div>

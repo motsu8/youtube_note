@@ -154,7 +154,7 @@ export default function Home() {
   return (
     <div
       id="dashBoard"
-      className="w-full h-screen relative flex flex-col justify-start items-center overflow-auto"
+      className="w-full h-full relative flex flex-col justify-start items-center overflow-auto"
     >
       {/* 検索窓 */}
       <Search

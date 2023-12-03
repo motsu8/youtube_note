@@ -1,12 +1,12 @@
 'use client';
 
-import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
 import { BTN_ACCENT, BTN_DEFAULT } from '@/constants/buttonClass';
 import { AUTH_SIGN_IN, AUTH_SIGN_UP, LP_TABS } from '@/constants/lp';
 
 import Button from '../button';
+import Title from '../title';
 
 interface HeaderProps {
   updateVisibleAuth: (type: string) => void;
@@ -45,14 +45,7 @@ function Header({ updateVisibleAuth }: HeaderProps) {
     >
       <div className="w-3/4 flex justify-between">
         <div className="flex space-x-3 items-center">
-          <Image
-            src="/icon.png"
-            alt="YouTube Note Icon"
-            height={40}
-            width={40}
-            style={{ objectFit: 'contain' }}
-          />
-          <p className="text-3xl font-extrabold align-middle">YouTube Note</p>
+          <Title />
           <ul className="pl-8 flex text-black font-bold space-x-4">
             {LP_TABS.map((ele) => {
               return (

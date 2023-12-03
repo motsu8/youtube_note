@@ -175,7 +175,7 @@ function Note() {
   };
 
   return (
-    <div className="w-full h-9/10 relative flex flex-col items-center justify-start py-8 px-5">
+    <div className="w-full h-9/10 relative flex flex-col items-center justify-start px-5">
       <Search
         placeholder="ノートを検索する"
         setInputValue={setInputValue}
