@@ -4,14 +4,13 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import AuthForm from '@/components/authForm';
-import Button from '@/components/parts/button';
+import EntrySection from '@/components/parts/LP/entrySection';
 import Header from '@/components/parts/LP/header';
 import NoteSection from '@/components/parts/LP/noteSection';
 import PlaylistSection from '@/components/parts/LP/playlistSection';
 import TitleSection from '@/components/parts/LP/titleSection';
 import PopupContent from '@/components/parts/popupContent';
 import ScrollRevealContainer from '@/components/parts/scrollRevealCotainer';
-import { BTN_ACCENT } from '@/constants/buttonClass';
 import {
   AUTH_CLOSE,
   AUTH_SIGN_IN,
@@ -19,7 +18,6 @@ import {
 } from '@/constants/lp';
 
 import { getSession } from './api/supabase';
-import EntrySection from '@/components/parts/LP/entrySection';
 
 export default function Landing() {
   const router = useRouter();
