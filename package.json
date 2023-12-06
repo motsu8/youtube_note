@@ -27,6 +27,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@supabase/supabase-js": "^2.38.0",
+    "@types/scrollreveal": "^0.0.11",
     "boxicons": "^2.1.4",
     "next": "13.5.4",
     "react": "^18",
@@ -35,6 +36,7 @@
     "react-syntax-highlighter": "^15.5.0",
     "react-youtube": "^10.1.0",
     "remark-gfm": "^4.0.0",
+    "scrollreveal": "^4.0.9",
     "supabase": "^1.100.1",
     "swiper": "^11.0.3"
   },
