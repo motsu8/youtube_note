@@ -45,21 +45,27 @@ export default function Landing() {
     <div className="relative flex flex-col items-center">
       <Header updateVisibleAuth={updateVisibleAuth} />
 
-      <ScrollRevealContainer>
-        <TitleSection visibleFnc={updateVisibleAuth}/>
-      </ScrollRevealContainer>
+      <div className='bg-main w-full h-screen'>
+        <ScrollRevealContainer className='w-full h-full flex justify-center items-center shadow-sm'>
+          <TitleSection visibleFnc={updateVisibleAuth} />
+        </ScrollRevealContainer>
+      </div>
 
-      <ScrollRevealContainer>
+      <ScrollRevealContainer className='w-full flex flex-col justify-center items-center space-y-10 py-10 shadow-sm'>
         <PlaylistSection />
       </ScrollRevealContainer>
 
-      <ScrollRevealContainer>
-        <NoteSection />
-      </ScrollRevealContainer>
+      <div className='w-full bg-base'>
+        <ScrollRevealContainer className='w-full py-10 space-y-10 flex flex-col justify-center items-center shadow-sm'>
+          <NoteSection />
+        </ScrollRevealContainer>
+      </div>
 
-      <ScrollRevealContainer>
-        <EntrySection visibleFnc={updateVisibleAuth}/>
+      <div className='w-full bg-main'>
+      <ScrollRevealContainer className='w-full py-20 space-y-10 flex flex-col justify-center items-center shadow-sm h-full'>
+        <EntrySection visibleFnc={updateVisibleAuth} />
       </ScrollRevealContainer>
+      </div>
 
       <PopupContent
         visible={visibleAuth}

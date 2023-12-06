@@ -3,22 +3,24 @@ import scrollReveal from "scrollreveal";
 
 interface ScrollRevealContainerProps {
   children: ReactNode
+  className: string
 }
 
-export default function ScrollRevealContainer ({children}: ScrollRevealContainerProps) {
+export default function ScrollRevealContainer ({children, className}: ScrollRevealContainerProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (sectionRef.current)
       scrollReveal().reveal(sectionRef.current, {
         reset: true,
-        delay: 400,
+        delay: 500,
+        duration: 800,
         opacity: 0,
         origin: 'top',
         distance: "20px"
       });
   }, [sectionRef]);
 
-  return <section className="w-full" ref={sectionRef}>{children}</section>;
+  return <section className={className} ref={sectionRef}>{children}</section>;
 };
 

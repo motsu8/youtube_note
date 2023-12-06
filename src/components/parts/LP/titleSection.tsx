@@ -7,17 +7,13 @@ import { AUTH_SIGN_UP } from '@/constants/lp'
 import Button from '../button'
 
 
-interface TitleSectionProps{
-    visibleFnc: (str: string) => void
+interface TitleSectionProps {
+  visibleFnc: (str: string) => void
 }
 
-function TitleSection({visibleFnc}: TitleSectionProps) {
+function TitleSection({ visibleFnc }: TitleSectionProps) {
   return (
-    <div
-    id="section-1"
-    className="w-full h-screen bg-main flex justify-center shadow-sm"
-  >
-    <div className="w-3/4 py-40 flex justify-around">
+    <div className="w-3/4 h-1/2 flex justify-around items-center">
       <div className="space-y-8">
         <div>
           <p className="text-6xl">エンジニア志向</p>
@@ -36,8 +32,8 @@ function TitleSection({visibleFnc}: TitleSectionProps) {
       <Image
         src="/service.png"
         alt="サービスイメージ"
-        height={250}
-        width={400}
+        height={350}
+        width={500}
         style={{
           borderWidth: 1,
           borderRadius: 10,
@@ -45,7 +41,6 @@ function TitleSection({visibleFnc}: TitleSectionProps) {
         }}
       />
     </div>
-  </div>
   )
 }
 
