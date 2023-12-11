@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -41,24 +40,7 @@ export default function Landing() {
       <Header updateVisibleAuth={updateVisibleAuth} />
 
       <div className="w-full h-screen flex justify-center relative">
-        <div className="w-full h-full bg-wave" />
         <TitleSection visibleFnc={updateVisibleAuth} />
-        <div className="px-10 absolute top-2/3 -translate-y-1/2 lg:-translate-y-2/3 lg:left-1/2 lg:-translate-x-1/3">
-          <Image
-            src="/YouTube_Note.gif"
-            alt="サービスイメージ"
-            className="skew-y-[5deg]"
-            height={350}
-            width={900}
-            style={{
-              borderTopWidth: 5,
-              borderRightWidth: 7,
-              borderRadius: 10,
-              boxShadow: '10px 15px 15px #888888',
-              objectFit: 'contain',
-            }}
-          />
-        </div>
       </div>
 
       <ScrollRevealContainer>
