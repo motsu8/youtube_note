@@ -41,6 +41,7 @@ export default function Landing() {
       <Header updateVisibleAuth={updateVisibleAuth} />
 
       <div className="w-full h-screen flex justify-center relative">
+        <div className="w-full h-full bg-wave" />
         <TitleSection visibleFnc={updateVisibleAuth} />
         <div className="px-10 absolute top-2/3 -translate-y-1/2 lg:-translate-y-2/3 lg:left-1/2 lg:-translate-x-1/3">
           <Image

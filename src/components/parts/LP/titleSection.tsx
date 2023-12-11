@@ -13,7 +13,7 @@ function TitleSection({ visibleFnc }: TitleSectionProps) {
   return (
     <div
       id="section-title"
-      className="bg-wave w-full h-full flex flex-col items-start justify-start px-12 lg:px-48 py-32 xl:justify-start xl:items-start xl:relative"
+      className="w-full h-full absolute flex flex-col items-start justify-start px-12 lg:px-48 py-32 xl:justify-start xl:items-start"
     >
       <div className="space-y-8">
         <p className="text-6xl">エンジニア志向ノート学習アプリ</p>
