@@ -1,3 +1,5 @@
+'use client';
+
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useRef } from 'react';
 

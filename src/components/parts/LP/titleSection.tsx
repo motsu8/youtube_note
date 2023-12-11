@@ -1,24 +1,22 @@
-import Image from 'next/image'
-import React from 'react'
+import React from 'react';
 
-import { BTN_ACCENT } from '@/constants/buttonClass'
-import { AUTH_SIGN_UP } from '@/constants/lp'
+import { BTN_ACCENT } from '@/constants/buttonClass';
+import { AUTH_SIGN_UP } from '@/constants/lp';
 
-import Button from '../button'
-
+import Button from '../button';
 
 interface TitleSectionProps {
-  visibleFnc: (str: string) => void
+  visibleFnc: (str: string) => void;
 }
 
 function TitleSection({ visibleFnc }: TitleSectionProps) {
   return (
-    <div className="w-3/4 h-1/2 flex justify-around items-center">
+    <div
+      id="section-title"
+      className="bg-wave w-full h-full flex flex-col items-start justify-start px-12 lg:px-48 py-32 xl:justify-start xl:items-start xl:relative"
+    >
       <div className="space-y-8">
-        <div>
-          <p className="text-6xl">エンジニア志向</p>
-          <p className="text-6xl">ノート学習アプリ</p>
-        </div>
+        <p className="text-6xl">エンジニア志向ノート学習アプリ</p>
         <p className="w-96">
           YouTube動画を見ながら、マークダウンエディタでノートを取って学習することができます。
         </p>
@@ -28,20 +26,8 @@ function TitleSection({ visibleFnc }: TitleSectionProps) {
           setClickHandler={() => visibleFnc(AUTH_SIGN_UP)}
         />
       </div>
-
-      <Image
-        src="/service.png"
-        alt="サービスイメージ"
-        height={350}
-        width={500}
-        style={{
-          borderWidth: 1,
-          borderRadius: 10,
-          boxShadow: '1px 2px 9px #aaaaaa',
-        }}
-      />
     </div>
-  )
+  );
 }
 
-export default TitleSection
+export default TitleSection;

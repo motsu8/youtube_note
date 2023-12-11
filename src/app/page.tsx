@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -10,7 +11,7 @@ import NoteSection from '@/components/parts/LP/noteSection';
 import PlaylistSection from '@/components/parts/LP/playlistSection';
 import TitleSection from '@/components/parts/LP/titleSection';
 import PopupContent from '@/components/parts/popupContent';
-import ScrollRevealContainer from '@/components/parts/scrollRevealCotainer';
+import ScrollRevealContainer from '@/components/parts/scrollRevealContainer';
 import { AUTH_CLOSE, AUTH_SIGN_IN, AUTH_SIGN_UP } from '@/constants/lp';
 
 import { getSession } from './api/supabase';
@@ -39,17 +40,31 @@ export default function Landing() {
     <div className="relative flex flex-col items-center">
       <Header updateVisibleAuth={updateVisibleAuth} />
 
-      <div className="bg-main w-full h-screen">
-        <ScrollRevealContainer className="w-full h-full flex justify-center items-center shadow-sm">
-          <TitleSection visibleFnc={updateVisibleAuth} />
-        </ScrollRevealContainer>
+      <div className="w-full h-screen flex justify-center relative">
+        <TitleSection visibleFnc={updateVisibleAuth} />
+        <div className="px-10 absolute top-2/3 -translate-y-1/2 lg:-translate-y-2/3 lg:left-1/2 lg:-translate-x-1/3">
+          <Image
+            src="/YouTube_Note.gif"
+            alt="サービスイメージ"
+            className="skew-y-[5deg]"
+            height={350}
+            width={900}
+            style={{
+              borderTopWidth: 5,
+              borderRightWidth: 7,
+              borderRadius: 10,
+              boxShadow: '10px 15px 15px #888888',
+              objectFit: 'contain',
+            }}
+          />
+        </div>
       </div>
 
-      <ScrollRevealContainer className="w-full flex flex-col justify-center items-center space-y-10 py-10 shadow-sm">
+      <ScrollRevealContainer>
         <PlaylistSection />
       </ScrollRevealContainer>
 
-      <div className="w-full bg-base">
+      <div className="w-full h-3/4 bg-base">
         <NoteSection />
       </div>
 

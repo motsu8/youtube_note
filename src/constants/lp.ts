@@ -16,14 +16,14 @@ export const LP_NOTE_CARD = [
     key: 1,
     title: 'マークダウンエディタ',
     contents:
-      'YouTube動画を見ながら、マークダウン記法でノートをとることができる。',
+      'YouTube動画を見ながら、マークダウン記法を使用してノートをとることができる。',
     url: '/markdown.png',
   },
   {
     key: 2,
     title: 'HTMLプレビュー',
     contents:
-      'GitHubでのスタイルを適用しており、プログラミング言語別でシンタックスハイライトに対応。',
+      'GitHubでのスタイルを適用し、プログラミング言語別でシンタックスハイライトに対応。',
     url: '/preview.png',
   },
 ];
@@ -31,4 +31,4 @@ export const LP_NOTE_CARD = [
 export const AUTH_SIGN_UP = 'signUp';
 export const AUTH_SIGN_IN = 'signIn';
 export const AUTH_CLOSE = '';
-export const DEFAULT_DELAY = 400;
+export const DEFAULT_DELAY = 200;

@@ -26,7 +26,7 @@ export default function Sidebar() {
   }, []);
 
   return session ? (
-    <div className="bg-main text-lg w-full md:w-60 flex flex-row md:flex-col md:space-y-5 md:pt-5 justify-start max-h-min">
+    <div className="bg-main text-lg w-full md:w-60 flex flex-row md:flex-col md:space-y-5 md:pt-5 justify-start max-h-min shadow-inner">
       <SideContent
         icon={faHouse}
         iconClass={ICON_SIZE}
