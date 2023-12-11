@@ -9,14 +9,14 @@ type NoteCard = {
 
 function NoteCard({ title, contents, url }: NoteCard) {
   return (
-    <div className="w-full flex flex-col justify-center items-center bg-main pb-10 space-y-5 rounded-tl-[32px] rounded-br-[32px]">
+    <div className="w-full flex flex-col justify-center items-center bg-main pb-10 space-y-5 rounded-tl-[32px] rounded-br-[32px] transition hover:scale-[1.02] duration-500">
       <Image
         src={url}
         alt={title}
         height={500}
         width={1200}
         style={{
-          objectFit: 'contain',
+          objectFit: 'cover',
           borderWidth: 2,
           borderTopLeftRadius: 32,
         }}
