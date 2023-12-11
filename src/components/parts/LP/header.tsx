@@ -39,7 +39,7 @@ function Header({ updateVisibleAuth }: HeaderProps) {
   return (
     <div
       id="lp-header"
-      className={`w-full flex justify-around items-center py-3 mb-1 shadow bg-white fixed duration-1000 left-0 ${
+      className={`w-full flex justify-around z-10 items-center py-3 mb-1 shadow bg-white fixed duration-1000 left-0 ${
         isDown ? '-top-32' : 'top-0'
       }`}
     >

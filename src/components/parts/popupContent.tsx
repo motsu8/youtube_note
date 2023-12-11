@@ -1,3 +1,5 @@
+'use client';
+
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useRef } from 'react';
 
@@ -34,7 +36,7 @@ function PopupContent({
   const createClassStr = (strList: string[]) => strList.join(' ');
 
   return visible ? (
-    <div className="w-full h-full fixed z-10 left-0 top-0" ref={modalRef}>
+    <div className="w-full h-full fixed z-20 left-0 top-0" ref={modalRef}>
       <div className="w-full h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         <button
           type="button"
