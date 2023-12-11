@@ -1,26 +1,41 @@
-import { useRef, useEffect, ReactNode } from "react";
-import scrollReveal from "scrollreveal";
+import { useRef, useEffect, ReactNode } from 'react';
+import scrollReveal from 'scrollreveal';
 
-interface ScrollRevealContainerProps {
-  children: ReactNode
-  className: string
-}
+import { DEFAULT_DELAY } from '@/constants/lp';
 
-export default function ScrollRevealContainer ({children, className}: ScrollRevealContainerProps) {
+type ScrollRevealContainerProps = {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+};
+
+export default function ScrollRevealContainer({
+  children,
+  className,
+  delay,
+}: ScrollRevealContainerProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (sectionRef.current)
       scrollReveal().reveal(sectionRef.current, {
         reset: true,
-        delay: 500,
-        duration: 800,
+        delay,
+        duration: 1000,
         opacity: 0,
         origin: 'top',
-        distance: "20px"
+        distance: '20px',
       });
   }, [sectionRef]);
 
-  return <section className={className} ref={sectionRef}>{children}</section>;
-};
+  return (
+    <section className={className} ref={sectionRef}>
+      {children}
+    </section>
+  );
+}
 
+ScrollRevealContainer.defaultProps = {
+  className: '',
+  delay: DEFAULT_DELAY,
+};

@@ -31,3 +31,4 @@ export const LP_NOTE_CARD = [
 export const AUTH_SIGN_UP = 'signUp';
 export const AUTH_SIGN_IN = 'signIn';
 export const AUTH_CLOSE = '';
+export const DEFAULT_DELAY = 400;

@@ -1,7 +1,11 @@
 import Image from 'next/image';
 import React from 'react';
 
-import type { NoteCard } from '@/types/lp';
+type NoteCard = {
+  title: string;
+  contents: string;
+  url: string;
+};
 
 function NoteCard({ title, contents, url }: NoteCard) {
   return (
