@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import AuthForm from '@/components/authForm';
+import DatabaseSection from '@/components/parts/LP/databaseSection';
 import EntrySection from '@/components/parts/LP/entrySection';
 import Header from '@/components/parts/LP/header';
 import NoteSection from '@/components/parts/LP/noteSection';
@@ -17,7 +18,6 @@ import {
   AUTH_SIGN_UP,
   ContentObject,
   LP_AUTH,
-  LP_DATABASE,
 } from '@/constants/lp';
 
 import { getSession } from './api/supabase';
@@ -54,18 +54,11 @@ export default function Landing() {
         <PlaylistSection />
       </ScrollRevealContainer>
 
-      <div className="w-full h-3/4 bg-base">
-        <NoteSection />
-      </div>
+      <NoteSection />
 
-      {/* データベース */}
-      <div>
-        {LP_DATABASE.map(({ key, content, className }: ContentObject) => (
-          <p key={key} className={className}>
-            {content}
-          </p>
-        ))}
-      </div>
+      <ScrollRevealContainer>
+        <DatabaseSection />
+      </ScrollRevealContainer>
 
       {/* 認証 */}
       <div>
