@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import AuthForm from '@/components/authForm';
+import AuthSection from '@/components/parts/LP/authSection';
 import DatabaseSection from '@/components/parts/LP/databaseSection';
 import EntrySection from '@/components/parts/LP/entrySection';
 import Header from '@/components/parts/LP/header';
@@ -12,13 +13,7 @@ import PlaylistSection from '@/components/parts/LP/playlistSection';
 import TitleSection from '@/components/parts/LP/titleSection';
 import PopupContent from '@/components/parts/popupContent';
 import ScrollRevealContainer from '@/components/parts/scrollRevealContainer';
-import {
-  AUTH_CLOSE,
-  AUTH_SIGN_IN,
-  AUTH_SIGN_UP,
-  ContentObject,
-  LP_AUTH,
-} from '@/constants/lp';
+import { AUTH_CLOSE, AUTH_SIGN_IN, AUTH_SIGN_UP } from '@/constants/lp';
 
 import { getSession } from './api/supabase';
 
@@ -60,14 +55,9 @@ export default function Landing() {
         <DatabaseSection />
       </ScrollRevealContainer>
 
-      {/* 認証 */}
-      <div>
-        {LP_AUTH.map(({ key, content, className }: ContentObject) => (
-          <p key={key} className={className}>
-            {content}
-          </p>
-        ))}
-      </div>
+      <ScrollRevealContainer>
+        <AuthSection />
+      </ScrollRevealContainer>
 
       <div className="w-full bg-main">
         <ScrollRevealContainer className="w-full py-20 space-y-10 flex flex-col justify-center items-center shadow-sm h-full">
