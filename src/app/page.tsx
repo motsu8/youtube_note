@@ -11,7 +11,14 @@ import PlaylistSection from '@/components/parts/LP/playlistSection';
 import TitleSection from '@/components/parts/LP/titleSection';
 import PopupContent from '@/components/parts/popupContent';
 import ScrollRevealContainer from '@/components/parts/scrollRevealContainer';
-import { AUTH_CLOSE, AUTH_SIGN_IN, AUTH_SIGN_UP } from '@/constants/lp';
+import {
+  AUTH_CLOSE,
+  AUTH_SIGN_IN,
+  AUTH_SIGN_UP,
+  ContentObject,
+  LP_AUTH,
+  LP_DATABASE,
+} from '@/constants/lp';
 
 import { getSession } from './api/supabase';
 
@@ -49,6 +56,24 @@ export default function Landing() {
 
       <div className="w-full h-3/4 bg-base">
         <NoteSection />
+      </div>
+
+      {/* データベース */}
+      <div>
+        {LP_DATABASE.map(({ key, content, className }: ContentObject) => (
+          <p key={key} className={className}>
+            {content}
+          </p>
+        ))}
+      </div>
+
+      {/* 認証 */}
+      <div>
+        {LP_AUTH.map(({ key, content, className }: ContentObject) => (
+          <p key={key} className={className}>
+            {content}
+          </p>
+        ))}
       </div>
 
       <div className="w-full bg-main">

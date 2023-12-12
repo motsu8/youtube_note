@@ -1,12 +1,18 @@
 import React from 'react';
 
+import { ContentObject, LP_PLAYLIST } from '@/constants/lp';
+
 function PlaylistSection() {
   return (
     <div
       id="section-playlist"
       className="w-full flex flex-col justify-center items-center space-y-10 py-24"
     >
-      <p className="text-3xl">YouTube動画のURLで追加・検索</p>
+      {LP_PLAYLIST.map(({ key, content, className }: ContentObject) => (
+        <p key={key} className={className}>
+          {content}
+        </p>
+      ))}
       <video
         controls
         muted
