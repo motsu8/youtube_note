@@ -30,7 +30,9 @@ function Header({ updateVisibleAuth }: HeaderProps) {
     scrollPosition = window.scrollY;
   };
 
-  // スクロールイベント
+  /**
+   * スクロールイベント
+   */
   useEffect(() => {
     window.addEventListener('scroll', scrollFnc);
     return () => window.removeEventListener('scroll', scrollFnc);

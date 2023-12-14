@@ -11,7 +11,7 @@ function NoteSection() {
   return (
     <div
       id="section-note"
-      className="w-full h-full py-14 space-y-10 flex flex-col justify-center items-center shadow-sm"
+      className="w-full h-3/4 bg-base py-14 space-y-10 flex flex-col justify-center items-center shadow-sm"
     >
       <ScrollRevealContainer>
         <p className="text-3xl text-white">エンジニアライクなノートを提供</p>

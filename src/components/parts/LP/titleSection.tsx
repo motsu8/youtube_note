@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 
 import { BTN_ACCENT } from '@/constants/buttonClass';
-import { AUTH_SIGN_UP } from '@/constants/lp';
+import { AUTH_SIGN_UP, ContentObject, LP_TITLE } from '@/constants/lp';
 
 import Button from '../button';
 
@@ -20,12 +20,13 @@ function TitleSection({ visibleFnc }: TitleSectionProps) {
         className="w-full h-full absolute flex flex-col items-start justify-start px-12 lg:px-48 py-32 xl:justify-start xl:items-start"
       >
         <div className="space-y-8">
-          <p className="text-6xl">エンジニア志向ノート学習アプリ</p>
-          <p className="w-96">
-            YouTube動画を見ながら、マークダウンエディタでノートを取って学習することができます。
-          </p>
+          {LP_TITLE.map(({ key, content, className }: ContentObject) => (
+            <p key={key} className={className}>
+              {content}
+            </p>
+          ))}
           <Button
-            title="新規登録"
+            title="今すぐ始める"
             className={BTN_ACCENT}
             setClickHandler={() => visibleFnc(AUTH_SIGN_UP)}
           />

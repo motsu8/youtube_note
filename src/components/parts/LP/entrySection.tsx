@@ -1,25 +1,29 @@
-import React from 'react'
+import React from 'react';
 
-import { BTN_ACCENT } from '@/constants/buttonClass'
-import { AUTH_SIGN_UP } from '@/constants/lp'
+import { BTN_ACCENT } from '@/constants/buttonClass';
+import { AUTH_SIGN_UP, ContentObject, LP_ENTRY } from '@/constants/lp';
 
-import Button from '../button'
+import Button from '../button';
 
 interface EntrySectionProps {
-  visibleFnc: (str: string) => void
+  visibleFnc: (str: string) => void;
 }
 
 function EntrySection({ visibleFnc }: EntrySectionProps) {
   return (
-    <>
-      <p className="text-3xl">無料で始める</p>
+    <div className="w-3/4 flex flex-col justify-center items-center space-y-5">
+      {LP_ENTRY.map(({ key, content, className }: ContentObject) => (
+        <p key={key} className={className}>
+          {content}
+        </p>
+      ))}
       <Button
-        title="新規登録"
+        title="今すぐ始める"
         className={BTN_ACCENT}
         setClickHandler={() => visibleFnc(AUTH_SIGN_UP)}
       />
-    </>
-  )
+    </div>
+  );
 }
 
-export default EntrySection
+export default EntrySection;

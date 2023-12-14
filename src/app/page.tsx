@@ -4,6 +4,8 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import AuthForm from '@/components/authForm';
+import AuthSection from '@/components/parts/LP/authSection';
+import DatabaseSection from '@/components/parts/LP/databaseSection';
 import EntrySection from '@/components/parts/LP/entrySection';
 import Header from '@/components/parts/LP/header';
 import NoteSection from '@/components/parts/LP/noteSection';
@@ -43,15 +45,15 @@ export default function Landing() {
         <TitleSection visibleFnc={updateVisibleAuth} />
       </div>
 
-      <ScrollRevealContainer>
-        <PlaylistSection />
-      </ScrollRevealContainer>
+      <PlaylistSection />
 
-      <div className="w-full h-3/4 bg-base">
-        <NoteSection />
-      </div>
+      <NoteSection />
 
-      <div className="w-full bg-main">
+      <DatabaseSection />
+
+      <AuthSection />
+
+      <div className="w-full bg-base text-white">
         <ScrollRevealContainer className="w-full py-20 space-y-10 flex flex-col justify-center items-center shadow-sm h-full">
           <EntrySection visibleFnc={updateVisibleAuth} />
         </ScrollRevealContainer>
