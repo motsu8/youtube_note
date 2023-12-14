@@ -45,19 +45,13 @@ export default function Landing() {
         <TitleSection visibleFnc={updateVisibleAuth} />
       </div>
 
-      <ScrollRevealContainer>
-        <PlaylistSection />
-      </ScrollRevealContainer>
+      <PlaylistSection />
 
       <NoteSection />
 
-      <ScrollRevealContainer>
-        <DatabaseSection />
-      </ScrollRevealContainer>
+      <DatabaseSection />
 
-      <ScrollRevealContainer>
-        <AuthSection />
-      </ScrollRevealContainer>
+      <AuthSection />
 
       <div className="w-full bg-main">
         <ScrollRevealContainer className="w-full py-20 space-y-10 flex flex-col justify-center items-center shadow-sm h-full">
