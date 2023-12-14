@@ -53,7 +53,7 @@ export default function Landing() {
 
       <AuthSection />
 
-      <div className="w-full bg-main">
+      <div className="w-full bg-base text-white">
         <ScrollRevealContainer className="w-full py-20 space-y-10 flex flex-col justify-center items-center shadow-sm h-full">
           <EntrySection visibleFnc={updateVisibleAuth} />
         </ScrollRevealContainer>

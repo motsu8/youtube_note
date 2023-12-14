@@ -6,15 +6,15 @@ import ScrollRevealContainer from '../scrollRevealContainer';
 
 function AuthSection() {
   return (
-    <ScrollRevealContainer>
-      <div>
+    <div className="w-3/4 h-3/4 flex flex-col justify-start items-start">
+      <ScrollRevealContainer>
         {LP_AUTH.map(({ key, content, className }: ContentObject) => (
           <p key={key} className={className}>
             {content}
           </p>
         ))}
-      </div>
-    </ScrollRevealContainer>
+      </ScrollRevealContainer>
+    </div>
   );
 }
 

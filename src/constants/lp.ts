@@ -93,7 +93,7 @@ export const LP_AUTH = [
 export const LP_ENTRY = [
   {
     key: 1,
-    content: '学びの未知なる冒険へ',
+    content: '未知なる学びの冒険へ',
     className: 'text-3xl',
   },
   {
