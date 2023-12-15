@@ -33,6 +33,7 @@ const config = {
     },
     'right-3',
     'top-3',
+    'text-5xl',
     'hover:bg-neutral-100',
     'hover:shadow',
   ],

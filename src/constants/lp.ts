@@ -38,7 +38,7 @@ export const LP_TITLE = [
   {
     key: 1,
     content: 'エンジニア志向ノートアプリ',
-    className: 'text-6xl',
+    className: 'text-5xl',
   },
   {
     key: 2,

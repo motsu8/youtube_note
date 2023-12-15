@@ -21,9 +21,9 @@ function NoteCard({ title, contents, url }: NoteCard) {
           borderTopLeftRadius: 32,
         }}
       />
-      <div className="w-full flex flex-col justify-start px-5 space-y-3">
+      <div className="w-full flex flex-col justify-start px-5 space-y-3 pb-3">
         <p className="text-xl font-bold">{title}</p>
-        <p>{contents}</p>
+        <p className='h-12'>{contents}</p>
       </div>
     </div>
   );
