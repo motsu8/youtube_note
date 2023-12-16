@@ -45,11 +45,11 @@ function AuthSection() {
           <FontAwesomeIcon
             icon={faArrowRightLong}
             size="10x"
-            className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2"
+            className="absolute top-1/2 -translate-y-1/2"
           />
         </ScrollRevealContainer>
 
-        <div className="w-[200px] absolute left-full -translate-x-1/2 top-1/2 -translate-y-1/2">
+        <div className="w-[200px] absolute left-full top-1/2 -translate-y-1/2">
           <Image
             src="/icon.png"
             alt="YouTube Note icon"
