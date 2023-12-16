@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 
+import Parallax from '@/components/parallax';
 import { BTN_ACCENT } from '@/constants/buttonClass';
 import { AUTH_SIGN_UP, ContentObject, LP_TITLE } from '@/constants/lp';
 
@@ -33,7 +34,10 @@ function TitleSection({ visibleFnc }: TitleSectionProps) {
         </div>
       </div>
 
-      <div className="px-10 absolute top-2/3 -translate-y-1/2 lg:left-1/2 lg:-translate-x-1/3">
+      <Parallax
+        speed={-1}
+        className="px-10 absolute top-2/3 -translate-y-1/2 lg:left-1/2 lg:-translate-x-1/3"
+      >
         <Image
           src="/YouTube_Note.gif"
           alt="サービスイメージ"
@@ -48,7 +52,7 @@ function TitleSection({ visibleFnc }: TitleSectionProps) {
             objectFit: 'contain',
           }}
         />
-      </div>
+      </Parallax>
     </>
   );
 }
