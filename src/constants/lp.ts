@@ -38,7 +38,7 @@ export const LP_TITLE = [
   {
     key: 1,
     content: 'エンジニア志向ノートアプリ',
-    className: 'text-6xl',
+    className: 'text-5xl',
   },
   {
     key: 2,
@@ -108,3 +108,5 @@ export const AUTH_SIGN_UP = 'signUp';
 export const AUTH_SIGN_IN = 'signIn';
 export const AUTH_CLOSE = '';
 export const DEFAULT_DELAY = 200;
+export const DEFAULT_DURATION = 1000;
+export const DEFAULT_MOVE_TO = 'top';

@@ -17,7 +17,7 @@ function TitleSection({ visibleFnc }: TitleSectionProps) {
 
       <div
         id="section-title"
-        className="w-full h-full absolute flex flex-col items-start justify-start px-12 lg:px-48 py-32 xl:justify-start xl:items-start"
+        className="w-full h-full absolute flex flex-col items-start justify-start px-12 lg:px-48 py-28 xl:justify-start xl:items-start"
       >
         <div className="space-y-8">
           {LP_TITLE.map(({ key, content, className }: ContentObject) => (
@@ -32,7 +32,7 @@ function TitleSection({ visibleFnc }: TitleSectionProps) {
           />
         </div>
       </div>
-      <div className="px-10 absolute top-2/3 -translate-y-1/2 lg:-translate-y-2/3 lg:left-1/2 lg:-translate-x-1/3">
+      <div className="px-10 absolute top-2/3 -translate-y-1/2 lg:left-1/2 lg:-translate-x-1/3">
         <Image
           src="/YouTube_Note.gif"
           alt="サービスイメージ"

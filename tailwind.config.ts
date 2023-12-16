@@ -17,7 +17,7 @@ const config = {
         '9/10': '90%',
       },
       colors: {
-        main: '#FFFAF6',
+        main: '#FFFAF2',
         base: '#BD3246',
         accent: '#E0822A',
         'accent-dark': '#B86B23',
@@ -33,6 +33,7 @@ const config = {
     },
     'right-3',
     'top-3',
+    'text-5xl',
     'hover:bg-neutral-100',
     'hover:shadow',
   ],

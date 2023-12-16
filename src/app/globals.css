@@ -2,13 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+:root{
+  --main: #FFF1DC;
+  --base: #BD3246;
+  --accent: #E0822A;
+}
+
 body {
   font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN',
     'Hiragino Sans', Meiryo, sans-serif;
 }
 
 .bg-wave{
-  background-color: #FFFAF6;
+  background-color: var(--main);
   clip-path: ellipse(100% 80% at 0% 0%);
   shape-outside: ellipse(100% 50% at 0% 0%);
+}
+
+.bg-wave-reverse{
+  background-color: var(--main);
+  clip-path: ellipse(100% 80% at 100% 100%);
+  shape-outside: ellipse(100% 80% at 100% 100%);
 }

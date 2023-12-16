@@ -1,8 +1,10 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
+import 'react-toastify/dist/ReactToastify.css';
 import './markdown.css';
 
 import Library from '@/app/api/library';
@@ -94,9 +96,11 @@ export default function Page({ params }: { params: { slug: string } }) {
     router.push('/note');
   };
 
+  const saveToast = () => toast('保存しました!');
+
   const saveContent = () => {
     library?.document.updateContent(currentFile.id, content);
-    alert('save');
+    saveToast();
   };
 
   const updateContent = (str: string) => {
@@ -115,7 +119,9 @@ export default function Page({ params }: { params: { slug: string } }) {
   const saveClose = () => {
     setPageJump(false);
     saveContent();
-    jumpLink();
+    setTimeout(() => {
+      jumpLink();
+    }, 2500);
   };
 
   const updateMarkdownString = () => {
@@ -153,6 +159,11 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   return (
     <div className="w-full h-full relative flex flex-col items-center justify-start px-5">
+      <ToastContainer
+        progressClassName="bg-base"
+        autoClose={1000}
+        theme="colored"
+      />
       <PopupContent
         visible={pageJump}
         closeFnc={closePopUp}
