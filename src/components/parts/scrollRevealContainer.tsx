@@ -1,17 +1,25 @@
 import { useRef, useEffect, ReactNode } from 'react';
 
-import { DEFAULT_DELAY } from '@/constants/lp';
+import {
+  DEFAULT_DELAY,
+  DEFAULT_MOVE_TO,
+  DEFAULT_DURATION,
+} from '@/constants/lp';
 
 interface ScrollRevealContainerProps {
   children: ReactNode;
   className?: string;
   delay?: number;
+  moveTo?: string;
+  duration?: number;
 }
 
 export default function ScrollRevealContainer({
   children,
   className = '',
   delay = DEFAULT_DELAY,
+  moveTo = DEFAULT_MOVE_TO,
+  duration = DEFAULT_DURATION,
 }: ScrollRevealContainerProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -22,9 +30,9 @@ export default function ScrollRevealContainer({
         scrollReveal().reveal(sectionRef.current, {
           reset: true,
           delay,
-          duration: 1000,
+          duration,
           opacity: 0,
-          origin: 'top',
+          origin: moveTo,
           distance: '20px',
         });
       }

@@ -17,7 +17,7 @@ const config = {
         '9/10': '90%',
       },
       colors: {
-        main: '#FFFAF6',
+        main: '#FFF1DC',
         base: '#BD3246',
         accent: '#E0822A',
         'accent-dark': '#B86B23',
