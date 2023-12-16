@@ -2,6 +2,7 @@
 
 import React from 'react';
 
+import Parallax from '@/components/parallax';
 import { DEFAULT_DELAY, LP_NOTE_CARD } from '@/constants/lp';
 
 import NoteCard from './noteCard';
@@ -11,11 +12,11 @@ function NoteSection() {
   return (
     <div
       id="section-note"
-      className="w-full h-3/4 bg-base py-14 space-y-10 flex flex-col justify-center items-center shadow-sm"
+      className="w-full bg-base py-28 flex flex-col justify-center items-center shadow-sm"
     >
-      <ScrollRevealContainer>
+      <Parallax speed={-1} className="h-min pt-20">
         <p className="text-3xl text-white">エンジニアライクなノートを提供</p>
-      </ScrollRevealContainer>
+      </Parallax>
 
       <div className="w-3/4 grid grid-cols-2 gap-10">
         {LP_NOTE_CARD.map((ele) => {

@@ -18,12 +18,12 @@ export const LP_TABS = [
   {
     key: 3,
     title: 'データベース',
-    id: '#section-note',
+    id: '#section-database',
   },
   {
     key: 4,
     title: '認証',
-    id: '#section-note',
+    id: '#section-auth',
   },
 ];
 

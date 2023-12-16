@@ -1,5 +1,6 @@
 'use client';
 
+import { useLenis } from '@studio-freight/react-lenis';
 import React, { useEffect, useState } from 'react';
 
 import { BTN_ACCENT, BTN_DEFAULT } from '@/constants/buttonClass';
@@ -15,6 +16,13 @@ interface HeaderProps {
 function Header({ updateVisibleAuth }: HeaderProps) {
   const [isDown, setIsDown] = useState(false);
   let scrollPosition = 0;
+
+  const lenis = useLenis();
+
+  /**
+   * アンカージャンプ
+   */
+  const anchorJump = (id: string) => lenis.scrollTo(id, { offset: 0 });
 
   /**
    * 上下判定
@@ -52,7 +60,7 @@ function Header({ updateVisibleAuth }: HeaderProps) {
             {LP_TABS.map((ele) => {
               return (
                 <li key={ele.key}>
-                  <button type="button" onClick={() => alert('click')}>
+                  <button type="button" onClick={() => anchorJump(ele.id)}>
                     {ele.title}
                   </button>
                 </li>

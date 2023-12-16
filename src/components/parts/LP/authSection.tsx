@@ -11,7 +11,10 @@ import ScrollRevealContainer from '../scrollRevealContainer';
 
 function AuthSection() {
   return (
-    <div className="w-full h-screen flex flex-col justify-center items-center relative">
+    <div
+      id="section-auth"
+      className="w-full h-screen flex flex-col justify-center items-center relative"
+    >
       <div className="w-full h-full bg-wave-reverse" />
       <Parallax
         speed={2}

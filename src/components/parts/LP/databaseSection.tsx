@@ -8,8 +8,11 @@ import ScrollRevealContainer from '../scrollRevealContainer';
 
 function DatabaseSection() {
   return (
-    <div className="w-3/4 h-screen flex flex-col justify-center items-center py-10 relative">
-      <ScrollRevealContainer className="w-full h-full flex flex-col justify-start items-center py-16">
+    <div
+      id="section-database"
+      className="w-3/4 h-screen flex flex-col justify-center items-center py-10 relative"
+    >
+      <ScrollRevealContainer className="w-full h-5/6 flex flex-col justify-start items-center py-16">
         <div className="space-y-5">
           {LP_DATABASE.map(({ key, content, className }: ContentObject) => (
             <p key={key} className={className}>
