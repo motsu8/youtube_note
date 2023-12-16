@@ -14,16 +14,12 @@ import TitleSection from '@/components/parts/LP/titleSection';
 import PopupContent from '@/components/parts/popupContent';
 import ScrollRevealContainer from '@/components/parts/scrollRevealContainer';
 import { AUTH_CLOSE, AUTH_SIGN_IN, AUTH_SIGN_UP } from '@/constants/lp';
-import useSmoothScroll from '@/hooks/useSmoothScroll';
 
 import { getSession } from './api/supabase';
 
 export default function Landing() {
   const router = useRouter();
   const [visibleAuth, setVisibleAuth] = useState(AUTH_CLOSE);
-
-  // smooth scroll
-  useSmoothScroll();
 
   useEffect(() => {
     // セッション取得

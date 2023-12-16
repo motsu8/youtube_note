@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 
 import { BTN_ACCENT, BTN_DEFAULT } from '@/constants/buttonClass';
 import { AUTH_SIGN_IN, AUTH_SIGN_UP, LP_TABS } from '@/constants/lp';
-import useSmoothScroll from '@/hooks/useSmoothScroll';
 
 import Button from '../button';
 import Title from '../title';
@@ -18,11 +17,6 @@ function Header({ updateVisibleAuth }: HeaderProps) {
   let scrollPosition = 0;
 
   /**
-   * smooth scroll
-   */
-  const lenis = useSmoothScroll();
-
-  /**
    * 上下判定
    * @returns boolean
    */
@@ -34,13 +28,6 @@ function Header({ updateVisibleAuth }: HeaderProps) {
   const scrollFnc = () => {
     setIsDown(isDownScroll());
     scrollPosition = window.scrollY;
-  };
-
-  /**
-   * アンカージャンプ
-   */
-  const anchorJump = (anchor: string) => {
-    lenis!.scrollTo(anchor);
   };
 
   /**
@@ -65,7 +52,7 @@ function Header({ updateVisibleAuth }: HeaderProps) {
             {LP_TABS.map((ele) => {
               return (
                 <li key={ele.key}>
-                  <button type="button" onClick={() => anchorJump(ele.id)}>
+                  <button type="button" onClick={() => alert('click')}>
                     {ele.title}
                   </button>
                 </li>
