@@ -38,7 +38,7 @@ function AuthSection() {
 
         <ScrollRevealContainer
           className="w-[200px] absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2"
-          delay={500}
+          delay={400}
           duration={1500}
           moveTo="left"
         >
