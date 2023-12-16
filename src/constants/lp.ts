@@ -12,7 +12,17 @@ export const LP_TABS = [
   },
   {
     key: 2,
-    title: 'ノート',
+    title: 'エディタ',
+    id: '#section-note',
+  },
+  {
+    key: 3,
+    title: 'データベース',
+    id: '#section-note',
+  },
+  {
+    key: 4,
+    title: '認証',
     id: '#section-note',
   },
 ];

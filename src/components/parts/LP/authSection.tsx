@@ -15,7 +15,7 @@ function AuthSection() {
       <div className="w-full h-full bg-wave-reverse" />
       <Parallax
         speed={2}
-        className="w-3/4 h-3/4 flex flex-col justify-start items-start absolute top-1/5 left-1/5"
+        className="w-3/4 h-5/6 flex flex-col justify-start items-start absolute left-1/5"
       >
         <div className="space-y-5">
           {LP_AUTH.map(({ key, content, className }: ContentObject) => (
