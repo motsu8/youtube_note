@@ -12,22 +12,19 @@ function NoteSection() {
   return (
     <div
       id="section-note"
-      className="w-full bg-base py-28 flex flex-col justify-center items-center shadow-sm"
+      className="w-full bg-base py-20 my-10 space-y-24 flex flex-col justify-center items-center shadow-sm"
     >
-      <Parallax speed={-1} className="h-min pt-20">
+      <ScrollRevealContainer delay={DEFAULT_DELAY}>
         <p className="text-3xl text-white">エンジニアライクなノートを提供</p>
-      </Parallax>
+      </ScrollRevealContainer>
 
-      <div className="w-3/4 grid grid-cols-2 gap-10">
+      <div className="w-3/4 grid grid-cols-1 lg:grid-cols-2 gap-10 pt-10">
         {LP_NOTE_CARD.map((ele) => {
           const { key, ...props } = ele;
           return (
-            <ScrollRevealContainer
-              key={key}
-              delay={DEFAULT_DELAY + key * DEFAULT_DELAY}
-            >
+            <Parallax key={key} speed={-1}>
               <NoteCard {...props} />
-            </ScrollRevealContainer>
+            </Parallax>
           );
         })}
       </div>

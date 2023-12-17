@@ -5,15 +5,21 @@ import { useEffect, useState } from 'react';
 
 import AuthForm from '@/components/authForm';
 import AuthSection from '@/components/parts/LP/authSection';
-import DatabaseSection from '@/components/parts/LP/databaseSection';
+import CenterSection from '@/components/parts/LP/centerSection';
 import EntrySection from '@/components/parts/LP/entrySection';
 import Header from '@/components/parts/LP/header';
 import NoteSection from '@/components/parts/LP/noteSection';
-import PlaylistSection from '@/components/parts/LP/playlistSection';
 import TitleSection from '@/components/parts/LP/titleSection';
 import PopupContent from '@/components/parts/popupContent';
 import ScrollRevealContainer from '@/components/parts/scrollRevealContainer';
-import { AUTH_CLOSE, AUTH_SIGN_IN, AUTH_SIGN_UP } from '@/constants/lp';
+import {
+  AUTH_CLOSE,
+  AUTH_SIGN_IN,
+  AUTH_SIGN_UP,
+  IMAGE,
+  LP_DATABASE,
+  LP_PLAYLIST,
+} from '@/constants/lp';
 
 import { getSession } from './api/supabase';
 
@@ -41,15 +47,23 @@ export default function Landing() {
     <div className="relative flex flex-col items-center">
       <Header updateVisibleAuth={updateVisibleAuth} />
 
-      <div className="w-full h-screen flex justify-center relative">
+      <div className="w-full h-[800px] flex justify-center relative">
         <TitleSection visibleFnc={updateVisibleAuth} />
       </div>
 
-      <PlaylistSection />
+      <CenterSection
+        id="section-playlist"
+        textObj={LP_PLAYLIST}
+        imgObj={IMAGE.playlist}
+      />
 
       <NoteSection />
 
-      <DatabaseSection />
+      <CenterSection
+        id="section-database"
+        textObj={LP_DATABASE}
+        imgObj={IMAGE.database}
+      />
 
       <AuthSection />
 

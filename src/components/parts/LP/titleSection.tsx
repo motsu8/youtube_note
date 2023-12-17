@@ -18,7 +18,7 @@ function TitleSection({ visibleFnc }: TitleSectionProps) {
 
       <div
         id="section-title"
-        className="w-full h-full absolute flex flex-col items-start justify-start px-12 lg:px-48 py-28 xl:justify-start xl:items-start"
+        className="w-full lg:h-full absolute flex flex-col items-start justify-start px-12 lg:px-48 py-28 xl:justify-start xl:items-start"
       >
         <div className="space-y-8">
           {LP_TITLE.map(({ key, content, className }: ContentObject) => (
@@ -35,22 +35,15 @@ function TitleSection({ visibleFnc }: TitleSectionProps) {
       </div>
 
       <Parallax
-        speed={-1}
-        className="px-10 absolute top-2/3 -translate-y-1/2 lg:left-1/2 lg:-translate-x-1/3"
+        speed={1}
+        className="absolute aspect-[2/1] w-[300px] sm:w-[500px] md:w-[700px] lg:w-[800px] top-2/3 -translate-y-1/2 xl:top-1/2 xl:-translate-y-1/2 xl:left-1/3"
+        childClass="relative w-full h-full"
       >
         <Image
           src="/YouTube_Note.gif"
           alt="サービスイメージ"
-          className="skew-y-[5deg]"
-          height={350}
-          width={900}
-          style={{
-            borderTopWidth: 5,
-            borderRightWidth: 7,
-            borderRadius: 10,
-            boxShadow: '10px 15px 15px #888888',
-            objectFit: 'contain',
-          }}
+          className="skew-y-[5deg] border-t-4 border-r-8 w-full h-full rounded-lg border-solid shadow-lg object-contain border-neutral-200"
+          fill
         />
       </Parallax>
     </>

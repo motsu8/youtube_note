@@ -1,12 +1,8 @@
 'use client';
 
-import { useLenis } from '@studio-freight/react-lenis';
 import React, { useEffect, useState } from 'react';
 
-import { BTN_ACCENT, BTN_DEFAULT } from '@/constants/buttonClass';
-import { AUTH_SIGN_IN, AUTH_SIGN_UP, LP_TABS } from '@/constants/lp';
-
-import Button from '../button';
+import Menu from './menu';
 import Title from '../title';
 
 interface HeaderProps {
@@ -16,13 +12,6 @@ interface HeaderProps {
 function Header({ updateVisibleAuth }: HeaderProps) {
   const [isDown, setIsDown] = useState(false);
   let scrollPosition = 0;
-
-  const lenis = useLenis();
-
-  /**
-   * アンカージャンプ
-   */
-  const anchorJump = (id: string) => lenis.scrollTo(id, { offset: 0 });
 
   /**
    * 上下判定
@@ -53,33 +42,9 @@ function Header({ updateVisibleAuth }: HeaderProps) {
         isDown ? '-top-32' : 'top-0'
       }`}
     >
-      <div className="w-3/4 flex justify-between">
-        <div className="flex space-x-3 items-center">
-          <Title />
-          <ul className="pl-8 flex text-black font-bold space-x-4">
-            {LP_TABS.map((ele) => {
-              return (
-                <li key={ele.key}>
-                  <button type="button" onClick={() => anchorJump(ele.id)}>
-                    {ele.title}
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-        <div className="auth">
-          <Button
-            title="ログイン"
-            className={BTN_DEFAULT}
-            setClickHandler={() => updateVisibleAuth(AUTH_SIGN_IN)}
-          />
-          <Button
-            title="新規登録"
-            className={BTN_ACCENT}
-            setClickHandler={() => updateVisibleAuth(AUTH_SIGN_UP)}
-          />
-        </div>
+      <div className="w-full grid grid-cols-12 gap-4 px-8 lg:px-16 justify-between">
+        <Title className="flex space-x-3 items-center col-span-8 md:col-span-4 xl:col-span-2" />
+        <Menu updateVisibleAuth={updateVisibleAuth} />
       </div>
     </div>
   );

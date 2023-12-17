@@ -4,6 +4,22 @@ export interface ContentObject {
   className: string;
 }
 
+export interface ImageObject {
+  alt: string;
+  src: string;
+}
+
+export const IMAGE = {
+  playlist: {
+    alt: 'プレイリストのイメージ画像',
+    src: '/playlist.gif',
+  },
+  database: {
+    alt: 'データベースに保存',
+    src: '/save.gif',
+  },
+};
+
 export const LP_TABS = [
   {
     key: 1,
@@ -114,9 +130,27 @@ export const LP_ENTRY = [
   },
 ];
 
+/**
+ * キー
+ */
 export const AUTH_SIGN_UP = 'signUp';
 export const AUTH_SIGN_IN = 'signIn';
 export const AUTH_CLOSE = '';
 export const DEFAULT_DELAY = 200;
 export const DEFAULT_DURATION = 1000;
 export const DEFAULT_MOVE_TO = 'top';
+
+/**
+ * スタイルクラス
+ */
+export const PARALLAX_CHILD_CLASS = 'w-full h-full';
+export const PARALLAX_PARENT_TITLE_SIZE_CLASS =
+  'absolute lg:w-[700px] lg:h-[350px]';
+export const PARALLAX_PARENT_SIZE_CLASS =
+  'absolute aspect-[19/9] w-[700px] lg:w-[1000px]';
+export const PARALLAX_PARENT_TITLE_POSITION_CLASS =
+  'top-3/4 -translate-y-3/4 lg:top-1/2 lg:-translate-y-1/2 lg:left-1/3';
+export const PARALLAX_PARENT_CENTER_POSITION_CLASS =
+  'top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2';
+export const PARALLAX_IMAGE_CLASS =
+  'w-full h-full rounded-lg border-solid shadow-lg object-contain border-neutral-200';
