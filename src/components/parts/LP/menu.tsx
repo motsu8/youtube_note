@@ -81,7 +81,7 @@ function Menu({ updateVisibleAuth }: MenuProps) {
       <PopupContent
         visible={visibleMenu}
         height="h-1/2"
-        width="w-1/2"
+        width="w-3/4"
         closeFnc={closeMenu}
         closeBtn={false}
       >

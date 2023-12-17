@@ -17,7 +17,7 @@ function CenterSection({ id, textObj, imgObj }: CenterSectionProps) {
   return (
     <div
       id={id}
-      className="w-full h-[800px] py-20 flex flex-col justify-start items-center relative"
+      className="w-full h-[600px] md:h-[800px] pt-20 md:py-20 flex flex-col justify-start items-center relative"
     >
       <ScrollRevealContainer className="w-3/4 h-5/6 flex flex-col justify-start items-center space-y-10">
         {textObj.map(({ key, content, className }: ContentObject) => (
@@ -28,7 +28,7 @@ function CenterSection({ id, textObj, imgObj }: CenterSectionProps) {
       </ScrollRevealContainer>
       <Parallax
         speed={1}
-        className="absolute aspect-[19/9] w-[300px] sm:w-[600px] md:w-[700px] lg:w-[900px] xl:w-[1000px] top-1/2 -translate-y-1/3 lg:-translate-y-1/2 left-1/2 -translate-x-1/2"
+        className="absolute aspect-[19/9] w-[300px] sm:w-[600px] md:w-[700px] lg:w-[900px] xl:w-[1000px] top-1/2 -translate-y-1/4 lg:-translate-y-1/2 left-1/2 -translate-x-1/2"
         childClass="relative w-full h-full"
       >
         <Image

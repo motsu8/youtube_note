@@ -9,7 +9,7 @@ type NoteCard = {
 
 function NoteCard({ title, contents, url }: NoteCard) {
   return (
-    <div className="w-full flex flex-col justify-center items-center bg-main pb-10 space-y-5 rounded-tl-[32px] rounded-br-[32px] overflow-hidden">
+    <div className="w-full flex flex-col justify-center items-center bg-main pb-5 space-y-5 rounded-tl-[32px] rounded-br-[32px] overflow-hidden">
       <Image
         src={url}
         alt={title}
@@ -24,7 +24,7 @@ function NoteCard({ title, contents, url }: NoteCard) {
       />
       <div className="w-full flex flex-col justify-start px-5 space-y-3 pb-3">
         <p className="text-xl font-bold">{title}</p>
-        <p className="h-16 lg:h-12">{contents}</p>
+        <p className="h-fit">{contents}</p>
       </div>
     </div>
   );

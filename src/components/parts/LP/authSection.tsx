@@ -29,7 +29,7 @@ function AuthSection() {
         </div>
       </Parallax>
 
-      <div className="flex w-full lg:w-8/12 h-[20rem] absolute bottom-20 px-20">
+      <div className="flex w-full md:w-8/12 lg:w-6/12 h-[20rem] absolute bottom-20 px-20">
         <div className="aspect-square w-[200px] md:w-[300px] absolute left-16 lg:-translate-x-1/2 top-1/2 -translate-y-1/2">
           <div className="aspect-square absolute w-[80px] md:w-[150px] top-0 left-1/2">
             <Image src="/search.png" alt="google logo" fill />
