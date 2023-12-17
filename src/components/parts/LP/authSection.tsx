@@ -13,7 +13,7 @@ function AuthSection() {
   return (
     <div
       id="section-auth"
-      className="w-full h-screen flex flex-col justify-center items-center relative"
+      className="w-full h-[800px] flex flex-col justify-center items-center relative"
     >
       <div className="w-full h-full bg-wave-reverse" />
       <Parallax
@@ -29,8 +29,8 @@ function AuthSection() {
         </div>
       </Parallax>
 
-      <div className="absolute top-2/3 -translate-y-1/2 left-2/3 flex w-5/12 h-[20rem] -translate-x-1/2">
-        <div className="w-[300px] absolute left-0 -translate-x-1/2 top-1/2 -translate-y-1/2">
+      <div className="flex w-full lg:w-8/12 h-[20rem] absolute bottom-20 px-20">
+        <div className="w-[300px] absolute left-16 lg:-translate-x-1/2 top-1/2 -translate-y-1/2">
           <Image
             src="/search.png"
             alt="google logo"
@@ -46,23 +46,18 @@ function AuthSection() {
         </div>
 
         <ScrollRevealContainer
-          className="w-[200px] absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2"
-          delay={400}
+          className="w-[200px] h-[150px] absolute top-1/2 !-translate-y-1/2 left-2/3 !-translate-x-full lg:left-1/2 lg:!-translate-x-1/2 lg:top-1/2"
           duration={1500}
           moveTo="left"
         >
-          <FontAwesomeIcon
-            icon={faArrowRightLong}
-            size="10x"
-            className="absolute top-1/2 -translate-y-1/2"
-          />
+          <FontAwesomeIcon icon={faArrowRightLong} size="10x" />
         </ScrollRevealContainer>
 
-        <div className="w-[200px] absolute left-full -translate-x-1/2 top-1/2 -translate-y-1/2">
+        <div className="w-[200px] absolute right-0 lg:left-full lg:-translate-x-1/2 top-1/2 -translate-y-1/2">
           <Image
             src="/icon.png"
             alt="YouTube Note icon"
-            className="absolute left-0 -translate-x-1/2 top-1/2 -translate-y-1/2"
+            className="absolute left-0 lg:-translate-x-1/2 top-1/2 -translate-y-1/2"
             width={150}
             height={150}
           />

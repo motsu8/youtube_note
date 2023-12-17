@@ -31,9 +31,9 @@ export default function ScrollRevealContainer({
           reset: true,
           delay,
           duration,
-          opacity: 0,
           origin: moveTo,
           distance: '20px',
+          viewFactor: 0,
         });
       }
     };
