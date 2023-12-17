@@ -36,7 +36,7 @@ function TitleSection({ visibleFnc }: TitleSectionProps) {
 
       <Parallax
         speed={1}
-        className="absolute aspect-[2/1] w-[700px] top-2/3 -translate-y-1/2 lg:top-1/2 lg:-translate-y-1/2 lg:left-1/3"
+        className="absolute aspect-[2/1] w-[300px] sm:w-[500px] md:w-[700px] lg:w-[800px] top-2/3 -translate-y-1/2 xl:top-1/2 xl:-translate-y-1/2 xl:left-1/3"
         childClass="relative w-full h-full"
       >
         <Image

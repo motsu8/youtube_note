@@ -13,12 +13,14 @@ function PopupContent({
   height,
   width,
   closeFnc,
+  closeBtn = true,
 }: {
   visible: string | boolean;
   height: string;
   width: string;
   children: React.ReactNode;
   closeFnc: () => void;
+  closeBtn?: boolean;
 }) {
   const modalRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -49,13 +51,15 @@ function PopupContent({
             [height, width]
           )}`}
         >
-          <IconButton
-            icon={faXmark}
-            bgClass={TOP_RIGHT}
-            color="#bbbbbb"
-            iconClass="h-[20px]"
-            setClickHandler={() => closeFnc()}
-          />
+          {closeBtn ? (
+            <IconButton
+              icon={faXmark}
+              bgClass={TOP_RIGHT}
+              color="#bbbbbb"
+              iconClass="h-[20px]"
+              setClickHandler={() => closeFnc()}
+            />
+          ) : null}
           {children}
         </div>
       </div>

@@ -1,9 +1,13 @@
 import Image from 'next/image';
 import React from 'react';
 
-function Title() {
+interface Props {
+  className?: string;
+}
+
+function Title({ className }: Props) {
   return (
-    <div className="flex space-x-2 items-center font-mono">
+    <div className={className}>
       <Image
         src="/icon.png"
         alt="YouTube Note Icon"
@@ -11,7 +15,9 @@ function Title() {
         width={40}
         style={{ objectFit: 'contain' }}
       />
-      <p className="text-2xl font-extrabold align-middle">YouTube Note</p>
+      <p className="text-lg lg:text-2xl font-extrabold align-middle">
+        YouTube Note
+      </p>
     </div>
   );
 }

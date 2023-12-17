@@ -28,7 +28,7 @@ function CenterSection({ id, textObj, imgObj }: CenterSectionProps) {
       </ScrollRevealContainer>
       <Parallax
         speed={1}
-        className="absolute aspect-[19/9] w-[700px] lg:w-[1000px] top-1/2 -translate-y-1/3 lg:-translate-y-1/2 left-1/2 -translate-x-1/2"
+        className="absolute aspect-[19/9] w-[300px] sm:w-[600px] md:w-[700px] lg:w-[900px] xl:w-[1000px] top-1/2 -translate-y-1/3 lg:-translate-y-1/2 left-1/2 -translate-x-1/2"
         childClass="relative w-full h-full"
       >
         <Image

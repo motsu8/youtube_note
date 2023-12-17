@@ -18,7 +18,7 @@ function NoteSection() {
         <p className="text-3xl text-white">エンジニアライクなノートを提供</p>
       </ScrollRevealContainer>
 
-      <div className="w-3/4 grid grid-cols-2 gap-10 pt-10">
+      <div className="w-3/4 grid grid-cols-1 lg:grid-cols-2 gap-10 pt-10">
         {LP_NOTE_CARD.map((ele) => {
           const { key, ...props } = ele;
           return (
