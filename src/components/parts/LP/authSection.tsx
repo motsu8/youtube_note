@@ -13,7 +13,7 @@ function AuthSection() {
   return (
     <div
       id="section-auth"
-      className="w-full h-[800px] flex flex-col justify-center items-center relative"
+      className="w-full h-[600px] md:h-[800px] flex flex-col justify-center items-center relative"
     >
       <div className="w-full h-full bg-wave-reverse" />
       <Parallax
@@ -30,37 +30,29 @@ function AuthSection() {
       </Parallax>
 
       <div className="flex w-full lg:w-8/12 h-[20rem] absolute bottom-20 px-20">
-        <div className="w-[300px] absolute left-16 lg:-translate-x-1/2 top-1/2 -translate-y-1/2">
-          <Image
-            src="/search.png"
-            alt="google logo"
-            className="absolute right-0 bottom-0"
-            width={150}
-            height={150}
-          />
+        <div className="aspect-square w-[200px] md:w-[300px] absolute left-16 lg:-translate-x-1/2 top-1/2 -translate-y-1/2">
+          <div className="aspect-square absolute w-[80px] md:w-[150px] top-0 left-1/2">
+            <Image src="/search.png" alt="google logo" fill />
+          </div>
           <FontAwesomeIcon
             icon={faEnvelope}
-            size="10x"
-            className="absolute left-0 top-0"
+            className="text-[80px] md:text-[150px] absolute left-0 top-1/2"
           />
         </div>
 
         <ScrollRevealContainer
-          className="w-[200px] h-[150px] absolute top-1/2 !-translate-y-1/2 left-2/3 !-translate-x-full lg:left-1/2 lg:!-translate-x-1/2 lg:top-1/2"
+          className="aspect-square w-[80px] absolute top-2/3 sm:top-1/2 !-translate-y-1/2 left-2/3 !-translate-x-full lg:left-1/2 lg:!-translate-x-1/2 lg:top-1/2"
           duration={1500}
           moveTo="left"
         >
-          <FontAwesomeIcon icon={faArrowRightLong} size="10x" />
+          <FontAwesomeIcon
+            icon={faArrowRightLong}
+            className="origin-center rotate-45 md:rotate-0 text-[80px] md:text-[150px]"
+          />
         </ScrollRevealContainer>
 
-        <div className="w-[200px] absolute right-0 lg:left-full lg:-translate-x-1/2 top-1/2 -translate-y-1/2">
-          <Image
-            src="/icon.png"
-            alt="YouTube Note icon"
-            className="absolute left-0 lg:-translate-x-1/2 top-1/2 -translate-y-1/2"
-            width={150}
-            height={150}
-          />
+        <div className="aspect-square w-[80px] md:w-[150px] absolute right-8 md:right-0 lg:left-full lg:-translate-x-1/2 top-full md:top-1/2 -translate-y-1/2">
+          <Image src="/icon.png" alt="YouTube Note icon" fill />
         </div>
       </div>
     </div>
