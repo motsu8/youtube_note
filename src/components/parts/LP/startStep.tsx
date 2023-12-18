@@ -8,10 +8,15 @@ import HorizontalScroll from './horizontalScroll';
 function StartStep() {
   return (
     <div
-      className="bg-main-lp w-full flex flex-col justify-start items-center pt-16 space-y-5"
-      id="start"
+      className="bg-main-lp w-full flex flex-col justify-start items-center pt-16 space-y-16"
+      id="section-start"
     >
-      <p className="text-3xl">始めるためのステップ</p>
+      <div className="space-y-3 flex flex-col justify-center items-center">
+        <p className="text-3xl">始めるためのステップ</p>
+        <p>
+          メールでの登録または、Google認証で登録をして、アプリを使い始めましょう！
+        </p>
+      </div>
 
       <HorizontalScroll>
         {LP_START_STEP.map(

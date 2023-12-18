@@ -49,6 +49,11 @@ export const LP_TABS = [
     title: '認証',
     id: '#section-auth',
   },
+  {
+    key: 5,
+    title: '手引き',
+    id: '#section-start',
+  },
 ];
 
 export const LP_NOTE_CARD = [
