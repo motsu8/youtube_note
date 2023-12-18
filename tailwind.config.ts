@@ -18,6 +18,7 @@ const config = {
       },
       colors: {
         main: '#FFFAF2',
+        'main-lp': '#FFF1DC',
         base: '#BD3246',
         accent: '#E0822A',
         'accent-dark': '#B86B23',
@@ -28,7 +29,7 @@ const config = {
   plugins: [],
   safelist: [
     {
-      pattern: /(bg|text|border)-(main|base|accent)/,
+      pattern: /(bg|text|border)-(main|base|accent|main-lp)/,
       variants: ['hover'],
     },
     'right-3',

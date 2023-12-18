@@ -9,6 +9,14 @@ export interface ImageObject {
   src: string;
 }
 
+export interface StartStepContent {
+  key: number;
+  alt: string;
+  src: string;
+  content: string;
+  title: string;
+}
+
 export const IMAGE = {
   playlist: {
     alt: 'プレイリストのイメージ画像',
@@ -83,7 +91,7 @@ export const LP_PLAYLIST = [
   {
     key: 2,
     content:
-      'エキサイティングなYouTube動画を見ながら、その場でノートを取りませんか？YouTube Noteは動画とノートの融合で、学びの瞬間を逃しません。',
+      'YouTube動画を見ながら、その場でノートを取りませんか？YouTube Noteは動画とノートの融合で、学びの瞬間を逃しません。YouTube動画を検索して直接アプリ内で視聴可能で、フォルダを作成することでノートを効果的に整理できます。',
     className: '',
   },
 ];
@@ -97,7 +105,7 @@ export const LP_DATABASE = [
   {
     key: 2,
     content:
-      '大切なアイデアや学びは、堅牢なデータベースに保存されます。過去の自分と未来の自分を繋ぐ、学びの軌跡として。',
+      '大切なアイデアや学びは、堅牢なデータベースに保存されます。過去の自分と未来の自分を繋ぐ、学びの軌跡として。データベースにアクセスして、どこからでもあなたのノートにアクセス可能です。プロジェクトごとにノートを整理し、進捗を簡単に追跡しましょう！',
     className: '',
   },
 ];
@@ -113,6 +121,41 @@ export const LP_AUTH = [
     content:
       'EmailやGoogleアカウントでログイン。セキュリティと利便性を両立させた認証で、クリエイティブな学びの旅路をスムーズにスタート。',
     className: '',
+  },
+];
+
+export const LP_START_STEP = [
+  {
+    key: 1,
+    alt: 'ログインイメージ',
+    src: '/login.gif',
+    title: 'アプリにログイン',
+    content:
+      'メールまたはGoogleアカウントで簡単に登録可能。数秒でアプリの利用を開始できます。',
+  },
+  {
+    key: 2,
+    alt: 'YouTube動画の検索イメージ',
+    src: '/playlist.gif',
+    title: 'YouTube動画を検索',
+    content:
+      'アプリ内でYouTube動画を検索して見つけ、即座に視聴開始。アプリ内で保存した動画はURLで検索可能。',
+  },
+  {
+    key: 3,
+    alt: '動画と同時にノートをとる',
+    src: '/note.gif',
+    title: '動画視聴と同時にノートを取る',
+    content:
+      'マークダウンエディタを使いながら動画を見ながらノートをとりましょう。重要なポイントやコードを逃さず記録。マークダウンで記入した内容をHTMLプレビューで確認することができます',
+  },
+  {
+    key: 4,
+    alt: 'データベースに保存',
+    src: '/save.gif',
+    title: 'データベースに保存',
+    content:
+      'ノートはデータベースに安全に保存。必要なときにどこからでもアクセス可能です。学習の進捗を追い、新しいスキルを効率的に習得。',
   },
 ];
 
