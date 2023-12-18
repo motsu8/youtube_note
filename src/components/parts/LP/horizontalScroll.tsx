@@ -16,7 +16,6 @@ function HorizontalScroll({ children }: Props) {
     -(sectionRef.current!.offsetWidth - window.innerWidth);
 
   useEffect(() => {
-    console.log(getScrollAmount());
     const gsapFnc = gsap.context(() => {
       gsap.to(sectionRef.current, {
         x: getScrollAmount(),
@@ -39,7 +38,7 @@ function HorizontalScroll({ children }: Props) {
     <div ref={wrapperRef} className="w-full overflow-hidden">
       <div
         ref={sectionRef}
-        className="h-[70vh] w-fit flex flex-nowrap px-28 space-x-10 py-10 lg:px-56 xl:px-96 xl:mx-16 xl:space-x-24"
+        className="h-[70vh] w-fit flex flex-nowrap px-28 space-x-10 lg:px-56 xl:px-96 xl:mx-16 xl:space-x-24"
       >
         {children}
       </div>
