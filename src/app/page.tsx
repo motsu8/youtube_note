@@ -9,6 +9,7 @@ import CenterSection from '@/components/parts/LP/centerSection';
 import EntrySection from '@/components/parts/LP/entrySection';
 import Header from '@/components/parts/LP/header';
 import NoteSection from '@/components/parts/LP/noteSection';
+import StartStep from '@/components/parts/LP/startStep';
 import TitleSection from '@/components/parts/LP/titleSection';
 import PopupContent from '@/components/parts/popupContent';
 import ScrollRevealContainer from '@/components/parts/scrollRevealContainer';
@@ -66,6 +67,8 @@ export default function Landing() {
       />
 
       <AuthSection />
+
+      <StartStep />
 
       <div className="w-full bg-base text-white">
         <ScrollRevealContainer className="w-full py-20 space-y-10 flex flex-col justify-center items-center shadow-sm h-full">

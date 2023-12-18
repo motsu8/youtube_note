@@ -15,7 +15,7 @@ function UserHeader() {
 
   return (
     <div className="absolute w-full flex justify-between items-center px-10 py-1 h-16 shadow">
-      <Title />
+      <Title className="flex space-x-3 items-center" />
       <IconButton
         icon={faUser}
         iconClass={ICON_SIZE}

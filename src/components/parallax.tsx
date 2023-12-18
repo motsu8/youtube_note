@@ -1,6 +1,6 @@
 import { useWindowSize } from '@studio-freight/hamo';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import React, { ReactNode, useEffect, useRef } from 'react';
 
 interface ParallaxProps {
