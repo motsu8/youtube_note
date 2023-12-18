@@ -26,7 +26,8 @@ function HorizontalScroll({ children }: Props) {
           end: () => `+=${getScrollAmount() * -1}`,
           pin: sectionRef.current,
           scrub: true,
-          markers: true,
+          // debug
+          // markers: true,
         },
       });
     });
