@@ -2,8 +2,6 @@ import './globals.css';
 import { Inter } from 'next/font/google';
 import Script from 'next/script';
 
-import SmoothScroll from '@/components/smoothScroll';
-
 import type { Metadata } from 'next';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -21,9 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={`font-sans ${inter.className}`}>
-        <SmoothScroll>{children}</SmoothScroll>
-      </body>
+      <body className={`font-sans ${inter.className}`}>{children}</body>
       <Script src="https://apis.google.com/js/api.js" />
     </html>
   );
