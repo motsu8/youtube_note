@@ -1,6 +1,7 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 import Script from 'next/script';
+import NextTopLoader from 'nextjs-toploader';
 
 import type { Metadata } from 'next';
 
@@ -19,7 +20,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={`font-sans ${inter.className}`}>{children}</body>
+      <body className={`font-sans ${inter.className}`}>
+        <NextTopLoader showSpinner={false} color="#BD3246" />
+        {children}
+      </body>
       <Script src="https://apis.google.com/js/api.js" />
     </html>
   );

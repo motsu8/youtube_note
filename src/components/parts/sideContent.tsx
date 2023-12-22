@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 import { BG_CENTER } from '@/constants/iconBackGround';
 import { SideContent } from '@/types/components';
@@ -14,13 +14,9 @@ export default function SideContent({
   title,
   url,
 }: SideContent) {
-  const router = useRouter();
-  const setTransition = (link: string) => router.push(link);
-
   return (
-    <button
-      type="button"
-      onClick={() => setTransition(url)}
+    <Link
+      href={url}
       className="w-full flex justify-start px-3 py-1 hover:bg-main-dark items-center"
     >
       <IconButton
@@ -30,6 +26,6 @@ export default function SideContent({
         color={iconColor}
         title={title}
       />
-    </button>
+    </Link>
   );
 }
