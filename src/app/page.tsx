@@ -1,7 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import AuthForm from '@/components/authForm';
 import AuthSection from '@/components/parts/LP/authSection';
@@ -23,21 +22,8 @@ import {
   LP_PLAYLIST,
 } from '@/constants/lp';
 
-import { getSession } from './api/supabase';
-
 export default function Landing() {
-  const router = useRouter();
   const [visibleAuth, setVisibleAuth] = useState(AUTH_CLOSE);
-
-  useEffect(() => {
-    // セッション取得
-    const getSessionData = async () => {
-      const data = await getSession();
-      if (data) router.push('/home');
-    };
-
-    getSessionData();
-  }, []);
 
   const updateVisibleAuth = (type: string) => {
     setVisibleAuth(type);
