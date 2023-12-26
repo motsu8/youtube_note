@@ -1,7 +1,5 @@
-'use client';
-
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import React from 'react';
 
 import { ICON_COLOR, ICON_SIZE } from '@/constants/iconBackGround';
@@ -10,19 +8,17 @@ import IconButton from '../parts/iconButton';
 import Title from '../parts/title';
 
 function UserHeader() {
-  const router = useRouter();
-  const jumpToUser = () => router.push('/user');
-
   return (
     <div className="absolute w-full flex justify-between items-center px-10 py-1 h-16 shadow">
       <Title className="flex space-x-3 items-center" />
-      <IconButton
-        icon={faUser}
-        iconClass={ICON_SIZE}
-        bgClass={['hover:bg-main-dark', 'rounded-full', 'w-12', 'h-12']}
-        color={ICON_COLOR}
-        setClickHandler={() => jumpToUser()}
-      />
+      <Link href="/user">
+        <IconButton
+          icon={faUser}
+          iconClass={ICON_SIZE}
+          bgClass={['hover:bg-main-dark', 'rounded-full', 'w-12', 'h-12']}
+          color={ICON_COLOR}
+        />
+      </Link>
     </div>
   );
 }
