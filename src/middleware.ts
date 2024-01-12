@@ -49,7 +49,7 @@ export async function middleware(request: NextRequest) {
   } = await supabase.auth.getSession();
 
   if (session && request.nextUrl.pathname === '/') {
-    return NextResponse.rewrite(new URL('/home', request.nextUrl.origin));
+    return NextResponse.redirect(new URL('/home', request.nextUrl.origin));
   }
 
   return response;

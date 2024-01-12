@@ -14,8 +14,14 @@ function UserHeader() {
       <Link href="/user">
         <IconButton
           icon={faUser}
-          iconClass={ICON_SIZE}
-          bgClass={['hover:bg-main-dark', 'rounded-full', 'w-12', 'h-12']}
+          iconClass={`${ICON_SIZE} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2`}
+          bgClass={[
+            'hover:bg-main-dark',
+            'relative',
+            'rounded-full',
+            'w-12',
+            'h-12',
+          ]}
           color={ICON_COLOR}
         />
       </Link>
