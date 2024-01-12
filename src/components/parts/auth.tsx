@@ -26,6 +26,7 @@ export default function GoogleOauth() {
     });
   };
 
+  console.log(process?.env?.NEXT_PUBLIC_SITE_URL);
   return (
     <div className="w-full border-t border-neutral pt-5 flex justify-center">
       <div className="shadow-lg px-3 py-1 max-w-fit rounded-lg bg-neutral-50">
